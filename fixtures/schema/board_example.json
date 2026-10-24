@@ -1,0 +1,23 @@
+{
+  "schema": "v1",
+  "kind": "board",
+  "board_id": "6f1c2a52-3b5e-4b8e-9a51-1d2f3c4b5a60",
+  "session_id": "0b7d9e10-2c3a-4f5b-8e6d-7a8b9c0d1e2f",
+  "seq": 3,
+  "device": "iPhone17,1",
+  "app_version": "0.1.0",
+  "calibration_version": "iphone-1206x2622@1",
+  "opened_at": "2026-10-24T20:15:03.120000Z",
+  "view_ms": 86500,
+  "status": "played",
+  "board_image": "board.png",
+  "end_banner_image": "end_banner.png",
+  "end_list_image": "end_list.png",
+  "attempts": [
+    {"seq": 0, "t_start_ms": 6200, "t_end_ms": 7350, "tiles_seen": [1, 4, 9, 14, 10, 3, 6, 2],
+     "release_state": "valid_new", "banner_words_after": 1, "confidence": 0.97},
+    {"seq": 1, "t_start_ms": 7900, "t_end_ms": 8400, "tiles_seen": [0, 4, 5],
+     "release_state": "not_a_word", "confidence": 0.9}
+  ],
+  "diagnostics": {"fps_processed": 28.4, "frames_dropped": 12, "mem_peak_mb": 31.5}
+}

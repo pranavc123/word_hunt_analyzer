@@ -1,0 +1,11 @@
+{
+  "schema": "v1",
+  "kind": "all_words",
+  "record_id": "a3c4e5f6-0718-4a9b-8c7d-6e5f4a3b2c1d",
+  "session_id": "0b7d9e10-2c3a-4f5b-8e6d-7a8b9c0d1e2f",
+  "captured_at": "2026-10-25T09:01:44Z",
+  "frames": ["aw_000.png", "aw_001.png", "aw_002.png"],
+  "shifts_px": [0, 640, 655],
+  "gap_flags": [false, false, false],
+  "bounced_at_end": true
+}

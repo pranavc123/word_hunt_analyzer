@@ -13,3 +13,5 @@
 - 2026-10-24 VIEW ALL WORDS unlocks after the opponent plays → separate AllWordsRecord, matched to its board by found words; boards wait as `pending`.
 - 2026-10-24 Repo root = ~/Projects/wordhunt; `$WH_DATA` = repo/wordhunt-data (git-ignored).
 - 2026-10-24 Reference lists (wordhunt.org etc.) fetched manually, never at runtime, never committed.
+- 2026-10-24 Repo: the empty GitHub clone's `.git` was moved up into ~/Projects/wordhunt (repo root per CLAUDE.md); repo-local git identity set.
+- 2026-10-24 Schema v1: `release_state` is the §2 enum (valid_new|already_found|not_a_word), not free text; records forbid extra fields; tiles 0–15 validated. Python field `schema_` aliases JSON `schema`.

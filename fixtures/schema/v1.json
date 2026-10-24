@@ -1,0 +1,288 @@
+{
+  "$defs": {
+    "AllWordsRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "bounced_at_end": {
+          "title": "Bounced At End",
+          "type": "boolean"
+        },
+        "captured_at": {
+          "format": "date-time",
+          "title": "Captured At",
+          "type": "string"
+        },
+        "frames": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Frames",
+          "type": "array"
+        },
+        "gap_flags": {
+          "items": {
+            "type": "boolean"
+          },
+          "title": "Gap Flags",
+          "type": "array"
+        },
+        "kind": {
+          "const": "all_words",
+          "default": "all_words",
+          "title": "Kind",
+          "type": "string"
+        },
+        "record_id": {
+          "format": "uuid",
+          "title": "Record Id",
+          "type": "string"
+        },
+        "schema": {
+          "const": "v1",
+          "default": "v1",
+          "title": "Schema",
+          "type": "string"
+        },
+        "session_id": {
+          "format": "uuid",
+          "title": "Session Id",
+          "type": "string"
+        },
+        "shifts_px": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Shifts Px",
+          "type": "array"
+        }
+      },
+      "required": [
+        "record_id",
+        "session_id",
+        "captured_at",
+        "frames",
+        "shifts_px",
+        "gap_flags",
+        "bounced_at_end"
+      ],
+      "title": "AllWordsRecord",
+      "type": "object"
+    },
+    "Attempt": {
+      "additionalProperties": false,
+      "properties": {
+        "banner_words_after": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Banner Words After"
+        },
+        "confidence": {
+          "title": "Confidence",
+          "type": "number"
+        },
+        "release_state": {
+          "enum": [
+            "valid_new",
+            "already_found",
+            "not_a_word"
+          ],
+          "title": "Release State",
+          "type": "string"
+        },
+        "seq": {
+          "title": "Seq",
+          "type": "integer"
+        },
+        "t_end_ms": {
+          "title": "T End Ms",
+          "type": "integer"
+        },
+        "t_start_ms": {
+          "title": "T Start Ms",
+          "type": "integer"
+        },
+        "tiles_seen": {
+          "items": {
+            "maximum": 15,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "title": "Tiles Seen",
+          "type": "array"
+        }
+      },
+      "required": [
+        "seq",
+        "t_start_ms",
+        "t_end_ms",
+        "tiles_seen",
+        "release_state",
+        "confidence"
+      ],
+      "title": "Attempt",
+      "type": "object"
+    },
+    "BoardRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "app_version": {
+          "title": "App Version",
+          "type": "string"
+        },
+        "attempts": {
+          "items": {
+            "$ref": "#/$defs/Attempt"
+          },
+          "title": "Attempts",
+          "type": "array"
+        },
+        "board_id": {
+          "format": "uuid",
+          "title": "Board Id",
+          "type": "string"
+        },
+        "board_image": {
+          "title": "Board Image",
+          "type": "string"
+        },
+        "calibration_version": {
+          "title": "Calibration Version",
+          "type": "string"
+        },
+        "device": {
+          "title": "Device",
+          "type": "string"
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/Diagnostics"
+        },
+        "end_banner_image": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End Banner Image"
+        },
+        "end_list_image": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "End List Image"
+        },
+        "kind": {
+          "const": "board",
+          "default": "board",
+          "title": "Kind",
+          "type": "string"
+        },
+        "opened_at": {
+          "format": "date-time",
+          "title": "Opened At",
+          "type": "string"
+        },
+        "schema": {
+          "const": "v1",
+          "default": "v1",
+          "title": "Schema",
+          "type": "string"
+        },
+        "seq": {
+          "title": "Seq",
+          "type": "integer"
+        },
+        "session_id": {
+          "format": "uuid",
+          "title": "Session Id",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "played",
+            "skipped"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "view_ms": {
+          "title": "View Ms",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "board_id",
+        "session_id",
+        "seq",
+        "device",
+        "app_version",
+        "calibration_version",
+        "opened_at",
+        "view_ms",
+        "status",
+        "board_image",
+        "attempts",
+        "diagnostics"
+      ],
+      "title": "BoardRecord",
+      "type": "object"
+    },
+    "Diagnostics": {
+      "additionalProperties": false,
+      "properties": {
+        "fps_processed": {
+          "title": "Fps Processed",
+          "type": "number"
+        },
+        "frames_dropped": {
+          "title": "Frames Dropped",
+          "type": "integer"
+        },
+        "mem_peak_mb": {
+          "title": "Mem Peak Mb",
+          "type": "number"
+        }
+      },
+      "required": [
+        "fps_processed",
+        "frames_dropped",
+        "mem_peak_mb"
+      ],
+      "title": "Diagnostics",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "discriminator": {
+    "mapping": {
+      "all_words": "#/$defs/AllWordsRecord",
+      "board": "#/$defs/BoardRecord"
+    },
+    "propertyName": "kind"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/BoardRecord"
+    },
+    {
+      "$ref": "#/$defs/AllWordsRecord"
+    }
+  ],
+  "title": "WordHuntRecord v1"
+}
