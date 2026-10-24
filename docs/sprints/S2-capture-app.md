@@ -3,7 +3,7 @@
 Goal: port the sampler and state machine to Swift and prove parity on the Mac, before any live play.
 gate: `swift test --package-path ios/WHCapture` passes the parity tests AND the iOS build succeeds.
 
-- [ ] **S2.T1** WHCapture package + models
+- [x] **S2.T1** WHCapture package + models
   - files: `ios/WHCapture/Package.swift` (macOS 14 + iOS 17), `Sources/WHCapture/Models.swift`, `Tests/WHCaptureTests/SchemaTests.swift`
   - do: Codable structs matching `fixtures/schema/v1.json`. The test decodes `fixtures/expected/*.json` and re-encodes it losslessly.
   - done: `swift test --package-path ios/WHCapture --filter SchemaTests`
