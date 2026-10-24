@@ -1,0 +1,58 @@
+name: App
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+configFiles:
+  Debug: Base.xcconfig
+  Release: Base.xcconfig
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  CompanionApp:
+    type: application
+    platform: iOS
+    sources:
+      - CompanionApp
+    dependencies:
+      - target: BroadcastExtension
+        embed: true
+    info:
+      path: CompanionApp/Info.plist
+      properties:
+        CFBundleDisplayName: Word Hunt
+        UILaunchScreen: {}
+        UIRequiresFullScreen: true
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        WHServerURL: $(WH_SERVER_URL)
+        WHToken: $(WH_TOKEN)
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(WH_BUNDLE_PREFIX).wordhunt
+  BroadcastExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - BroadcastExtension
+      - path: ../../fixtures/calibration/iphone-1206x2622.json
+        buildPhase: resources
+    info:
+      path: BroadcastExtension/Info.plist
+      properties:
+        CFBundleDisplayName: Word Hunt Capture
+        WHServerURL: $(WH_SERVER_URL)
+        WHToken: $(WH_TOKEN)
+        WHAppGroup: $(WH_APP_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.broadcast-services-upload
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).SampleHandler
+          RPBroadcastProcessMode: RPBroadcastProcessModeSampleBuffer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(WH_BUNDLE_PREFIX).wordhunt.broadcast
+        CODE_SIGN_ENTITLEMENTS: $(WH_EXTENSION_ENTITLEMENTS)

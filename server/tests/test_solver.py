@@ -3,6 +3,7 @@ import time
 from pathlib import Path
 
 import pytest
+
 from whcore.scoring import word_points
 from whcore.solver import ADJ, best_path, direction_changes, load_trie, max_points, normalise, solve
 

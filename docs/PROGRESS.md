@@ -15,6 +15,12 @@ Current sprint: **S0** → `docs/sprints/S0-bootstrap-feasibility.md`
 
 ## Done tasks
 <!-- one line each: S0.T1 ✓ <date> — note (≤2 lines) -->
+- S0.T1 ✓ 2026-10-24 — repo root = ~/Projects/wordhunt (clone's .git moved up); uv on Python 3.15; words_small = 335 board words + 80 random YAWL.
+- S0.T2 ✓ 2026-10-24 — solver matches measurements (YAWL 335/262,800; ENABLE 251/196,500), ~10 ms/solve.
+- S0.T3 ✓ 2026-10-24 — schema v1 exported to fixtures/schema/v1.json; examples in fixtures/schema/*_example.json.
+- S0.T4 ✓ 2026-10-24 — calibration in fixtures/calibration/iphone-1206x2622.json; seed templates in $WH_DATA/templates/seed.npz.
+- S0.T14 ✓ 2026-10-24 — probe builds unsigned; server has GET /v1/health + POST /diag (Bearer WH_TOKEN if set).
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
+- S0.T5 recordings (session1.mov, allwords1.mov) → unblocks T6–T13. S0.T15 device run needs Signing.xcconfig + Config.xcconfig.

@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
+
 from whcore.schema import AllWordsRecord, BoardRecord, dump_record, json_schema, parse_record
 
 FIX = Path(__file__).resolve().parents[2] / "fixtures/schema"

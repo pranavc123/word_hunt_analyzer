@@ -4,6 +4,7 @@ from pathlib import Path
 
 import numpy as np
 import pytest
+
 from whcore import calibration as cb
 
 ROOT = Path(__file__).resolve().parents[2]

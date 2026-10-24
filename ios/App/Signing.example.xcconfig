@@ -1,0 +1,11 @@
+// Copy to Signing.xcconfig (git-ignored) and fill in.
+// Team ID: Xcode > Settings > Accounts > (your Personal Team), or the Signing & Capabilities tab.
+DEVELOPMENT_TEAM = ABCDE12345
+// Must be unique to you (free teams can't reuse someone else's bundle IDs).
+WH_BUNDLE_PREFIX = com.yourname
+CODE_SIGNING_ALLOWED = YES
+
+// Optional S0 experiment: does a Personal Team allow App Groups? Uncomment both lines.
+// If signing then fails, comment them out again (the probe reports app_group_available).
+// WH_APP_GROUP = group.com.yourname.wordhunt
+// WH_EXTENSION_ENTITLEMENTS = BroadcastExtension/AppGroup.entitlements

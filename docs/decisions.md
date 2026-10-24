@@ -15,3 +15,6 @@
 - 2026-10-24 Reference lists (wordhunt.org etc.) fetched manually, never at runtime, never committed.
 - 2026-10-24 Repo: the empty GitHub clone's `.git` was moved up into ~/Projects/wordhunt (repo root per CLAUDE.md); repo-local git identity set.
 - 2026-10-24 Schema v1: `release_state` is the §2 enum (valid_new|already_found|not_a_word), not free text; records forbid extra fields; tiles 0–15 validated. Python field `schema_` aliases JSON `schema`.
+- 2026-10-24 iOS: `Base.xcconfig` (committed) `#include?`s the git-ignored Signing/Config files; without Signing.xcconfig the build is unsigned (CODE_SIGNING_ALLOWED=NO) so the compile check works anywhere.
+- 2026-10-24 iOS: the extension bundles `fixtures/calibration/iphone-1206x2622.json` as a resource ("compiled in"); patches are scaled by buffer size / 1206×2622.
+- 2026-10-24 App Groups probe is opt-in: set WH_APP_GROUP + WH_EXTENSION_ENTITLEMENTS in Signing.xcconfig; the diag reports app_group_configured/available.

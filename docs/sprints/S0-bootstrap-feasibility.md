@@ -15,7 +15,7 @@ speed is recorded. On FAIL, write the go/no-go note in `docs/measurements.md` an
 Order without recordings: T1 → T2, T3 [parallel] → T4 → T14. Then S2.T1 and S4.T3 can start
 early (they only need the schema).
 
-- [ ] **S0.T1** Scaffold repo
+- [x] **S0.T1** Scaffold repo
   - files: `pyproject.toml` (uv; deps: pydantic, numpy, opencv-python-headless, pillow, pytesseract, fastapi, uvicorn, pytest, ruff), `.gitignore`, `server/whcore/__init__.py`, `server/tests/test_smoke.py`, `fixtures/words_small.txt` (~400 words incl. all YAWL words on the IMG_0717 board), `fixtures/boards/img0717.json`, `dictionaries/` (copied from `$WH_DATA/dictionaries/`), `dictionaries/SOURCES.md`
   - .gitignore: `wordhunt-data/`, `*.mov`, `*.MOV`, `ios/App/*.xcodeproj`, `ios/App/Signing.xcconfig`, `ios/App/Config.xcconfig`, `node_modules`, `.venv`, `*.db`
   - fixture `img0717.json`: `{"letters":"LCMEORSIETRATDIM","word_count":65,"score":44700,"top15":[["CLOTTERS",2200],["CLOTTED",1800],...]}` in screen order: CLOTTERS 2200; CLOTTED, CLOTTER, COTTERS, LOTTERS, RITTERS 1800; COTTER, LOTTER, MASTED, MASTER, MISTED, MISTER, MITERS, RASTER, RIDERS 1400.
@@ -23,20 +23,20 @@ early (they only need the schema).
   - done: `uv run pytest -q server/tests && uv run ruff check server tools && git check-ignore -q wordhunt-data && wc -l dictionaries/yawl.txt | grep -q 264097`
   - deps: —
 
-- [ ] **S0.T2** Scoring + trie solver `[parallel]`
+- [x] **S0.T2** Scoring + trie solver `[parallel]`
   - files: `server/whcore/scoring.py`, `server/whcore/solver.py`, `server/tests/test_solver.py`
   - do: PLAN §1 scoring; trie from a word file; DFS returns {word: [paths]} plus the best path (fewest direction changes); loader normalises per §6.
   - test (real board LCMEORSIETRATDIM): with `dictionaries/yawl.txt`, 335 words and 262,800 max points; with `enable1.txt`, 251 words and 196,500 max points; all 15 top words are in the YAWL result; 4 of them (CLOTTER, CLOTTERS, LOTTER, LOTTERS) are absent from ENABLE. Each solve < 100 ms after load.
   - done: `uv run pytest -q server/tests/test_solver.py`
   - deps: T1
 
-- [ ] **S0.T3** Event schema v1 `[parallel]`
+- [x] **S0.T3** Event schema v1 `[parallel]`
   - files: `server/whcore/schema.py`, `tools/export_schema.py`, `fixtures/schema/v1.json`, `server/tests/test_schema.py`
   - do: implement PLAN §4 exactly (BoardRecord + AllWordsRecord, discriminated on `kind`); export the JSON Schema; round-trip test.
   - done: `uv run pytest -q server/tests/test_schema.py && uv run python tools/export_schema.py --check`
   - deps: T1
 
-- [ ] **S0.T4** Calibration from screenshots
+- [x] **S0.T4** Calibration from screenshots
   - files: `server/whcore/calibration.py`, `tools/calibrate.py`, `fixtures/calibration/iphone-1206x2622.json`, `fixtures/crops/img0717_tiles.png` (downscaled), `server/tests/test_calibration.py`
   - do: from IMG_0717, detect the 4x4 tile grid (uniform beige blobs on the green board) → 16 tile centres and a patch size; locate the banner ROI (WORDS/SCORE) and the timer ROI. From IMG_0718, locate the end-screen banner and the left word-list column. Save resting-tile RGB in the calibration. Seed letter templates from the 16 IMG_0717 tiles (letters known). You may view ONE downscaled crop to confirm the grid.
   - done: `uv run pytest -q server/tests/test_calibration.py` (16 centres on a regular grid, spacing variance < 3%; re-reading IMG_0717 tiles with the seed templates returns LCMEORSIETRATDIM)
@@ -93,7 +93,7 @@ early (they only need the schema).
   - done: table in measurements.md
   - deps: T9, T11
 
-- [ ] **S0.T14** Minimal device probe
+- [x] **S0.T14** Minimal device probe
   - files: `ios/App/project.yml` (XcodeGen), `ios/App/Signing.example.xcconfig`, `ios/App/Config.example.xcconfig`, `ios/App/CompanionApp/*`, `ios/App/BroadcastExtension/SampleHandler.swift`, `server/app/main.py` (`POST /diag` → append to `$WH_DATA/diag.jsonl`; `GET /v1/health`)
   - do: CompanionApp with an `RPSystemBroadcastPickerView` preset to the extension and a health check of the compiled server URL. The extension samples the 16 patches from each `CVPixelBuffer` (tile centres compiled from the T4 calibration) and every 10 s POSTs {fps_processed, frames_dropped, mem_mb (task_vm_info phys_footprint), app_group_available}. No App Groups dependency.
   - done: `xcodegen generate --spec ios/App/project.yml && xcodebuild ... -quiet build` succeeds

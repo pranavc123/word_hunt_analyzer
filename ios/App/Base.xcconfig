@@ -1,0 +1,14 @@
+// Committed defaults. Personal values live in the git-ignored files included below.
+// Without Signing.xcconfig the build is unsigned (compile check only).
+WH_BUNDLE_PREFIX = com.example
+CODE_SIGN_STYLE = Automatic
+CODE_SIGNING_ALLOWED = NO
+DEVELOPMENT_TEAM =
+WH_EXTENSION_ENTITLEMENTS =
+WH_APP_GROUP =
+// Note: "//" starts a comment in xcconfig, so write URLs as https:/$()/host
+WH_SERVER_URL = http:/$()/localhost:8000
+WH_TOKEN =
+
+#include? "Signing.xcconfig"
+#include? "Config.xcconfig"
