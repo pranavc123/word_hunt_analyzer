@@ -17,7 +17,12 @@
 - "(N more)" on the end screen expands to the full list: yes / no
 
 ## Calibration
-- tile grid centres + patch size, banner ROI, timer ROI, end-screen list ROI:
+- (S0.T4, `fixtures/calibration/iphone-1206x2622.json`; rects are [x,y,w,h] px)
+- tiles 188 px, pitch 218.67 px both axes; centre (0,0) = (274.4, 1283.1), (3,3) = (930.4, 1939.1).
+- colour sample patch per tile: 40×16 px at centre dy −73 (top strip, clear of glyph). Resting RGB (245, 218, 170).
+- board banner [131,220,944,279]; "WORDS: n" line [406,297,270,36]; "SCORE: s" line [408,347,649,66]; timer pill [851,500,199,73].
+- end: player banner [54,867,500,140]; list panel [53,1040,499,975]; 15 rows, first row y 1043 (h 48), pitch 61.07; words x 53–336, points x 336–552.
+- seed letter templates (48×48 ink masks) re-read IMG_0717 exactly; min best−second NCC margin 0.16.
 
 ## Colour states (RGB centroids)
 - resting / valid_new / already_found / not_a_word:
