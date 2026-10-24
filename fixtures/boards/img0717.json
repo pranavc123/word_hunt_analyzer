@@ -1,0 +1,11 @@
+{
+  "letters": "LCMEORSIETRATDIM",
+  "word_count": 65,
+  "score": 44700,
+  "top15": [
+    ["CLOTTERS", 2200],
+    ["CLOTTED", 1800], ["CLOTTER", 1800], ["COTTERS", 1800], ["LOTTERS", 1800], ["RITTERS", 1800],
+    ["COTTER", 1400], ["LOTTER", 1400], ["MASTED", 1400], ["MASTER", 1400], ["MISTED", 1400],
+    ["MISTER", 1400], ["MITERS", 1400], ["RASTER", 1400], ["RIDERS", 1400]
+  ]
+}

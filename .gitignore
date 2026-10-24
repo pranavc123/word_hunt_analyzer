@@ -1,0 +1,16 @@
+wordhunt-data/
+*.mov
+*.MOV
+ios/App/*.xcodeproj
+ios/App/Signing.xcconfig
+ios/App/Config.xcconfig
+node_modules
+.venv
+*.db
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.DS_Store
+.build/
+*.zip
+web/dist/
