@@ -21,6 +21,7 @@ Current sprint: **S0** → `docs/sprints/S0-bootstrap-feasibility.md`
 - S0.T4 ✓ 2026-10-24 — calibration in fixtures/calibration/iphone-1206x2622.json; seed templates in $WH_DATA/templates/seed.npz.
 - S0.T14 ✓ 2026-10-24 — probe builds unsigned; server has GET /v1/health + POST /diag (Bearer WH_TOKEN if set).
 - S2.T1 ✓ 2026-10-24 (early) — Swift Codable models + SchemaTests on fixtures/schema examples; picks up fixtures/expected/*.json automatically.
+- S4.T3 ✓ 2026-10-24 (early) — Vite+React 19 PWA shell, dark tokens, 5-tab bottom nav, typed openapi-fetch client; 3 vitest tests.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->

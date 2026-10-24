@@ -17,7 +17,7 @@ verified, ≥ 90% of boards need no letter fix) AND `pnpm -C web build` succeeds
   - done: `uv run pytest -q server/tests/test_read.py`
   - deps: S3
 
-- [ ] **S4.T3** Web scaffold `[parallel]`
+- [x] **S4.T3** Web scaffold `[parallel]`
   - files: `web/*` (Vite React TS, vite-plugin-pwa, react-router, TanStack Query, vitest)
   - do: app shell, dark theme tokens, bottom nav, typed API client generated from FastAPI OpenAPI (`openapi-typescript`).
   - done: `pnpm -C web build && pnpm -C web test --run`

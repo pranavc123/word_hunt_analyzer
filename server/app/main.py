@@ -8,6 +8,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from pydantic import BaseModel
 
 ROOT = Path(__file__).resolve().parents[2]
 VERSION = "0.1.0"
@@ -25,9 +26,14 @@ def require_token(authorization: str | None = Header(default=None)) -> None:
         raise HTTPException(status_code=401, detail="bad token")
 
 
+class Health(BaseModel):
+    ok: bool
+    version: str
+
+
 @app.get("/v1/health")
-def health() -> dict:
-    return {"ok": True, "version": VERSION}
+def health() -> Health:
+    return Health(ok=True, version=VERSION)
 
 
 @app.post("/diag", dependencies=[Depends(require_token)])

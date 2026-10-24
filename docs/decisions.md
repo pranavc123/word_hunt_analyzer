@@ -19,3 +19,4 @@
 - 2026-10-24 iOS: the extension bundles `fixtures/calibration/iphone-1206x2622.json` as a resource ("compiled in"); patches are scaled by buffer size / 1206×2622.
 - 2026-10-24 App Groups probe is opt-in: set WH_APP_GROUP + WH_EXTENSION_ENTITLEMENTS in Signing.xcconfig; the diag reports app_group_configured/available.
 - 2026-10-24 Swift models: IDs are lowercase UUID strings (lossless with Python); dates on the wire are ISO 8601 UTC with ms precision (WHJSON coder). Tests also decode fixtures/expected/*.json once S1 creates them.
+- 2026-10-24 Web: TypeScript pinned to 6.x (TS 7 native has no JS API; openapi-typescript needs it). API types: tools/export_openapi.py → web/openapi.json → pnpm -C web gen:api → src/api/schema.ts (committed); client = openapi-fetch.
