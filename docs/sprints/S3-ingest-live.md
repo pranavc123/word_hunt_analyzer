@@ -4,7 +4,7 @@ Goal: live play → stored, processed, verified boards.
 gate: `uv run python tools/report.py --gate s3` → PASS on the latest live session (no crash
 record, every board arrived — seq contiguous — and ≥ 95% of played boards verified).
 
-- [ ] **S3.T1** Database `[parallel]`
+- [x] **S3.T1** Database `[parallel]`
   - files: `server/app/db.py`, `server/app/models.py`, `server/alembic/*`, `server/tests/test_db.py`
   - do: SQLModel tables per PLAN §5; Alembic baseline; SQLite at `$WH_DATA/wh.db`.
   - done: `uv run alembic -c server/alembic.ini upgrade head && uv run pytest -q server/tests/test_db.py`
