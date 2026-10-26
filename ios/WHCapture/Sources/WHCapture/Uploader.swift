@@ -9,7 +9,7 @@ import Foundation
 /// the record is malformed for this server, moved to `failed/`; 5xx or network error →
 /// exponential backoff (1 s doubling to 5 min, ±20% jitter) and retry.
 public final class Uploader {
-    public enum Outcome: Equatable {
+    public enum Outcome: Equatable, Sendable {
         case uploaded(String)
         case empty
         case retry(after: TimeInterval)

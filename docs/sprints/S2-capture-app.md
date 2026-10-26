@@ -31,7 +31,7 @@ gate: `swift test --package-path ios/WHCapture` passes the parity tests AND the 
   - done: `swift test --package-path ios/WHCapture --filter Uploader`
   - deps: T1
 
-- [ ] **S2.T5** Wire the extension
+- [x] **S2.T5** Wire the extension
   - files: `ios/App/BroadcastExtension/SampleHandler.swift`, `ios/App/project.yml`
   - do: one frame in flight (drop when busy); sampler → machine → crops → buffer → uploader. Keep diagnostics (fps, drops, mem) in each record. The server URL, token, and calibration are compiled in from the git-ignored `ios/App/Config.xcconfig` (+ a committed `Config.example.xcconfig`), so no App Group is needed (S0 did not test App Groups; the opt-in switch is in `Signing.example.xcconfig`).
   - done: iOS build succeeds (`xcodegen generate ... && xcodebuild ... -quiet build`)

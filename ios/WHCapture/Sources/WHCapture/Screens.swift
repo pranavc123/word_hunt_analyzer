@@ -45,6 +45,16 @@ public struct TileStates: Sendable {
         ("X", [252.0, 140.0, 140.0]),
     ])
 
+    /// Phone (ReplayKit 420f) domain — PROVISIONAL: resting measured on the S0 device run
+    /// (251,217,163); the selected states are the recording values until the S3 live session.
+    public static let phone = TileStates(centroids: [
+        ("R", [251.0, 217.0, 163.0]),
+        ("W", [252.0, 252.0, 252.0]),
+        ("G", [128.0, 250.0, 128.0]),
+        ("Y", [248.0, 248.0, 116.0]),
+        ("X", [252.0, 140.0, 140.0]),
+    ])
+
     public init(centroids: [(Character, [Double])], tolerance: Double = 22) {
         self.centroids = centroids
         self.tolerance = tolerance

@@ -193,3 +193,20 @@ final class SamplerTests: XCTestCase {
         XCTAssertEqual(c.scaled(c.roi_banner, toWidth: 1206, height: 2622), c.roi_banner)
     }
 }
+
+final class SamplerSpeedTests: XCTestCase {
+    /// Timing on a phone-sized 884×1920 420f buffer (prints ms/frame; asserts only a loose bound).
+    func testSamplerSpeedOnPhoneSizedFrames() throws {
+        let fill = SamplerTests.frame(fill: [100, 140, 100], patches: [], width: 884, height: 1920)
+        let pb = SamplerTests.yuv420fBuffer(fill)
+        let s = Sampler(calibration: SamplerTests.calibration, digits: SamplerTests.digits)
+        for screen in [Screen.board, .allWords, .other] {
+            s.classify = { _ in screen }
+            let t0 = Date()
+            for i in 0..<30 { _ = s.sample(pb, frame: i, tMs: i * 33) }
+            let ms = Date().timeIntervalSince(t0) / 30 * 1000
+            print("sampler \(screen): \(String(format: "%.2f", ms)) ms/frame")
+            XCTAssertLessThan(ms, 500)
+        }
+    }
+}

@@ -4,6 +4,9 @@ options:
   deploymentTarget:
     iOS: "17.0"
   createIntermediateGroups: true
+packages:
+  WHCapture:
+    path: ../WHCapture
 configFiles:
   Debug: Base.xcconfig
   Release: Base.xcconfig
@@ -22,6 +25,7 @@ targets:
     dependencies:
       - target: BroadcastExtension
         embed: true
+      - package: WHCapture
     info:
       path: CompanionApp/Info.plist
       properties:
@@ -41,6 +45,10 @@ targets:
       - BroadcastExtension
       - path: ../../fixtures/calibration/iphone-1206x2622.json
         buildPhase: resources
+      - path: ../../fixtures/templates/digits.json
+        buildPhase: resources
+    dependencies:
+      - package: WHCapture
     info:
       path: BroadcastExtension/Info.plist
       properties:

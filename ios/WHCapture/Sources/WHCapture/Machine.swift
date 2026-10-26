@@ -384,11 +384,21 @@ public final class Machine {
         }
         finaliseClosed()
         finaliseAllWords()
-        // stable sort by time (Python's sort is stable)
-        records = records.enumerated().sorted { l, r in
+        // stable sort by time (Python's sort is stable); records already handed out stay put
+        let tail = records[takenRecords...].enumerated().sorted { l, r in
             let tl = Machine.time(l.element), tr = Machine.time(r.element)
             return tl != tr ? tl < tr : l.offset < r.offset
         }.map(\.element)
+        records.replaceSubrange(takenRecords..., with: tail)
+    }
+
+    private var takenRecords = 0
+    private var takenCrops = 0
+
+    /// Records and crop requests produced since the last call (live capture drains these).
+    public func takeNew() -> (records: [Record], crops: [CropRequest]) {
+        defer { takenRecords = records.count; takenCrops = crops.count }
+        return (Array(records[takenRecords...]), Array(crops[takenCrops...]))
     }
 
     static func time(_ r: Record) -> Date {
