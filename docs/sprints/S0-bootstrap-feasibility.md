@@ -42,7 +42,7 @@ early (they only need the schema).
   - done: `uv run pytest -q server/tests/test_calibration.py` (16 centres on a regular grid, spacing variance < 3%; re-reading IMG_0717 tiles with the seed templates returns LCMEORSIETRATDIM)
   - deps: T1
 
-- [ ] **S0.T5** `[HUMAN]` Recordings
+- [x] **S0.T5** `[HUMAN]` Recordings
   - Play one normal session with screen recording on and the Focus on; don't open VIEW ALL WORDS. Save as `$WH_DATA/recordings/session1.mov`.
   - On one played game, tap "(N more)" on the end screen and note whether the full found list opens (tell the agent).
   - After opponents have played back 5+ of those games: start a short screen recording, open each game, tap VIEW ALL WORDS, and flick to the bottom at varied speeds (gentle to hardest). Save as `$WH_DATA/recordings/allwords1.mov`.
@@ -54,7 +54,7 @@ early (they only need the schema).
   - done: `samples.csv` exists for session1; tile samples on a known board frame match the calibration's resting RGB within ±12
   - deps: T4, T5 (session1.mov)
 
-- [ ] **S0.T7** Screen classifier + board segmenter
+- [x] **S0.T7** Screen classifier + board segmenter
   - files: `server/whcore/oracle/screens.py`, `tools/make_review.py`
   - do: classify `board|end|all_words|other` from ROI stats; segment boards; played = reaches `end`. Write `$WH_DATA/labels/auto_boards.csv` and `$WH_DATA/labels/review.html` (per board: board crop, timestamps, status, an empty letters field, and the end-screen crop for played boards).
   - done: board count 35–60; every played board has an end-screen frame

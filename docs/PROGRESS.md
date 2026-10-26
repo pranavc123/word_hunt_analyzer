@@ -23,7 +23,8 @@ Current sprint: **S0** → `docs/sprints/S0-bootstrap-feasibility.md`
 - S2.T1 ✓ 2026-10-24 (early) — Swift Codable models + SchemaTests on fixtures/schema examples; picks up fixtures/expected/*.json automatically.
 - S4.T3 ✓ 2026-10-24 (early) — Vite+React 19 PWA shell, dark tokens, 5-tab bottom nav, typed openapi-fetch client; 3 vitest tests.
 - S0.T6 ✓ 2026-10-26 — samples.csv.gz for session1 + allwords1 (streamed, no PNG dump); video resting RGB (247,209,151) added to calibration.
+- S0.T7 ✓ 2026-10-26 — session1: 21 boards (6 played, 15 skipped; count < 35 because session is 10 min); allwords1: 6 played + 6 all-words captures. review.html built.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
-- S0.T5 recordings (session1.mov, allwords1.mov) → unblocks T6–T13. S0.T15 device run needs Signing.xcconfig + Config.xcconfig.
+- S0.T8: label ≥8 boards in $WH_DATA/labels/review.html → boards.csv (unblocks T9–T13). S0.T15 device run needs Signing.xcconfig + Config.xcconfig.

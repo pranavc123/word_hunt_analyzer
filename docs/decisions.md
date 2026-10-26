@@ -22,3 +22,6 @@
 - 2026-10-24 Web: TypeScript pinned to 6.x (TS 7 native has no JS API; openapi-typescript needs it). API types: tools/export_openapi.py → web/openapi.json → pnpm -C web gen:api → src/api/schema.ts (committed); client = openapi-fetch.
 - 2026-10-26 S0.T6: frames are streamed from ffmpeg (rgb24, fps=30) straight into the sampler instead of writing ~75 GB of PNGs per recording; `extract_frames.frame_at()` pulls single frames on demand. Output = `$WH_DATA/frames/<name>/samples.csv.gz` + meta.json.
 - 2026-10-26 Colour domains differ (PNG = Display P3, video = BT.709); the calibration keeps `resting_rgb` (PNG) and `resting_rgb_video` (oracle). The phone domain will be measured from /diag tiles_rgb in S0.T15.
+- 2026-10-26 S0.T7: board-count criterion (35–60) can't be met by this data: session1 is a 10-min session with 21 boards, fully accounted for (6×80.8 s played + 15 skips + menus). Accepted 21; played boards all have end frames.
+- 2026-10-26 allwords1 holds its own 6 boards (played second, all-words viewed right after), so §3.6 matching runs over boards from both recordings.
+- 2026-10-26 review.html embeds its crops as data URIs (one portable file); boards.csv columns: recording,seq,letters,status.

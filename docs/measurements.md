@@ -19,7 +19,13 @@
   Resting tile in video (247.4, 209.3, 150.5) vs PNG (245, 218, 170) → `resting_rgb_video` in the calibration.
 - Geometry: video tiles land within 0.5 px of the PNG calibration (no rescale).
 - Tile colour clusters seen (video, /6 bins): resting 71%, white (252,252,252) 10%, green (126,252,126), yellow (246,246,114), red (252,138,138).
-- "(N more)" on the end screen expands to the full list: yes / no
+- "(N more)" on the end screen expands to the full list: unknown (never tapped; end screens last ~1 s before SENT).
+- session1 segmentation (S0.T7): 21 boards = 6 played (each 80.77 s on screen) + 15 skipped (0.5–7.7 s, most < 1 s).
+  Flow per game: board → end screen 0.9–1.7 s → iMessage → Word Hunt → "How to play" card → Start → next board.
+- allwords1: 6 NEW boards (not session1's; best glyph NCC 0.82), all played as second player; each followed by
+  VIEW ALL WORDS for 10–24 s. 6 all-words captures, one per board.
+- Screen signatures (video domain, means of r,g,b): board = banner >185, std >70, timer <112; end = banner <115,
+  std <25, end_banner std >60, end_list <110; all_words = banner 105–135, std 38–62, timer >140, std >60.
 
 ## Calibration
 - (S0.T4, `fixtures/calibration/iphone-1206x2622.json`; rects are [x,y,w,h] px)
