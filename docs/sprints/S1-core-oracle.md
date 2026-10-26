@@ -42,7 +42,7 @@ CI green; fixtures < 2 MB).
   - done: workflow file passes `actionlint` (or a manual dry-run note in PROGRESS)
   - deps: T3, T4
 
-- [ ] **S1.T6** Gate report
+- [x] **S1.T6** Gate report
   - files: `tools/report.py` (`--gate s1`)
   - done: the gate prints PASS
   - deps: T2, T3, T4, T5

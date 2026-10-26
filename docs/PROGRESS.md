@@ -1,12 +1,12 @@
 # PROGRESS
 
-Current sprint: **S1** → `docs/sprints/S1-core-oracle.md`
+Current sprint: **S2** → `docs/sprints/S2-capture-app.md`
 
 | Sprint | Status | Gate |
 | --- | --- | --- |
 | S0 Bootstrap + feasibility | done | PASS 2026-10-26 |
-| S1 Core + oracle | in progress | — |
-| S2 Capture app | todo | — |
+| S1 Core + oracle | done | PASS 2026-10-26 |
+| S2 Capture app | in progress (T1 done early) | — |
 | S3 Ingest + live | todo | — |
 | S4 Review app | todo | — |
 | S5 Dictionary + patterns | todo | — |
@@ -37,7 +37,7 @@ Current sprint: **S1** → `docs/sprints/S1-core-oracle.md`
 - S1.T3 ✓ 2026-10-26 — 6 fixture segments (4 played, 2 skipped, 2 all-words) + expected + labels.json; fixtures 1.7 MB (PNG→JPEG).
 - S1.T4 ✓ 2026-10-26 — read_letters/build_words/reconcile/process_allwords on fixtures; phone-style crops reproduce S0 all-words counts 6/6; coverage ≥ 84%.
 - S1.T5 ✓ 2026-10-26 — .github/workflows/ci.yml (python: ruff+schema+pytest+fixture size; web: test+build; swift: WHCapture tests); actionlint clean.
+- S1.T6 ✓ 2026-10-26 — gate s1 PASS: oracle 27/27 vs labels, fixtures 1.47 MB, CI green (python, web, swift) on a700610.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
-- Push blocked: the gh token lacks the `workflow` scope (needed to push .github/workflows/ci.yml). User runs `gh auth refresh -h github.com -s workflow`, then the agent pushes; S1.T6 gate then needs CI green on HEAD.
