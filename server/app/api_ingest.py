@@ -44,7 +44,8 @@ async def _save_files(files: list[UploadFile], allowed: set[str], folder: Path) 
     saved = []
     for f in files:
         name = Path(f.filename or "").name
-        if name not in allowed:
+        debug = name.startswith("debug_") and name.endswith(".jpg")  # WH_DEBUG frames (S3.T5)
+        if name not in allowed and not debug:
             raise HTTPException(status_code=422, detail=f"unexpected file {name!r}")
         (folder / name).write_bytes(await f.read())
         saved.append(name)

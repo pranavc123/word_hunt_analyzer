@@ -48,6 +48,7 @@ Current sprint: **S3** → `docs/sprints/S3-ingest-live.md`
 - S3.T2 ✓ 2026-10-26 — POST /v1/boards + /v1/allwords (multipart, bearer, idempotent → 200 duplicate), images under $WH_DATA/images/<session>/, GET /v1/sessions/latest.
 - S3.T3 ✓ 2026-10-26 — Huey worker: phone crops (gray, 0.73×) → letters/end screen/words/reconcile → DB; all-words matched on arrival or when its board lands. Phone-style crops: letters 11/12 (miss flagged), end banner 12/12.
 - S3.T4 ✓ 2026-10-26 — launchd templates (server + Huey worker) + install/uninstall scripts (token injected, chmod 600), docs/RUNNING.md.
+- S3.T5 ✓ 2026-10-26 — DebugRecorder (160-px gray ring, ±0.5 s around colour≠words / unreadable WORDS, 20 MB cap) behind WH_DEBUG; server accepts debug_*.jpg; tools/reprocess.py.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->

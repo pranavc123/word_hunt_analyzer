@@ -3,3 +3,5 @@
 WH_SERVER_URL = https:/$()/your-mac.your-tailnet.ts.net
 // Same value as $WH_TOKEN on the server.
 WH_TOKEN = paste-your-token-here
+// Optional: 1 uploads ±0.5 s of 160-px frames around low-confidence events (≤ 20 MB/session).
+// WH_DEBUG = 1

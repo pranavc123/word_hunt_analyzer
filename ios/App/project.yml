@@ -56,6 +56,7 @@ targets:
         WHServerURL: $(WH_SERVER_URL)
         WHToken: $(WH_TOKEN)
         WHAppGroup: $(WH_APP_GROUP)
+        WHDebug: $(WH_DEBUG)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.broadcast-services-upload
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).SampleHandler

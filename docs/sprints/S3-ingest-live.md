@@ -28,7 +28,7 @@ record, every board arrived — seq contiguous — and ≥ 95% of played boards 
   - done: `plutil -lint tools/launchd/*.plist`
   - deps: T2
 
-- [ ] **S3.T5** Debug capture toggle
+- [x] **S3.T5** Debug capture toggle
   - files: `ios/WHCapture/Sources/WHCapture/Debug.swift`, `ios/App/Config.example.xcconfig`
   - do: when `WH_DEBUG=1` is compiled in, save 160-px-wide grayscale frames ±0.5 s around low-confidence events (cap 20 MB per session) and upload them with the record.
   - done: `swift test --package-path ios/WHCapture` green

@@ -101,6 +101,9 @@ public final class Machine {
     /// live capture can grab it before the frame is gone. Requests for past frames are served from
     /// `CropStore`'s rings. Not used by the oracle/parity path.
     public var onCropFrame: ((Int, String) -> Void)?
+    /// Called (frame index, reason) when a release resolves with low confidence: the release colour
+    /// disagrees with the WORDS count, or WORDS could not be read. Used by debug capture.
+    public var onLowConfidence: ((Int, String) -> Void)?
     /// Screen the machine is on, and the raw label of the last frame (for `CropStore.observe`).
     public var currentScreen: Screen { screen }
     public private(set) var lastLabel: Screen = .other
@@ -211,6 +214,13 @@ public final class Machine {
             p.wordsAfter = readAt.isNaN ? nil : readAt
             b.attempts.append(p)
             b.pending = nil
+            if let hook = onLowConfidence {
+                if let after = p.wordsAfter {
+                    if (after == p.wordsBefore + 1) != (p.release == "G") { hook(i, "colour≠words") }
+                } else {
+                    hook(i, "words unreadable")
+                }
+            }
         }
         if !words.isNaN && !active { b.words = words }
         var a = b.openAttempt

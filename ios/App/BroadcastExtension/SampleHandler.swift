@@ -19,6 +19,8 @@ final class SampleHandler: RPBroadcastSampleHandler, @unchecked Sendable {
     private var crops: CropStore?
     private var queue: RecordQueue?
     private var uploader: Uploader?
+    private var debug: DebugRecorder?
+    private var currentTMs = 0
     private var uploading = false
     private var frameIndex = 0
     private var firstPTS: CMTime?
@@ -71,6 +73,7 @@ final class SampleHandler: RPBroadcastSampleHandler, @unchecked Sendable {
               let cal = try? Calibration.load(calURL),
               let digits = try? DigitReader(json: digitsURL) else { return }
         sampler = Sampler(calibration: cal, digits: digits, roiStride: 2, includeProfile: false)
+        debug = config.debug ? DebugRecorder() : nil
         let m = Machine(sessionID: newRecordID(), startedAt: Date(), device: Config.deviceModel(),
                         appVersion: config.appVersion, calibrationVersion: cal.version, states: .phone)
         let store = CropStore(calibration: cal)
@@ -120,6 +123,13 @@ final class SampleHandler: RPBroadcastSampleHandler, @unchecked Sendable {
         frameIndex += 1
         let row = sampler.sample(view, frame: i, tMs: tMs)
         lastRow = row
+        currentTMs = tMs
+        if let debug {
+            debug.add(frame: i, tMs: tMs, view: view)
+            machine.onLowConfidence = { [unowned self] frame, reason in
+                debug.flag(frame: frame, tMs: self.currentTMs, reason: reason)
+            }
+        }
         machine.onCropFrame = { frame, rect in crops.capture(frame: frame, rect: rect, view: view) }
         machine.feed(row)
         let shift = row["list_shift"] ?? .nan
@@ -134,6 +144,7 @@ final class SampleHandler: RPBroadcastSampleHandler, @unchecked Sendable {
         let (records, requests) = machine.takeNew()
         guard !records.isEmpty else { return }
         let images = crops.jpegs(for: requests)
+        var debugFrames = debug?.take() ?? [:]  // attached once, to the first board record
         let diag = lock.withLock { () -> Diagnostics in
             let elapsed = max(1, Date().timeIntervalSince(stats.started))
             return Diagnostics(fps_processed: (Double(stats.processed) / elapsed * 10).rounded() / 10,
@@ -149,7 +160,11 @@ final class SampleHandler: RPBroadcastSampleHandler, @unchecked Sendable {
             case .allWords(let a):
                 refs = a.frames
             }
-            let mine = images.filter { refs.contains($0.key) }
+            var mine = images.filter { refs.contains($0.key) }
+            if case .board = rec, !debugFrames.isEmpty {
+                mine.merge(debugFrames) { a, _ in a }
+                debugFrames = [:]
+            }
             if (try? queue.enqueue(rec, images: mine)) != nil {
                 lock.withLock { stats.queued += 1 }
             }
@@ -224,12 +239,14 @@ struct Config {
     let token: String
     let appGroup: String
     let appVersion: String
+    let debug: Bool
 
     init(bundle: Bundle = Bundle(for: SampleHandler.self)) {
         serverURL = bundle.object(forInfoDictionaryKey: "WHServerURL") as? String ?? ""
         token = bundle.object(forInfoDictionaryKey: "WHToken") as? String ?? ""
         appGroup = bundle.object(forInfoDictionaryKey: "WHAppGroup") as? String ?? ""
         appVersion = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "0"
+        debug = (bundle.object(forInfoDictionaryKey: "WHDebug") as? String) == "1"
     }
 
     var appGroupAvailable: Bool {

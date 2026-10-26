@@ -46,12 +46,10 @@ curl -H "Authorization: Bearer $WH_TOKEN" http://127.0.0.1:8000/v1/sessions/late
 
 ## Reprocess
 
-The worker is idempotent (re-running replaces a board's attempts and word list). To reprocess
-everything after a pipeline change:
+The worker is idempotent (re-running replaces a board's attempts and word list). After a pipeline
+change, reprocess everything (or one session) with:
 ```
-PYTHONPATH=server uv run python -c "from app import worker; from app.db import session; \
-from app.models import Board; from sqlmodel import select; \
-[worker.run_board(b.id) for b in session().__enter__().exec(select(Board)).all()]"
+uv run python tools/reprocess.py [--session <id>] [--allwords]
 ```
 
 ## Phone side (each session)

@@ -9,6 +9,8 @@ WH_APP_GROUP =
 // Note: "//" starts a comment in xcconfig, so write URLs as https:/$()/host
 WH_SERVER_URL = http:/$()/localhost:8000
 WH_TOKEN =
+// 1 = save small frames around low-confidence events and upload them (S3.T5)
+WH_DEBUG = 0
 
 #include? "Signing.xcconfig"
 #include? "Config.xcconfig"

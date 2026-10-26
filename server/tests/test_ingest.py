@@ -73,3 +73,9 @@ def test_allwords_stored_once(client):
     assert client.stored == [aw["record_id"]]
     folder = client.tmp / "images" / aw["session_id"] / f"allwords_{aw['record_id']}"
     assert sorted(p.name for p in folder.iterdir()) == sorted(aw["frames"])
+
+
+def test_debug_frames_are_accepted(client):
+    rec = fixture_records("session1_b12_skipped")[0]
+    r = post(client, "/v1/boards", rec, {rec["board_image"]: b"B", "debug_123.jpg": b"D"})
+    assert r.status_code == 200 and "debug_123.jpg" in r.json()["files"]
