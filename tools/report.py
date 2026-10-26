@@ -207,7 +207,34 @@ def gate_s1() -> tuple[bool, list[str]]:
     return all(ok for ok, _ in checks), [("ok   " if ok else "FAIL ") + msg for ok, msg in checks]
 
 
-GATES = {"s0": gate_s0, "s1": gate_s1}
+def _run(cmd: list[str], timeout: int = 1800) -> tuple[int, str]:
+    import subprocess
+
+    p = subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT, timeout=timeout)
+    return p.returncode, p.stdout + p.stderr
+
+
+def gate_s2() -> tuple[bool, list[str]]:
+    import re
+
+    code, out = _run(["swift", "test", "--package-path", "ios/WHCapture"])
+    m = re.findall(r"Executed (\d+) tests?, with (\d+) failures?", out)
+    total, failed = (int(m[-1][0]), int(m[-1][1])) if m else (0, -1)
+    parity_tests = ("testMachineMatchesPythonOnFixtures", "testBGRAMatchesPythonSampler")
+    parity = all(f"{t}]' passed" in out for t in parity_tests)
+    checks = [
+        (code == 0 and failed == 0 and total > 0, f"swift test: {total} tests, {failed} failures"),
+        (parity, "parity tests (machine + sampler vs Python fixtures) ran and passed"),
+    ]
+    code, _ = _run(["xcodegen", "generate", "--spec", "ios/App/project.yml", "-q"])
+    if code == 0:
+        build = ["xcodebuild", "-project", "ios/App/App.xcodeproj", "-scheme", "CompanionApp"]
+        code, out = _run(build + ["-destination", "generic/platform=iOS", "-quiet", "build"])
+    checks.append((code == 0, f"iOS build: {'ok' if code == 0 else 'FAILED'}"))
+    return all(ok for ok, _ in checks), [("ok   " if ok else "FAIL ") + msg for ok, msg in checks]
+
+
+GATES = {"s0": gate_s0, "s1": gate_s1, "s2": gate_s2}
 
 
 def main() -> int:

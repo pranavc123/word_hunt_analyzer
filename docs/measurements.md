@@ -91,6 +91,11 @@
 - Phone-domain resting tile RGB (sample patch, BT.601/709 per buffer attachment): (251, 217, 163).
 - App Groups available on Personal Team: not tested (optional experiment left off).
 
+## Swift capture (S2)
+- Machine.swift output identical to Python on all 6 fixtures (records + crop requests).
+- Sampler.swift vs Python sampler on fixture crops: ±2 per channel (BGRA), ±3 (BT.709 420f); digits exact.
+- Sampler cost on a Mac (release, 884×1920 420f): 0.4 ms board frame, 3.3 ms all-words frame.
+
 ## Go / no-go
 - 2026-10-26 GO. `tools/report.py --gate s0` = PASS: segmentation 27/27, reconciliation 11/12, all-words 6/6
   matched, extension 8.3 MB peak at ~60 fps over 31 min, max tracked flick 1423 px/frame.

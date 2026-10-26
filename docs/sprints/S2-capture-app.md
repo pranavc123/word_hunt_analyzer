@@ -43,6 +43,6 @@ gate: `swift test --package-path ios/WHCapture` passes the parity tests AND the 
   - done: iOS build succeeds; unit test for the provision-date parser passes
   - deps: T1
 
-- [ ] **S2.T7** Gate
+- [x] **S2.T7** Gate
   - done: `swift test --package-path ios/WHCapture` all green + iOS build OK; tick in PROGRESS
   - deps: T5, T6

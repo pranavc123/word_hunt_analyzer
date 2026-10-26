@@ -1,13 +1,13 @@
 # PROGRESS
 
-Current sprint: **S2** → `docs/sprints/S2-capture-app.md`
+Current sprint: **S3** → `docs/sprints/S3-ingest-live.md`
 
 | Sprint | Status | Gate |
 | --- | --- | --- |
 | S0 Bootstrap + feasibility | done | PASS 2026-10-26 |
 | S1 Core + oracle | done | PASS 2026-10-26 |
-| S2 Capture app | in progress (T1 done early) | — |
-| S3 Ingest + live | todo | — |
+| S2 Capture app | done | PASS 2026-10-26 |
+| S3 Ingest + live | in progress | — |
 | S4 Review app | todo | — |
 | S5 Dictionary + patterns | todo | — |
 | S6 Triage | todo | — |
@@ -43,6 +43,7 @@ Current sprint: **S2** → `docs/sprints/S2-capture-app.md`
 - S2.T4 ✓ 2026-10-26 — CropStore (live + ring crops, JPEG), RecordQueue (atomic, ordered, idempotent), Uploader (multipart, bearer, backoff); 7 tests; crop refs now .jpg.
 - S2.T5 ✓ 2026-10-26 — extension wired: Sampler(420f, phone states) → Machine → CropStore → RecordQueue → Uploader; diag adds ROI sample + queue; iOS build OK.
 - S2.T6 ✓ 2026-10-26 — companion app: health, last-session line (S3 endpoint), signing countdown (Provisioning parser, 4 tests), Tailscale/Focus reminders. Uploader: 404/405 retry; queue key 64-bit fix.
+- S2.T7 ✓ 2026-10-26 — gate s2 PASS: 25 Swift tests (machine + sampler parity), iOS build OK. Phone thresholds provisional until the S3 live session.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
