@@ -13,7 +13,7 @@ gate: `swift test --package-path ios/WHCapture` passes the parity tests AND the 
   - done: `swift test --package-path ios/WHCapture --filter SchemaTests`
   - deps: S1
 
-- [ ] **S2.T2** State machine port `[parallel]`
+- [x] **S2.T2** State machine port `[parallel]`
   - files: `Sources/WHCapture/Machine.swift`, `Tests/WHCaptureTests/MachineParityTests.swift`
   - do: line-for-line port of `whcore/oracle/machine.py`. The test feeds `fixtures/samples/*.csv.gz` and compares against `fixtures/expected/*.json`, allowing ±1 frame on timestamps.
   - done: `swift test --package-path ios/WHCapture --filter MachineParityTests`

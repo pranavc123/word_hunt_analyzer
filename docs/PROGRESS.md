@@ -38,6 +38,7 @@ Current sprint: **S2** → `docs/sprints/S2-capture-app.md`
 - S1.T4 ✓ 2026-10-26 — read_letters/build_words/reconcile/process_allwords on fixtures; phone-style crops reproduce S0 all-words counts 6/6; coverage ≥ 84%.
 - S1.T5 ✓ 2026-10-26 — .github/workflows/ci.yml (python: ruff+schema+pytest+fixture size; web: test+build; swift: WHCapture tests); actionlint clean.
 - S1.T6 ✓ 2026-10-26 — gate s1 PASS: oracle 27/27 vs labels, fixtures 1.47 MB, CI green (python, web, swift) on a700610.
+- S2.T2 ✓ 2026-10-26 — Machine.swift (+ Screens, TileStates, uuid5): output identical to Python on all 6 fixtures (records + crops).
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
