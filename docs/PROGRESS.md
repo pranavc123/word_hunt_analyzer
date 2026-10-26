@@ -46,6 +46,7 @@ Current sprint: **S3** → `docs/sprints/S3-ingest-live.md`
 - S2.T7 ✓ 2026-10-26 — gate s2 PASS: 25 Swift tests (machine + sampler parity), iOS build OK. Phone thresholds provisional until the S3 live session.
 - S3.T1 ✓ 2026-10-26 — SQLModel tables (PLAN §5 + worker fields), Alembic baseline, SQLite WAL at $WH_DATA/wh.db.
 - S3.T2 ✓ 2026-10-26 — POST /v1/boards + /v1/allwords (multipart, bearer, idempotent → 200 duplicate), images under $WH_DATA/images/<session>/, GET /v1/sessions/latest.
+- S3.T3 ✓ 2026-10-26 — Huey worker: phone crops (gray, 0.73×) → letters/end screen/words/reconcile → DB; all-words matched on arrival or when its board lands. Phone-style crops: letters 11/12 (miss flagged), end banner 12/12.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->

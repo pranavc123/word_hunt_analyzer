@@ -9,7 +9,7 @@ from datetime import UTC, datetime
 from fastapi import Depends, FastAPI, HTTPException, Request
 from pydantic import BaseModel
 
-from . import api_ingest, db
+from . import api_ingest, db, worker  # noqa: F401  (worker registers its ingest hooks)
 from .api_ingest import require_token
 
 VERSION = "0.1.0"

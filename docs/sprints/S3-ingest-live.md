@@ -16,7 +16,7 @@ record, every board arrived — seq contiguous — and ≥ 95% of played boards 
   - done: `uv run pytest -q server/tests/test_ingest.py` (posts a fixture record twice → stored once)
   - deps: S1
 
-- [ ] **S3.T3** Worker
+- [x] **S3.T3** Worker
   - files: `server/app/worker.py`, `server/tests/test_worker.py`
   - do: Huey (SqliteHuey) task per board running PLAN §3.1–3.4 with whcore; write boards, attempts, board_words; set `needs_letter_fix` / `needs_review` / `verified`; played boards start with `all_words_status = pending`. Task per AllWordsRecord running §3.5–3.7; unmatched captures are retried whenever a new played board is verified.
   - done: `uv run pytest -q server/tests/test_worker.py` (fixture board → verified; fixture all-words capture → matched to its board, even when uploaded before the board)

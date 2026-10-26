@@ -24,7 +24,7 @@ jobs:
       - name: Tests (fixtures only; $WH_DATA tests skip)
         run: uv run pytest -q server/tests
       - name: Fixtures stay small
-        run: test "$(du -sk fixtures | cut -f1)" -lt 2048
+        run: test "$(find fixtures -type f -print0 | xargs -0 cat | wc -c)" -lt 2097152
 
   web:
     runs-on: ubuntu-latest

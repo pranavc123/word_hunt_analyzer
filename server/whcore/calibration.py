@@ -170,7 +170,8 @@ def letter_glyph(img: np.ndarray, cx: float, cy: float, tile_size: float) -> np.
     half = tile_size * LETTER_FRAC / 2
     x0, y0 = round(cx - half), round(cy - half)
     x1, y1 = round(cx + half), round(cy + half)
-    gray = cv2.cvtColor(np.ascontiguousarray(img[y0:y1, x0:x1]), cv2.COLOR_RGB2GRAY)
+    patch = np.ascontiguousarray(img[y0:y1, x0:x1])
+    gray = patch if patch.ndim == 2 else cv2.cvtColor(patch, cv2.COLOR_RGB2GRAY)
     ink = (gray < 100).astype(np.float32)
     return cv2.resize(ink, (LETTER_PX, LETTER_PX), interpolation=cv2.INTER_AREA)
 

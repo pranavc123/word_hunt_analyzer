@@ -51,6 +51,23 @@ SEGMENTS = {
     "allwords1_b03_played_allwords": ("allwords1", [3], True),
 }
 BOARD_CROPS = ["session1_b00_played", "session1_b02_played", "allwords1_b00_played_allwords"]
+PHONE_CROPS = ["session1_b00_played", "allwords1_b03_played_allwords"]  # worker tests
+PHONE_W, PHONE_H = 884, 1920  # ReplayKit buffer size on the S0 device
+
+
+def phone_crop(img: np.ndarray, rect: list[int]) -> np.ndarray:
+    """What the phone uploads: the frame at buffer scale, cropped, gray (then JPEG q80)."""
+    small = cv2.resize(img, (PHONE_W, PHONE_H), interpolation=cv2.INTER_AREA)
+    sx, sy = PHONE_W / CAL["width"], PHONE_H / CAL["height"]
+    x, y, w, h = (
+        round(rect[0] * sx),
+        round(rect[1] * sy),
+        max(1, round(rect[2] * sx)),
+        max(1, round(rect[3] * sy)),
+    )
+    return cv2.cvtColor(small[y : y + h, x : x + w], cv2.COLOR_RGB2GRAY)
+
+
 LIST_CROPS = "allwords1_b03_played_allwords"
 
 
@@ -190,6 +207,26 @@ def main() -> int:
                 [cv2.IMWRITE_JPEG_QUALITY, 75],
             )
             lab["board_crop"] = {"file": f"crops/{name}_board.jpg", "origin": [x0, y0]}
+        if name in PHONE_CROPS:
+            from whcore.pipeline import crop_rect
+
+            lab["phone_crops"] = {}
+            for c in crops:
+                kind = {
+                    "board": "board",
+                    "roi_end_banner": "end_banner",
+                    "roi_end_list": "end_list",
+                }.get(c.rect)
+                if kind is None:
+                    continue
+                img = frame_at(rec, int(float(seg[c.frame][ti])))
+                f = f"crops/{name}_phone_{c.name}"
+                cv2.imwrite(
+                    str(FIX / f),
+                    phone_crop(img, crop_rect(CAL, c.rect)),
+                    [cv2.IMWRITE_JPEG_QUALITY, 80],
+                )
+                lab["phone_crops"][kind] = {"file": f, "name": c.name}
         if name == LIST_CROPS:
             x, y, w, h = LIST_BAND_RECT
             files = []

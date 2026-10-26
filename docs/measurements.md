@@ -96,6 +96,10 @@
 - Sampler.swift vs Python sampler on fixture crops: ±2 per channel (BGRA), ±3 (BT.709 420f); digits exact.
 - Sampler cost on a Mac (release, 884×1920 420f): 0.4 ms board frame, 3.3 ms all-words frame.
 
+## Server pipeline on phone-style crops (S3)
+- 884×1920 gray JPEG q80 crops (~100 KB per played board): letters 11/12 boards (miss had margin 0.015 →
+  needs_letter_fix), end-screen WORDS/SCORE 12/12, end list 15 rows.
+
 ## Go / no-go
 - 2026-10-26 GO. `tools/report.py --gate s0` = PASS: segmentation 27/27, reconciliation 11/12, all-words 6/6
   matched, extension 8.3 MB peak at ~60 fps over 31 min, max tracked flick 1423 px/frame.

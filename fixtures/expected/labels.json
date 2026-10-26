@@ -135,6 +135,20 @@
     166,
     1174
    ]
+  },
+  "phone_crops": {
+   "board": {
+    "file": "crops/session1_b00_played_phone_board_0.jpg",
+    "name": "board_0.jpg"
+   },
+   "end_banner": {
+    "file": "crops/session1_b00_played_phone_end_banner_0.jpg",
+    "name": "end_banner_0.jpg"
+   },
+   "end_list": {
+    "file": "crops/session1_b00_played_phone_end_list_0.jpg",
+    "name": "end_list_0.jpg"
+   }
   }
  },
  "session1_b01_skipped": {
@@ -656,6 +670,20 @@
    ],
    "status": "complete",
    "complete_down_to": 3
+  },
+  "phone_crops": {
+   "board": {
+    "file": "crops/allwords1_b03_played_allwords_phone_board_0.jpg",
+    "name": "board_0.jpg"
+   },
+   "end_banner": {
+    "file": "crops/allwords1_b03_played_allwords_phone_end_banner_0.jpg",
+    "name": "end_banner_0.jpg"
+   },
+   "end_list": {
+    "file": "crops/allwords1_b03_played_allwords_phone_end_list_0.jpg",
+    "name": "end_list_0.jpg"
+   }
   },
   "list_crops": [
    "crops/allwords1_b03_played_allwords_allwords_0_0.jpg",
