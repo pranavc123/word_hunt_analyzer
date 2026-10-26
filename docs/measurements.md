@@ -46,10 +46,11 @@
 ## Accuracy
 | metric | 30 fps | 15 fps |
 | --- | --- | --- |
-| board segmentation | | |
-| accepted attempts == WORDS | 12/12 | |
-| letters (LOBO) | 99.55% (446/448; 27 boards + IMG_0717) | |
-| reconciliation (§3.3) | 11/12 verified (session1 #15 needs_review: TEENS visible, no consistent pick) | |
+| board segmentation | 27/27 boards, played/skipped all correct | identical to 30 fps |
+| accepted attempts == WORDS | 12/12 | 7/12 (2–4 short swipes lost per board) |
+| letters (LOBO) | 99.55% (446/448; 27 boards + IMG_0717) | n/a (one frame per board) |
+| reconciliation (§3.3) | 11/12 verified (session1 #15 needs_review: TEENS visible, no consistent pick) | 1/12 (6–16 tile repairs per board) |
+| all-words per-length counts | 6/6 complete | same counts on 6/6 |
 
 ## All-words list (allwords1)
 - Screen: pinned header, rows every 61.1 px; unfound = yellow bar with ONE "?" (bar width varies with the
@@ -68,6 +69,9 @@
 - max per-frame shift tracked: 1423 px at 30 fps (≈42,700 px/s), 1485 px at 15 fps (≈22,300 px/s); bound =
   list band 1988 px − 300 px overlap = 1688 px/frame (50,600 px/s at 30 fps, 25,300 px/s at 15 fps).
   Typical flicks: p99 150–250 px/frame at 30 fps. Repeating rows need a velocity prior (±30 px).
+
+- fps verdict: boards need ≥ 30 processed fps while a board is in play; screen classification and all-words
+  tracking work at 15 fps.
 
 ## Letters / digits (S0.T10)
 - Letter templates: 23 letters seen (no J, Q, Z yet). LOBO misses: R→P, O→C (allwords1 #2).

@@ -58,17 +58,23 @@ def banner_series(name: str, first: int, last: int, fps: float) -> list[tuple]:
 
 
 def trace_board(b: dict, codes, t_ms, fps: float, step: int) -> dict:
-    first = int(b["t_start_ms"]) * fps // 1000
-    last = int(b["t_end_ms"]) * fps // 1000
-    series = banner_series(b["recording"], first, last, fps)
+    """All indices below are in the effective stream (every `step`-th 30 fps frame)."""
+    first30 = int(b["t_start_ms"]) * fps // 1000
+    last30 = int(b["t_end_ms"]) * fps // 1000
+    series = banner_series(b["recording"], first30, last30, fps)
+    if first30 % step:  # align the banner series with the subsampled stream
+        series = series[step - first30 % step :]
+    series = series[::step]
+    codes, t_ms = codes[::step], t_ms[::step]
+    first = -(-first30 // step)
+    hi = min(last30 // step, first + len(series) - 1)
 
     def words_at(i: int) -> int | None:
         i = min(max(i, first), first + len(series) - 1)
         return series[i - first][0]
 
-    sub_codes, sub_t = codes[::step], t_ms[::step]
-    lo, hi = first, min(last, first + len(series) - 1)
-    attempts = segment_attempts(sub_codes, sub_t, lo, hi)
+    sub_t = t_ms
+    attempts = segment_attempts(codes, t_ms, first, hi)
     out = []
     prev_words = 0
     for k, a in enumerate(attempts):

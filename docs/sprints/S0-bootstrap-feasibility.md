@@ -88,7 +88,7 @@ early (they only need the schema).
   - done: ≥ 3 captures matched to the right board; per-length totals compared with YAWL and ENABLE solver counts and logged; max safe shift in measurements.md
   - deps: T9, T11, T5 (allwords1.mov)
 
-- [ ] **S0.T13** fps sweep
+- [x] **S0.T13** fps sweep
   - do: re-run T7/T9 on every 2nd frame (15 fps). Record segmentation and trace accuracy at both rates in measurements.md.
   - done: table in measurements.md
   - deps: T9, T11

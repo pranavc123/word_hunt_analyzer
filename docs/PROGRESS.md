@@ -29,7 +29,8 @@ Current sprint: **S0** → `docs/sprints/S0-bootstrap-feasibility.md`
 - S0.T9 ✓ 2026-10-26 — traces for 12 played boards; accepted (WORDS rise at release) == end WORDS on 12/12.
 - S0.T11 ✓ 2026-10-26 — 11/12 played boards verified; OOV words accepted by the game: DORES, DOSAS, TASES.
 - S0.T12 ✓ 2026-10-26 — 6/6 all-words captures matched; game list ≈ YAWL (+BAWK, TEC); only first 20 found words revealed; max tracked shift 1423 px/frame.
+- S0.T13 ✓ 2026-10-26 — 15 fps: segmentation + all-words identical; traces 7/12, reconciliation 1/12 → need 30 fps in play.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
-- S0.T8: label ≥8 boards in $WH_DATA/labels/review.html → boards.csv (unblocks T9–T13). S0.T15 device run needs Signing.xcconfig + Config.xcconfig.
+- S0.T15 device run (Signing.xcconfig + Config.xcconfig, 30+ min broadcast) → unblocks S0.T16 + the S0 gate.
