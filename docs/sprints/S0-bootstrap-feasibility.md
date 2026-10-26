@@ -64,7 +64,7 @@ early (they only need the schema).
   - Open `review.html`. For 8+ boards, type the 16 letters (row-major). Fix any wrong played/skipped flags. Save as `$WH_DATA/labels/boards.csv`.
   - deps: T7
 
-- [ ] **S0.T9** Tile colour states + trace segmenter
+- [x] **S0.T9** Tile colour states + trace segmenter
   - files: `server/whcore/oracle/traces.py`, `server/tests/test_traces.py`
   - do: cluster tile colours across board frames into resting + 3 selected states; log RGB centroids to measurements.md. Segment attempts; record `tiles_seen`, `release_state`, and the banner word count after release (digit templates from the banner ROI).
   - done: on every labelled played board, accepted attempts == the end screen's WORDS count
