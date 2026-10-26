@@ -25,3 +25,6 @@
 - 2026-10-26 S0.T7: board-count criterion (35–60) can't be met by this data: session1 is a 10-min session with 21 boards, fully accounted for (6×80.8 s played + 15 skips + menus). Accepted 21; played boards all have end frames.
 - 2026-10-26 allwords1 holds its own 6 boards (played second, all-words viewed right after), so §3.6 matching runs over boards from both recordings.
 - 2026-10-26 review.html embeds its crops as data URIs (one portable file); boards.csv columns: recording,seq,letters,status.
+- 2026-10-26 Acceptance = the live WORDS count rising right after a release (digit templates on the banner); release colour is kept as `colour_state`. Same signal is available on the phone.
+- 2026-10-26 Board image/letters are taken ≥ 0.8 s after a board opens (slide-in animation); the phone must wait the same before saving the board crop.
+- 2026-10-26 Letter/digit templates are committed in fixtures/templates/ (52 KB) so tests and the phone port can use them; masters in $WH_DATA/templates/.

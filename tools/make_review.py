@@ -38,6 +38,7 @@ WH_DATA = Path(os.environ.get("WH_DATA", ROOT / "wordhunt-data"))
 CAL = load_calibration(ROOT / "fixtures/calibration/iphone-1206x2622.json")
 LABELS = WH_DATA / "labels"
 IMG = LABELS / "review_img"
+SETTLE_FRAMES = 24  # 0.8 s at 30 fps: the board slides in from the right for ~0.6 s
 FIELDS = [
     "recording", "seq", "status", "t_start_ms", "t_end_ms", "view_ms",
     "board_frame_ms", "end_t_ms", "all_words_t_ms",
@@ -72,8 +73,12 @@ def segment(name: str) -> list[dict]:
     resting = tile_state_counts(rows, CAL["resting_rgb_video"])
     out = []
     for b in boards:
-        # clearest board frame: most resting tiles (ties → earliest)
-        best = b.first + int(np.argmax(resting[b.first : b.last + 1]))
+        # clearest board frame: after the ~0.6 s slide-in, most resting tiles (ties → earliest);
+        # boards left before the slide settles use their last frame
+        settled = b.first + SETTLE_FRAMES
+        best = (
+            settled + int(np.argmax(resting[settled : b.last + 1])) if settled <= b.last else b.last
+        )
         nxt = boards[b.seq + 1].first if b.seq + 1 < len(boards) else len(rows)
         cap = next((a for a, _ in aw if b.last < a < nxt), None)
         out.append(

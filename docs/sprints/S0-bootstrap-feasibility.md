@@ -60,7 +60,7 @@ early (they only need the schema).
   - done: board count 35–60; every played board has an end-screen frame
   - deps: T6
 
-- [ ] **S0.T8** `[HUMAN]` Label boards (~15 min)
+- [x] **S0.T8** `[HUMAN]` Label boards (~15 min)
   - Open `review.html`. For 8+ boards, type the 16 letters (row-major). Fix any wrong played/skipped flags. Save as `$WH_DATA/labels/boards.csv`.
   - deps: T7
 
@@ -70,7 +70,7 @@ early (they only need the schema).
   - done: on every labelled played board, accepted attempts == the end screen's WORDS count
   - deps: T7, T8
 
-- [ ] **S0.T10** Letter recognizer
+- [x] **S0.T10** Letter recognizer
   - files: `server/whcore/letters.py`, `$WH_DATA/templates/`
   - do: extend the T4 seed templates with the labelled boards; nearest-template with a confidence margin; digit templates for SCORE/WORDS.
   - done: leave-one-board-out tile accuracy ≥ 99%; SCORE and WORDS read correctly on all played boards

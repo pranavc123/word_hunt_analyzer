@@ -36,20 +36,30 @@
 - seed letter templates (48×48 ink masks) re-read IMG_0717 exactly; min best−second NCC margin 0.16.
 
 ## Colour states (RGB centroids)
-- resting / valid_new / already_found / not_a_word:
+- (video domain) resting (247,209,151); while dragging: white (252,252,252) = no word yet, green (128,250,128) =
+  valid new word, yellow (248,248,116) = already found, red (252,140,140) briefly on some non-words.
+  The newest tile animates white→colour (e.g. (215,251,215)) and fades ~0.8 s after release.
+- Colour at release alone mis-counts by 1–3 words on 8/12 boards; the live WORDS digit count rising at release
+  is exact (12/12 boards accepted == end WORDS, 0 unexplained increments). SCORE rolls up over ~1 s.
+- Board slides in from the right for ~0.6 s at open (tiles keep their colour): read letters ≥ 0.8 s after open.
 
 ## Accuracy
 | metric | 30 fps | 15 fps |
 | --- | --- | --- |
 | board segmentation | | |
-| accepted attempts == WORDS | | |
-| letters (LOBO) | | |
+| accepted attempts == WORDS | 12/12 | |
+| letters (LOBO) | 99.55% (446/448; 27 boards + IMG_0717) | |
 | reconciliation (§3.3) | | |
 
 ## All-words list (allwords1)
 - captures matched to the right board:
 - per-length totals vs YAWL / ENABLE solver counts:
 - max safe shift px/frame (30 / 15 fps) and equivalent flick speed:
+
+## Letters / digits (S0.T10)
+- Letter templates: 23 letters seen (no J, Q, Z yet). LOBO misses: R→P, O→C (allwords1 #2).
+- Digit templates bootstrapped from tesseract (count-consistent reads); template reads of SCORE/WORDS agree
+  live vs end on all 12 played boards. Tesseract misread session1 #2 SCORE 38300 as 33300.
 
 ## Device probe (30 min)
 - mem peak MB / fps p50 / p5 / frames dropped:

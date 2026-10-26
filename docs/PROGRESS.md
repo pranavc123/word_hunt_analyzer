@@ -24,6 +24,8 @@ Current sprint: **S0** → `docs/sprints/S0-bootstrap-feasibility.md`
 - S4.T3 ✓ 2026-10-24 (early) — Vite+React 19 PWA shell, dark tokens, 5-tab bottom nav, typed openapi-fetch client; 3 vitest tests.
 - S0.T6 ✓ 2026-10-26 — samples.csv.gz for session1 + allwords1 (streamed, no PNG dump); video resting RGB (247,209,151) added to calibration.
 - S0.T7 ✓ 2026-10-26 — session1: 21 boards (6 played, 15 skipped; count < 35 because session is 10 min); allwords1: 6 played + 6 all-words captures. review.html built.
+- S0.T8 ✓ 2026-10-26 — user labelled all 27 boards.
+- S0.T10 ✓ 2026-10-26 — LOBO 99.55%; digit templates read SCORE/WORDS on all 12 played boards (live == end).
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
