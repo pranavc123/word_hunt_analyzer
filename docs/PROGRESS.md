@@ -40,3 +40,4 @@ Current sprint: **S1** → `docs/sprints/S1-core-oracle.md`
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
+- Push blocked: the gh token lacks the `workflow` scope (needed to push .github/workflows/ci.yml). User runs `gh auth refresh -h github.com -s workflow`, then the agent pushes; S1.T6 gate then needs CI green on HEAD.

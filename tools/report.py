@@ -138,7 +138,76 @@ def gate_s0() -> tuple[bool, list[str]]:
     return all(ok for ok, _ in checks), [("ok   " if ok else "FAIL ") + msg for ok, msg in checks]
 
 
-GATES = {"s0": gate_s0}
+def oracle_vs_labels() -> tuple[bool, str]:
+    """Run the state machine over the S0 samples and compare with the labels."""
+    import gzip
+    from datetime import UTC, datetime
+
+    sys.path.insert(0, str(ROOT / "server"))
+    from whcore.oracle.machine import run
+
+    labels = {
+        (r["recording"], int(r["seq"])): r for r in csv.DictReader(open(LABELS / "boards.csv"))
+    }
+    traces = {(t["recording"], t["seq"]): t for t in load_json(LABELS / "traces.json") or []}
+    total = ok = 0
+    for name in sorted({k[0] for k in labels}):
+        path = WH_DATA / "frames" / name / "samples.csv.gz"
+        if not path.exists():
+            return False, f"oracle vs labels: no samples for {name}"
+        with gzip.open(path, "rt") as f:
+            rows = [{k: float(v) for k, v in r.items()} for r in csv.DictReader(f)]
+        records, _ = run(
+            rows, "0b7d9e10-2c3a-4f5b-8e6d-7a8b9c0d1e2f", datetime(2026, 1, 1, tzinfo=UTC)
+        )
+        boards = [r for r in records if r.kind == "board"]
+        for b in boards:
+            total += 1
+            truth = labels.get((name, b.seq))
+            good = truth is not None and b.status == truth["status"]
+            if good and b.status == "played":
+                acc = sum(a.release_state == "valid_new" for a in b.attempts)
+                good = acc == traces[(name, b.seq)]["end_words"]
+            ok += good
+        total += max(0, sum(k[0] == name for k in labels) - len(boards))  # missed boards
+    return (
+        total > 0 and ok == total,
+        f"oracle events vs S0 labels (status + accepted == WORDS): {ok}/{total}",
+    )
+
+
+def ci_status() -> tuple[bool, str]:
+    import subprocess
+
+    sha = subprocess.run(
+        ["git", "rev-parse", "HEAD"], capture_output=True, text=True, cwd=ROOT
+    ).stdout.strip()
+    try:
+        out = subprocess.run(
+            ["gh", "run", "list", "--commit", sha, "--json", "conclusion,status,name"],
+            capture_output=True, text=True, cwd=ROOT, timeout=30,
+        )  # fmt: skip
+        runs = json.loads(out.stdout or "[]")
+    except (OSError, ValueError, subprocess.TimeoutExpired):
+        runs = []
+    if not runs:
+        return False, f"CI: no workflow run for HEAD {sha[:7]} (push it first)"
+    good = all(r.get("conclusion") == "success" for r in runs)
+    states = ", ".join(f"{r['name']}={r.get('conclusion') or r.get('status')}" for r in runs)
+    return good, f"CI on {sha[:7]}: {states}"
+
+
+def fixtures_size() -> tuple[bool, str]:
+    size = sum(p.stat().st_size for p in (ROOT / "fixtures").rglob("*") if p.is_file())
+    return size < 2 * 1024 * 1024, f"fixtures size: {size / 1024 / 1024:.2f} MB (< 2)"
+
+
+def gate_s1() -> tuple[bool, list[str]]:
+    checks = [oracle_vs_labels(), fixtures_size(), ci_status()]
+    return all(ok for ok, _ in checks), [("ok   " if ok else "FAIL ") + msg for ok, msg in checks]
+
+
+GATES = {"s0": gate_s0, "s1": gate_s1}
 
 
 def main() -> int:

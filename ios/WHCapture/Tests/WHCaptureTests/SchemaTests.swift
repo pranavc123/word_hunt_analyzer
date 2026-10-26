@@ -7,16 +7,27 @@ final class SchemaTests: XCTestCase {
         .deletingLastPathComponent().deletingLastPathComponent()
         .deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
 
-    func fixtureFiles() throws -> [URL] {
-        var urls: [URL] = []
-        for dir in ["fixtures/schema", "fixtures/expected"] {
-            let d = Self.root.appendingPathComponent(dir)
-            guard let items = try? FileManager.default.contentsOfDirectory(at: d, includingPropertiesForKeys: nil)
-            else { continue }
-            urls += items.filter { $0.pathExtension == "json" && $0.lastPathComponent != "v1.json" }
+    /// Every record fixture as (label, JSON data): the schema examples, plus each entry of
+    /// `records` in the state-machine outputs `fixtures/expected/*.json` (labels.json excluded).
+    func recordBlobs() throws -> [(String, Data)] {
+        var blobs: [(String, Data)] = []
+        let fm = FileManager.default
+        let schemaDir = Self.root.appendingPathComponent("fixtures/schema")
+        for url in try fm.contentsOfDirectory(at: schemaDir, includingPropertiesForKeys: nil)
+        where url.pathExtension == "json" && url.lastPathComponent != "v1.json" {
+            blobs.append((url.lastPathComponent, try Data(contentsOf: url)))
         }
-        XCTAssertGreaterThanOrEqual(urls.count, 2, "no record fixtures found")
-        return urls.sorted { $0.path < $1.path }
+        let expectedDir = Self.root.appendingPathComponent("fixtures/expected")
+        if let items = try? fm.contentsOfDirectory(at: expectedDir, includingPropertiesForKeys: nil) {
+            for url in items where url.pathExtension == "json" && url.lastPathComponent != "labels.json" {
+                let obj = try JSONSerialization.jsonObject(with: Data(contentsOf: url)) as! [String: Any]
+                for (k, rec) in (obj["records"] as? [Any] ?? []).enumerated() {
+                    blobs.append(("\(url.lastPathComponent)#\(k)", try JSONSerialization.data(withJSONObject: rec)))
+                }
+            }
+        }
+        XCTAssertGreaterThanOrEqual(blobs.count, 2, "no record fixtures found")
+        return blobs.sorted { $0.0 < $1.0 }
     }
 
     /// JSON value with dates compared as instants (Python writes µs, Swift writes ms).
@@ -30,20 +41,19 @@ final class SchemaTests: XCTestCase {
     }
 
     func testRoundTripFixtures() throws {
-        for url in try fixtureFiles() {
-            let data = try Data(contentsOf: url)
+        for (name, data) in try recordBlobs() {
             let rec = try WHJSON.decoder().decode(Record.self, from: data)
             let out = try WHJSON.encoder().encode(rec)
-            XCTAssertEqual(try WHJSON.decoder().decode(Record.self, from: out), rec, url.lastPathComponent)
+            XCTAssertEqual(try WHJSON.decoder().decode(Record.self, from: out), rec, name)
             let a = normalised(try JSONSerialization.jsonObject(with: data)) as! NSDictionary
             let b = normalised(try JSONSerialization.jsonObject(with: out)) as! NSDictionary
-            XCTAssertEqual(a, b, "lossy round trip: \(url.lastPathComponent)")
+            XCTAssertEqual(a, b, "lossy round trip: \(name)")
         }
     }
 
     func testKindsDecode() throws {
-        let kinds = try fixtureFiles().map { url -> String in
-            switch try WHJSON.decoder().decode(Record.self, from: Data(contentsOf: url)) {
+        let kinds = try recordBlobs().map { _, data -> String in
+            switch try WHJSON.decoder().decode(Record.self, from: data) {
             case .board: return "board"
             case .allWords: return "all_words"
             }
