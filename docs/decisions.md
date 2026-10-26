@@ -20,3 +20,5 @@
 - 2026-10-24 App Groups probe is opt-in: set WH_APP_GROUP + WH_EXTENSION_ENTITLEMENTS in Signing.xcconfig; the diag reports app_group_configured/available.
 - 2026-10-24 Swift models: IDs are lowercase UUID strings (lossless with Python); dates on the wire are ISO 8601 UTC with ms precision (WHJSON coder). Tests also decode fixtures/expected/*.json once S1 creates them.
 - 2026-10-24 Web: TypeScript pinned to 6.x (TS 7 native has no JS API; openapi-typescript needs it). API types: tools/export_openapi.py → web/openapi.json → pnpm -C web gen:api → src/api/schema.ts (committed); client = openapi-fetch.
+- 2026-10-26 S0.T6: frames are streamed from ffmpeg (rgb24, fps=30) straight into the sampler instead of writing ~75 GB of PNGs per recording; `extract_frames.frame_at()` pulls single frames on demand. Output = `$WH_DATA/frames/<name>/samples.csv.gz` + meta.json.
+- 2026-10-26 Colour domains differ (PNG = Display P3, video = BT.709); the calibration keeps `resting_rgb` (PNG) and `resting_rgb_video` (oracle). The phone domain will be measured from /diag tiles_rgb in S0.T15.

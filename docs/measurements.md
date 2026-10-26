@@ -13,7 +13,12 @@
 - 82 ENABLE words are not in YAWL.
 
 ## Recording (session1)
-- file size / duration / native resolution / fps:
+- session1: 1.17 GB, 622 s, 1206×2622 HEVC (yuvj420p, BT.709 full range), ~60 fps VFR → sampled at 30 fps = 18,672 frames.
+- allwords1: 1.22 GB, 647 s, same format → 19,420 frames. Both were .mp4 renamed to .mov (same container).
+- Colour domain: video is darker than the P3 PNG (bg green PNG (106,138,98) vs video (85,127,83)).
+  Resting tile in video (247.4, 209.3, 150.5) vs PNG (245, 218, 170) → `resting_rgb_video` in the calibration.
+- Geometry: video tiles land within 0.5 px of the PNG calibration (no rescale).
+- Tile colour clusters seen (video, /6 bins): resting 71%, white (252,252,252) 10%, green (126,252,126), yellow (246,246,114), red (252,138,138).
 - "(N more)" on the end screen expands to the full list: yes / no
 
 ## Calibration

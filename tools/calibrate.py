@@ -6,6 +6,8 @@ crop) and $WH_DATA/templates/seed.npz (letter templates seeded from the known bo
 """
 
 import argparse
+import csv
+import gzip
 import json
 import os
 import sys
@@ -17,9 +19,17 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "server"))
 
 from whcore import calibration as cb  # noqa: E402
+from whcore.oracle.sampler import dominant_tile_colour, tile_matrix  # noqa: E402
 
 WH_DATA = Path(os.environ.get("WH_DATA", ROOT / "wordhunt-data"))
 CROP_SCALE = 0.5
+
+
+def video_resting(samples: Path) -> list[float]:
+    with gzip.open(samples, "rt") as f:
+        rows = list(csv.DictReader(f))
+    cols = {k: [float(r[k]) for r in rows] for k in rows[0] if k.startswith("t") and "_" in k}
+    return dominant_tile_colour(tile_matrix(cols))
 
 
 def main() -> int:
@@ -27,6 +37,11 @@ def main() -> int:
     ap.add_argument("--board", default=WH_DATA / "recordings/IMG_0717.PNG")
     ap.add_argument("--end", default=WH_DATA / "recordings/IMG_0718.PNG")
     ap.add_argument("--letters", default=None, help="known letters (default: fixture img0717)")
+    ap.add_argument(
+        "--video-samples",
+        default=WH_DATA / "frames/session1/samples.csv.gz",
+        help="samples.csv.gz from extract_frames.py; sets resting_rgb_video (video colour domain)",
+    )
     args = ap.parse_args()
     letters = (
         args.letters or json.loads((ROOT / "fixtures/boards/img0717.json").read_text())["letters"]
@@ -35,6 +50,8 @@ def main() -> int:
     board = cb.load_rgb(args.board)
     end = cb.load_rgb(args.end) if args.end and Path(args.end).exists() else None
     cal = cb.calibrate(board, end)
+    if args.video_samples and Path(args.video_samples).exists():
+        cal["resting_rgb_video"] = video_resting(Path(args.video_samples))
     out = ROOT / f"fixtures/calibration/iphone-{cal['width']}x{cal['height']}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     cb.save_calibration(cal, out)
@@ -56,6 +73,7 @@ def main() -> int:
 
     print(f"wrote {out.relative_to(ROOT)}  crop {crop.shape[1]}x{crop.shape[0]} origin {box[:2]}")
     print(f"tile_size {cal['tile_size']} pitch {cal['pitch']} resting {cal['resting_rgb']}")
+    print(f"resting_rgb_video {cal.get('resting_rgb_video')}")
     for k in (
         "roi_banner",
         "roi_banner_words",

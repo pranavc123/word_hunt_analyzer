@@ -48,7 +48,7 @@ early (they only need the schema).
   - After opponents have played back 5+ of those games: start a short screen recording, open each game, tap VIEW ALL WORDS, and flick to the bottom at varied speeds (gentle to hardest). Save as `$WH_DATA/recordings/allwords1.mov`.
   - deps: —
 
-- [ ] **S0.T6** Frame extraction + numeric sampling
+- [x] **S0.T6** Frame extraction + numeric sampling
   - files: `tools/extract_frames.py`, `server/whcore/oracle/sampler.py`
   - do: ffmpeg → 30 fps PNG frames to `$WH_DATA/frames/<recording>/`. Record native resolution and fps in measurements.md; if not 1206×2622, rescale the calibration. Write `samples.csv`: frame, t_ms, 16×(r,g,b), ROI means, 64-bin row profile.
   - done: `samples.csv` exists for session1; tile samples on a known board frame match the calibration's resting RGB within ±12
