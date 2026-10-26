@@ -282,11 +282,11 @@ class Machine:
         played = b.end_first is not None
         bid = str(uuid.uuid5(uuid.UUID(self.session_id), f"board-{b.seq}"))
         crop = b.crop_frame if b.crop_frame is not None else b.last
-        self.crops.append(CropRequest(f"board_{b.seq}.png", crop, "board"))
+        self.crops.append(CropRequest(f"board_{b.seq}.jpg", crop, "board"))
         end_banner = end_list = None
         if played:
             fe = max(b.end_first, b.end_last - END_CROP_BACK)
-            end_banner, end_list = f"end_banner_{b.seq}.png", f"end_list_{b.seq}.png"
+            end_banner, end_list = f"end_banner_{b.seq}.jpg", f"end_list_{b.seq}.jpg"
             self.crops.append(CropRequest(end_banner, fe, "roi_end_banner"))
             self.crops.append(CropRequest(end_list, fe, "roi_end_list"))
         attempts = []
@@ -325,7 +325,7 @@ class Machine:
                 opened_at=self.started_at + timedelta(milliseconds=self.t[b.first]),
                 view_ms=self.t[b.last] - self.t[b.first],
                 status="played" if played else "skipped",
-                board_image=f"board_{b.seq}.png",
+                board_image=f"board_{b.seq}.jpg",
                 end_banner_image=end_banner,
                 end_list_image=end_list,
                 attempts=attempts,
@@ -349,7 +349,7 @@ class Machine:
         k = sum(isinstance(r, AllWordsRecord) for r in self.records)
         names = []
         for j, f in enumerate(aw.crop_frames):
-            names.append(f"allwords_{k}_{j}.png")
+            names.append(f"allwords_{k}_{j}.jpg")
             self.crops.append(CropRequest(names[-1], f, "list_band"))
         tail = aw.shifts[-60:]
         moved = [s for s in tail if s]

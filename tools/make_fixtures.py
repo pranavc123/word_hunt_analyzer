@@ -197,7 +197,7 @@ def main() -> int:
             for c in (band[0], band[-1]):  # top of the list (revealed words) and its end
                 img = frame_at(rec, int(float(seg[c.frame][ti])))
                 gray = cv2.cvtColor(img[y : y + h, x : x + w], cv2.COLOR_RGB2GRAY)
-                f = f"crops/{name}_{c.name.removesuffix('.png')}.jpg"
+                f = f"crops/{name}_{c.name.removesuffix('.jpg')}.jpg"
                 cv2.imwrite(str(FIX / f), gray, [cv2.IMWRITE_JPEG_QUALITY, 80])
                 files.append(f)
             lab["list_crops"] = files  # first and last crop only (size budget)

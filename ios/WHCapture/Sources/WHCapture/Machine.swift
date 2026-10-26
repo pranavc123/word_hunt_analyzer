@@ -97,6 +97,13 @@ public final class Machine {
 
     public private(set) var records: [Record] = []
     public private(set) var crops: [CropRequest] = []
+    /// Called when the machine decides to crop the CURRENT frame (frame index, rect name), so a
+    /// live capture can grab it before the frame is gone. Requests for past frames are served from
+    /// `CropStore`'s rings. Not used by the oracle/parity path.
+    public var onCropFrame: ((Int, String) -> Void)?
+    /// Screen the machine is on, and the raw label of the last frame (for `CropStore.observe`).
+    public var currentScreen: Screen { screen }
+    public private(set) var lastLabel: Screen = .other
 
     public init(sessionID: String, startedAt: Date, device: String = "oracle",
                 appVersion: String = "oracle", calibrationVersion: String = "iphone-1206x2622@1",
@@ -132,6 +139,7 @@ public final class Machine {
         let i = t.count
         t.append(Int(row["t_ms"] ?? 0))
         let label = Screens.classify(row)
+        lastLabel = label
         if let change = confirm(label, i) {
             onScreenChange(change.0, change.1)
             for (j, r, lab) in recent where j >= change.1 {
@@ -193,6 +201,7 @@ public final class Machine {
         b.last = i
         if b.cropFrame == nil && t[i] - t[b.first] >= MachineConfig.settleMs {
             b.cropFrame = i
+            if i == t.count - 1 { onCropFrame?(i, "board") }
         }
         let words = row["words"] ?? .nan
         let codes = states.codes(row)
@@ -269,11 +278,13 @@ public final class Machine {
             if still && t[i] - t[a.first] >= MachineConfig.firstCropMs {
                 a.base = a.offset
                 Machine.cropAllWords(a, i, a.offset)
+                if i == t.count - 1 { onCropFrame?(i, "list_band") }
             }
             return
         }
         if (a.sinceCrop >= MachineConfig.cropEveryPx && still) || a.sinceCrop >= MachineConfig.gapPx - 200 {
             Machine.cropAllWords(a, i, a.offset)
+            if i == t.count - 1 { onCropFrame?(i, "list_band") }
         }
     }
 
@@ -314,12 +325,12 @@ public final class Machine {
         }
         let played = b.endFirst != nil
         let bid = uuid5(namespace: sessionID, name: "board-\(b.seq)")
-        crops.append(CropRequest(name: "board_\(b.seq).png", frame: b.cropFrame ?? b.last, rect: "board"))
+        crops.append(CropRequest(name: "board_\(b.seq).jpg", frame: b.cropFrame ?? b.last, rect: "board"))
         var endBanner: String?, endList: String?
         if played, let ef = b.endFirst, let el = b.endLast {
             let fe = max(ef, el - MachineConfig.endCropBack)
-            endBanner = "end_banner_\(b.seq).png"
-            endList = "end_list_\(b.seq).png"
+            endBanner = "end_banner_\(b.seq).jpg"
+            endList = "end_list_\(b.seq).jpg"
             crops.append(CropRequest(name: endBanner!, frame: fe, rect: "roi_end_banner"))
             crops.append(CropRequest(name: endList!, frame: fe, rect: "roi_end_list"))
         }
@@ -338,7 +349,7 @@ public final class Machine {
             board_id: bid, session_id: sessionID, seq: b.seq, device: device, app_version: appVersion,
             calibration_version: calibrationVersion, opened_at: date(t[b.first]),
             view_ms: t[b.last] - t[b.first], status: played ? .played : .skipped,
-            board_image: "board_\(b.seq).png", end_banner_image: endBanner, end_list_image: endList,
+            board_image: "board_\(b.seq).jpg", end_banner_image: endBanner, end_list_image: endList,
             attempts: attempts,
             diagnostics: Diagnostics(fps_processed: fps, frames_dropped: 0, mem_peak_mb: 0))))
     }
@@ -354,7 +365,7 @@ public final class Machine {
         let k = records.filter { if case .allWords = $0 { return true } else { return false } }.count
         var names: [String] = []
         for (j, f) in a.cropFrames.enumerated() {
-            names.append("allwords_\(k)_\(j).png")
+            names.append("allwords_\(k)_\(j).jpg")
             crops.append(CropRequest(name: names.last!, frame: f, rect: "list_band"))
         }
         let moved = a.shifts.suffix(60).filter { $0 != 0 }

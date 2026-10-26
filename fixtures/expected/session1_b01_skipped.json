@@ -19,7 +19,7 @@
    "opened_at": "2026-10-26T00:01:30.967000Z",
    "view_ms": 833,
    "status": "skipped",
-   "board_image": "board_0.png",
+   "board_image": "board_0.jpg",
    "attempts": [],
    "diagnostics": {
     "fps_processed": 30.0,
@@ -30,7 +30,7 @@
  ],
  "crops": [
   {
-   "name": "board_0.png",
+   "name": "board_0.jpg",
    "frame": 69,
    "rect": "board"
   }

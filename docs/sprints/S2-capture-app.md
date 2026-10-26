@@ -25,7 +25,7 @@ gate: `swift test --package-path ios/WHCapture` passes the parity tests AND the 
   - done: `swift test --package-path ios/WHCapture --filter SamplerTests`
   - deps: T1
 
-- [ ] **S2.T4** Crops + buffer + uploader `[parallel]`
+- [x] **S2.T4** Crops + buffer + uploader `[parallel]`
   - files: `Sources/WHCapture/{Crops,Buffer,Uploader}.swift`, tests
   - do: grayscale JPEG crops (ImageIO); an on-disk queue in the extension container; multipart `POST /v1/boards` and `POST /v1/allwords` with `Authorization: Bearer $WH_TOKEN`; exponential backoff; idempotent on board_id. Test against a local `URLProtocol` stub.
   - done: `swift test --package-path ios/WHCapture --filter Uploader`

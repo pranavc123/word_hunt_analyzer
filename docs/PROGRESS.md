@@ -40,6 +40,7 @@ Current sprint: **S2** → `docs/sprints/S2-capture-app.md`
 - S1.T6 ✓ 2026-10-26 — gate s1 PASS: oracle 27/27 vs labels, fixtures 1.47 MB, CI green (python, web, swift) on a700610.
 - S2.T2 ✓ 2026-10-26 — Machine.swift (+ Screens, TileStates, uuid5): output identical to Python on all 6 fixtures (records + crops).
 - S2.T3 ✓ 2026-10-26 — Sampler.swift (BGRA + 420f, matrix-aware, scaled rects, ROI stride 2, optional profile), DigitReader (exact on 5 crops), parity ±2 vs Python.
+- S2.T4 ✓ 2026-10-26 — CropStore (live + ring crops, JPEG), RecordQueue (atomic, ordered, idempotent), Uploader (multipart, bearer, backoff); 7 tests; crop refs now .jpg.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->

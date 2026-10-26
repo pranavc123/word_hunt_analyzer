@@ -96,7 +96,7 @@ def test_played_board_with_attempts_then_skip_then_all_words():
     assert 2900 < played.view_ms < 3300  # board + flicker merged
     assert boards[1].view_ms < 600 and boards[1].end_list_image is None
     names = {c.name: c for c in crops}
-    assert names["board_0.png"].frame >= 10 + 24  # ≥ 0.8 s after open
+    assert names["board_0.jpg"].frame >= 10 + 24  # ≥ 0.8 s after open
     aw = [r for r in records if r.kind == "all_words"]
     assert len(aw) == 1
     rec = aw[0]

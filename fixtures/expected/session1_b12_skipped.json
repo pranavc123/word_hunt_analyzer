@@ -19,7 +19,7 @@
    "opened_at": "2026-10-26T00:05:19.367000Z",
    "view_ms": 7700,
    "status": "skipped",
-   "board_image": "board_0.png",
+   "board_image": "board_0.jpg",
    "attempts": [
     {
      "seq": 0,
@@ -199,7 +199,7 @@
  ],
  "crops": [
   {
-   "name": "board_0.png",
+   "name": "board_0.jpg",
    "frame": 69,
    "rect": "board"
   }

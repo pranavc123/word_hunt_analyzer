@@ -19,9 +19,9 @@
    "opened_at": "2026-10-26T00:05:33.067000Z",
    "view_ms": 80766,
    "status": "played",
-   "board_image": "board_0.png",
-   "end_banner_image": "end_banner_0.png",
-   "end_list_image": "end_list_0.png",
+   "board_image": "board_0.jpg",
+   "end_banner_image": "end_banner_0.jpg",
+   "end_list_image": "end_list_0.jpg",
    "attempts": [
     {
      "seq": 0,
@@ -1704,15 +1704,15 @@
    "session_id": "0b7d9e10-2c3a-4f5b-8e6d-7a8b9c0d1e2f",
    "captured_at": "2026-10-26T00:06:56.067000Z",
    "frames": [
-    "allwords_0_0.png",
-    "allwords_0_1.png",
-    "allwords_0_2.png",
-    "allwords_0_3.png",
-    "allwords_0_4.png",
-    "allwords_0_5.png",
-    "allwords_0_6.png",
-    "allwords_0_7.png",
-    "allwords_0_8.png"
+    "allwords_0_0.jpg",
+    "allwords_0_1.jpg",
+    "allwords_0_2.jpg",
+    "allwords_0_3.jpg",
+    "allwords_0_4.jpg",
+    "allwords_0_5.jpg",
+    "allwords_0_6.jpg",
+    "allwords_0_7.jpg",
+    "allwords_0_8.jpg"
    ],
    "shifts_px": [
     0,
@@ -1741,62 +1741,62 @@
  ],
  "crops": [
   {
-   "name": "board_0.png",
+   "name": "board_0.jpg",
    "frame": 69,
    "rect": "board"
   },
   {
-   "name": "end_banner_0.png",
+   "name": "end_banner_0.jpg",
    "frame": 2516,
    "rect": "roi_end_banner"
   },
   {
-   "name": "end_list_0.png",
+   "name": "end_list_0.jpg",
    "frame": 2516,
    "rect": "roi_end_list"
   },
   {
-   "name": "allwords_0_0.png",
+   "name": "allwords_0_0.jpg",
    "frame": 2543,
    "rect": "list_band"
   },
   {
-   "name": "allwords_0_1.png",
+   "name": "allwords_0_1.jpg",
    "frame": 2589,
    "rect": "list_band"
   },
   {
-   "name": "allwords_0_2.png",
+   "name": "allwords_0_2.jpg",
    "frame": 2615,
    "rect": "list_band"
   },
   {
-   "name": "allwords_0_3.png",
+   "name": "allwords_0_3.jpg",
    "frame": 2646,
    "rect": "list_band"
   },
   {
-   "name": "allwords_0_4.png",
+   "name": "allwords_0_4.jpg",
    "frame": 2677,
    "rect": "list_band"
   },
   {
-   "name": "allwords_0_5.png",
+   "name": "allwords_0_5.jpg",
    "frame": 2711,
    "rect": "list_band"
   },
   {
-   "name": "allwords_0_6.png",
+   "name": "allwords_0_6.jpg",
    "frame": 2745,
    "rect": "list_band"
   },
   {
-   "name": "allwords_0_7.png",
+   "name": "allwords_0_7.jpg",
    "frame": 2778,
    "rect": "list_band"
   },
   {
-   "name": "allwords_0_8.png",
+   "name": "allwords_0_8.jpg",
    "frame": 2820,
    "rect": "list_band"
   }

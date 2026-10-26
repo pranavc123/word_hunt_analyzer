@@ -19,9 +19,9 @@
    "opened_at": "2026-10-26T00:00:04.167000Z",
    "view_ms": 80766,
    "status": "played",
-   "board_image": "board_0.png",
-   "end_banner_image": "end_banner_0.png",
-   "end_list_image": "end_list_0.png",
+   "board_image": "board_0.jpg",
+   "end_banner_image": "end_banner_0.jpg",
+   "end_list_image": "end_list_0.jpg",
    "attempts": [
     {
      "seq": 0,
@@ -1726,17 +1726,17 @@
  ],
  "crops": [
   {
-   "name": "board_0.png",
+   "name": "board_0.jpg",
    "frame": 69,
    "rect": "board"
   },
   {
-   "name": "end_banner_0.png",
+   "name": "end_banner_0.jpg",
    "frame": 2500,
    "rect": "roi_end_banner"
   },
   {
-   "name": "end_list_0.png",
+   "name": "end_list_0.jpg",
    "frame": 2500,
    "rect": "roi_end_list"
   }
