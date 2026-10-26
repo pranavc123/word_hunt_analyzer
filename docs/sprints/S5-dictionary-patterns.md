@@ -12,7 +12,7 @@ verdicts for ≥ 500 words; precision and recall reported; ≥ 5 boards with all
 
 - [ ] **S5.T2** Ledger `[parallel]`
   - files: `server/whcore/ledger.py`, tests
-  - do: update `words` from attempts per §6 rules; backfill over all stored boards; effective dictionary = base ± ledger; precision/recall functions.
+  - do: update `words` from attempts per §6 rules (OOV traces confirmed by the end screen or all-words counts add words — S0 found DORES, DOSAS, TASES, BAWK, TEC); backfill over all stored boards; effective dictionary = base ± ledger; precision/recall functions.
   - done: `uv run pytest -q server/tests -k ledger`
   - deps: S4
 
@@ -24,7 +24,7 @@ verdicts for ≥ 500 words; precision and recall reported; ≥ 5 boards with all
 
 - [ ] **S5.T4** All-words in the worker
   - files: `server/app/worker.py`, `server/whcore/allwords.py`
-  - do: feed matched all-words captures (§3.6) into the ledger: store counts, status, and complete-down-to on the board; slot-match masked rows to solver candidates → unique match = confirmed, never matched = likely_rejected (evidence weaker than a trace). Backfill over all matched captures.
+  - do: feed matched all-words captures (§3.6, matched by the revealed list-order prefix — only 20 found words are revealed) into the ledger: store counts, status, and complete-down-to on the board; per-length count gaps vs the solver; slot-match only inside the revealed stretch → confirmed / likely_rejected (evidence weaker than a trace). Backfill over all matched captures.
   - done: `uv run pytest -q server/tests -k allwords`
   - deps: T2
 

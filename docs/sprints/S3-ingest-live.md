@@ -24,7 +24,7 @@ record, every board arrived — seq contiguous — and ≥ 95% of played boards 
 
 - [ ] **S3.T4** Run-as-service
   - files: `tools/launchd/com.wordhunt.server.plist`, `tools/launchd/com.wordhunt.worker.plist`, `docs/RUNNING.md`
-  - do: launchd agents with env vars and logs to `$WH_DATA/logs/`. RUNNING.md covers install, `tailscale serve --https=443 localhost:8000`, and how to check health.
+  - do: launchd agents with env vars and logs to `$WH_DATA/logs/`. RUNNING.md covers install, `tailscale serve --bg 8000` (App Store Tailscale: the CLI is `/Applications/Tailscale.app/Contents/MacOS/Tailscale`; Serve is already enabled on the tailnet since S0), the phone's Tailscale + "Use Tailscale DNS", and how to check health (`curl https://<mac>.<tailnet>.ts.net/v1/health`).
   - done: `plutil -lint tools/launchd/*.plist`
   - deps: T2
 
@@ -35,7 +35,7 @@ record, every board arrived — seq contiguous — and ≥ 95% of played boards 
   - deps: S2
 
 - [ ] **S3.T6** `[HUMAN]` First live session (~50 min)
-  - Install the services (RUNNING.md). Build and run the app on the iPhone from Xcode, turn on the Focus, start the broadcast, play a normal session, then stop.
+  - Install the services (RUNNING.md). The agent builds and installs the app (`xcodebuild … -allowProvisioningUpdates` + `xcrun devicectl device install app`); the user turns on Tailscale on the phone, opens Word Hunt (server reachable), taps Start / stop capture → Start Broadcast, turns on the Focus, plays a normal session, then stops.
   - deps: T3, T4, T5
 
 - [ ] **S3.T7** Live analysis + fixes

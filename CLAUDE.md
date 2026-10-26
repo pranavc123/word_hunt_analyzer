@@ -39,9 +39,11 @@ server/tests/    pytest, using /fixtures
 ios/WHCapture/   SwiftPM package holding ALL capture logic; builds and tests on macOS
 ios/App/         XcodeGen spec + CompanionApp + BroadcastExtension (thin wrappers only)
 web/             React + Vite + TypeScript PWA
-tools/           CLI scripts (frame extraction, labelling, reference-list fetch, reports)
+tools/           CLI scripts: extract_frames (ffmpeg → samples.csv.gz), make_review (segment +
+                 labelling page), build_templates, trace_boards, reconcile_boards, allwords_report,
+                 calibrate, export_schema, export_openapi, report (--gate sN, --diag)
 dictionaries/    yawl.txt (base) + enable1.txt (common-word marker), public domain, committed
-fixtures/        small committed test data
+fixtures/        small committed test data: boards/, calibration/, crops/, schema/, templates/
 docs/            PLAN.md, PROGRESS.md, decisions.md, measurements.md, sprints/
 wordhunt-data/   = $WH_DATA: recordings, screenshots, labels, images, DB. Git-ignored. Never commit.
 wordhunt_docs/   the user's exported plan doc (reference only; docs/PLAN.md wins)
@@ -54,7 +56,15 @@ wordhunt_docs/   the user's exported plan doc (reference only; docs/PLAN.md wins
   (the `.xcodeproj` is generated and not committed; edit `project.yml`, never the project file)
 - Web: `pnpm -C web install` · `pnpm -C web test --run` · `pnpm -C web build`
 - Server: `uv run uvicorn app.main:app --app-dir server --reload`
-- Gates: `uv run python tools/report.py --gate s<N>`
+- Gates: `uv run python tools/report.py --gate s<N>` · device probe summary: `--diag`
+- Device build + install (phone paired; free team): `xcodebuild -project ios/App/App.xcodeproj -scheme CompanionApp -destination 'id=<UDID>' -allowProvisioningUpdates -quiet build`, then `xcrun devicectl device install app --device <UDID> <BUILT_PRODUCTS_DIR>/CompanionApp.app` (`xcrun devicectl list devices` for the UDID)
+- Tailscale (App Store build, not on PATH): `/Applications/Tailscale.app/Contents/MacOS/Tailscale serve --bg 8000` / `serve status` / `status`
+- Start long-running things (server) in a Terminal panel tab so the user's `~/.zshrc` env (`WH_TOKEN`) is loaded
+
+## Working notes from S0 (details in docs/measurements.md, docs/decisions.md)
+- Don't dump frames to PNG: `tools/extract_frames.py` streams ffmpeg → `$WH_DATA/frames/<rec>/samples.csv.gz`; `frame_at(rec, t_ms)` pulls single frames.
+- Colour values depend on the source (screenshot P3 / recording BT.709 / phone buffer); never mix thresholds across domains.
+- The S0 labels in `$WH_DATA/labels/` (boards.csv, traces.json, reconciled.json, allwords.json) are the ground truth for S1 fixtures.
 
 ## Invariants (never break)
 - The event schema lives in `server/whcore/schema.py` (Pydantic) and is exported to

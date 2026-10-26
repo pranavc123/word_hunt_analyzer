@@ -1,6 +1,6 @@
 # Word Hunt Analyzer — Project Plan
 
-Oct 23, 2026 · @Pranav
+Oct 23, 2026 · @Pranav · updated Oct 26, 2026 after Phase 0 (spike: GO)
 
 ## Summary
 
@@ -11,9 +11,33 @@ Build a personal Word Hunt analytics system that captures whole play sessions: o
 1. **Every board becomes data automatically.** Each of your 40–50 boards per session is logged with its letters, whether you played it out or skipped it, and how long you looked. Played boards also log every word you traced (accepted, rejected, or duplicate) with its path and timestamp. Played games must reconcile exactly with the final score.
 2. **Board triage becomes measurable.** Your 5–10 second keep-or-skip call is a decision the app can grade: how often kept boards reach your 30k bar, and how often skipped boards likely would have.
 3. **You see your blind spots.** You get per-game missed-word reports, plus a model of which words you find. It factors in length, position on the board, path shape, word frequency, and suffix family.
-4. **The dictionary becomes trustworthy.** Your uploaded NWL list is the starting point, and every accept or reject observed in play corrects it.
+4. **The dictionary becomes trustworthy.** The public-domain YAWL list is the starting point (NWL was dropped because it can't be shared), and every accept or reject observed in play corrects it.
 
 **What success looks like after \~5 sessions (200+ boards):** boards are extracted with no manual fixes in 95%+ of cases. Played games reconcile with the final score 98%+ of the time. The app can say how accurate your triage is and name your top three costly habits, each with a points-per-game estimate.
+
+## Status after Phase 0 (Oct 26, 2026)
+
+The spike passed its go/no-go gate: **live capture is GO.** What was proven, on one 10-minute session (21 boards), a 6-game VIEW ALL WORDS recording, and a 31-minute live broadcast from the iPhone:
+
+| Question | Answer |
+| --- | --- |
+| Can boards be found and classified automatically? | Yes: 27/27 boards found, every played/skipped call correct. |
+| Can letters be read? | Yes: 99.6% of tiles on boards the reader never saw. J, Q, Z not seen yet. |
+| Can every traced word be recovered? | Yes, using the live WORDS counter rather than tile colours: accepted words matched the end-screen count on 12/12 games; 11/12 games reconcile exactly with score, count and visible words. |
+| Does VIEW ALL WORDS work as a ground truth? | Yes, with caveats: 6/6 lists matched to the right game; GamePigeon's word counts track YAWL closely (ENABLE is far smaller). |
+| Can the broadcast extension survive a session? | Yes: 31 minutes at ~60 fps, 8.3 MB of memory (limit ~50 MB), 10 dropped frames out of 111,555. |
+
+**What changed in the plan because of it:**
+
+- **Dictionary:** YAWL is the base, ENABLE only marks common words. The game also accepted five words YAWL lacks (DORES, DOSAS, TASES, BAWK, TEC); the ledger will add those.
+- **Word acceptance** is read from the WORDS counter (it ticks up the instant a word counts). The colour of the tiles at release miscounts fast swipes.
+- **Boards slide in** for about 0.6 s when they open, so letters are read after that. Most skips happen in under a second.
+- **Frame rate:** at least 30 fps is needed while a board is in play; menus and word lists are fine at 15.
+- **VIEW ALL WORDS** shows one "?" per hidden word (length comes from the points), and reveals only your first 20 found words. Matching a list to its game now uses those 20 words.
+- **The end screen** is on screen only about a second before you tap SENT, which is still enough to read it.
+- **Signing:** works on the free Personal Team; App Groups were not tested and are not needed.
+
+Next: Phase 1 hardens this into one reference state machine with test fixtures (Sprint 1), then the Swift port (Sprint 2), then live ingest (Sprint 3). Detailed numbers are in the repo's `docs/measurements.md`; reasons for each change are in `docs/decisions.md`.
 
 ## Constraints and the decisions they force
 
@@ -26,7 +50,7 @@ Per-game recording is out. With 40–50 boards a session, most skipped within 5�
 | An iOS web app can't see another app's screen | Build a native iOS companion app with a ReplayKit **Broadcast Upload Extension**, the iOS mechanism that lets an app receive live screen frames. The web app stays, for review and analysis. |
 | The broadcast extension has a hard memory limit of about 50 MB and is terminated if it goes over | The extension only does cheap work: it samples pixel colors at 16 tile centers and a few small regions, and drops frames when busy. Heavy work (letters, solving, models) runs on the server. |
 | Installing your own app needs Xcode on a Mac, and free signing expires every 7 days | Stay on free Personal Team signing for good. Re-install from Xcode weekly (about a minute), or let SideStore or AltStore refresh it over Wi-Fi. The companion app counts down to expiry. The extension uploads its own events, so nothing depends on capabilities free signing may lack, such as App Groups. |
-| GamePigeon's word list isn't published | Start from the NWL list you upload. Compare it offline with reference lists such as wordhunt.org's, and let every accept or reject observed in play settle the differences. |
+| GamePigeon's word list isn't published | Start from the public-domain YAWL list (committed to the repo). Compare it offline with reference lists such as wordhunt.org's, and let every accept or reject observed in play settle the differences. |
 | Confirmed rules: 80-second timer; 3 letters = 100, 4 = 400, 5 = 800, 6 = 1400, then +400 per extra letter (7 = 1800, 8 = 2200, 9 = 2600, …) | Hardcode it as a formula and use it to check extraction. |
 
 Focus mode still matters, because a notification banner over the board corrupts frames. The companion app reminds you when you start a session.
@@ -84,7 +108,7 @@ The work splits at the phone. The extension runs a small state machine on live f
 
 Treat the dictionary as a hypothesis that every game tests. Start from a base list, then keep a per-word ledger of what GamePigeon actually accepted or rejected. The "effective dictionary" used for missed-word reports is the base list, corrected by the ledger.
 
-**Base list: NWL, uploaded by you.** Upload it in the web app's Dictionary settings as a plain text file with one word per line. NWL is NASPA's copyrighted list, so keep it on your machine and never commit it. The server normalizes it (uppercase, letters only, 3–16 letters, since a 4×4 board can't hold longer words). It's stored as a versioned base list, so a newer or different list can be swapped in and compared later. Add a word-frequency score per word (for example, the Python `wordfreq` package) to separate common words from obscure ones. Frequency is one of the strongest predictors of what you miss.
+**Base list: YAWL (public domain), committed to the repo; ENABLE marks common words.** (Originally NWL; dropped because it is copyrighted and can't be shared. The spike showed GamePigeon's list tracks YAWL closely.) Another list can still be uploaded in the web app's Dictionary settings as a plain text file with one word per line. The server normalizes it (uppercase, letters only, 3–16 letters, since a 4×4 board can't hold longer words). It's stored as a versioned base list, so a newer or different list can be swapped in and compared later. Add a word-frequency score per word (for example, the Python `wordfreq` package) to separate common words from obscure ones. Frequency is one of the strongest predictors of what you miss.
 
 **How each attempt updates the ledger:**
 
@@ -112,7 +136,7 @@ Treat the dictionary as a hypothesis that every game tests. Start from a base li
 
 **GamePigeon's own word count, from the "More words" view.** The end screen can list every valid word on the board, with the ones you didn't find masked as ???. You never pay to reveal anything, but the masks may still say a lot. The spike confirms how much:
 
-- **If a mask shows the word's length**, the count of valid words at each length is GamePigeon's exact answer for that board. Compare it with the solver's count per length. A gap means your NWL-based list has extra or missing words of that length on this board.
+- **If a mask shows the word's length**, the count of valid words at each length is GamePigeon's exact answer for that board. Compare it with the solver's count per length. A gap means the YAWL-based list has extra or missing words of that length on this board. (Spike: masks show one "?" per word, but the points column gives the length, so this works.)
 - **If the list is sorted alphabetically**, each masked entry sits between two words you found. Usually only one or two solver candidates of the right length fit that slot, which pins down which words GamePigeon accepts.
 - **It costs one tap per board.** Open "More words" (and scroll if the list is long) on the boards you choose. The extension is already watching, so it captures the list with no extra step.
 
@@ -288,21 +312,21 @@ The riskiest new piece is the broadcast extension: can it run a full 40+ minute 
 
 - **Skipping means leaving the game.** GamePigeon voids that board, so a board that closes without an end screen is logged as skipped, with its viewing time.
 - **Mac and Swift: yes.** The native capture app stays the main path. Session recording is used only for the spike and as a fallback.
-- **Dictionary: NWL,** which you source and keep local. It's copyrighted and is never committed.
+- **Dictionary: YAWL** (public domain, committed), replacing the earlier NWL plan; ENABLE marks common words.
 - **No Qu tile, 4×4 only.** Letter recognition needs just 26 single-letter templates, and nothing supports other board sizes.
 - **The end screen lists your found words.** That's a word-level check on extraction. The "More words" view also gives GamePigeon's own per-board word count (see Dictionary).
 
 **Spike checklist (1–2 weekends, no app yet)**
 
-- [ ] With Focus on, use ordinary screen recording to capture one full session of 40–50 boards, played as usual
-- [ ] Note the file size and length; this also sizes the fallback path
-- [ ] Hand-label each board's start, end, and played or skipped status
-- [ ] Plot tile-center colors for two played boards, and confirm the selected-state colors
-- [ ] Prototype the phone-side state machine in Python at 15 and 30 fps, and compare it with the hand labels
-- [ ] Build letter templates from 5 boards, plus the trie solver over your Scrabble list
-- [ ] Reconcile 5 played games with their final scores and found-word lists. On those boards, open "More words" and check whether masked entries show word length and sit in sorted order.
-- [ ] Build a minimal broadcast extension, signed with your free Personal Team, that only logs frame rate and memory for 30 minutes during real play. Also check whether App Groups are available.
-- [ ] Decide go or no-go on live capture. On no-go, fall back to session recording with automatic import to a Mac.
+- [x] With Focus on, use ordinary screen recording to capture one full session of 40–50 boards, played as usual — done with a shorter 10-minute session (21 boards)
+- [x] Note the file size and length; this also sizes the fallback path — 1.2 GB for 10 minutes (HEVC, 1206×2622)
+- [x] Hand-label each board's start, end, and played or skipped status — boards found automatically; letters labelled for all 27
+- [x] Plot tile-center colors for two played boards, and confirm the selected-state colors — white, green, yellow, red
+- [x] Prototype the phone-side state machine in Python at 15 and 30 fps, and compare it with the hand labels — 30 fps needed for swipes
+- [x] Build letter templates from 5 boards, plus the trie solver over your Scrabble list — 27 boards, YAWL
+- [x] Reconcile 5 played games with their final scores and found-word lists. On those boards, open "More words" and check whether masked entries show word length and sit in sorted order. — 11/12 reconcile; sorted yes; length via points
+- [x] Build a minimal broadcast extension, signed with your free Personal Team, that only logs frame rate and memory for 30 minutes during real play. Also check whether App Groups are available. — 31 min, ~60 fps, 8.3 MB; App Groups not tested
+- [x] Decide go or no-go on live capture. On no-go, fall back to session recording with automatic import to a Mac. — **GO** (Oct 26, 2026)
 
 ## Sources
 
