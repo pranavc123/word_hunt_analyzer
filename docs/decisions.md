@@ -30,3 +30,5 @@
 - 2026-10-26 Letter/digit templates are committed in fixtures/templates/ (52 KB) so tests and the phone port can use them; masters in $WH_DATA/templates/.
 - 2026-10-26 Word resolution: align traced tiles to solver paths (missing + extra tiles); a clean contiguous trace of a non-dictionary word is an OOV candidate (cost 1). Board-level search enforces distinct words, Σ points == end SCORE, visible words present.
 - 2026-10-26 Visible-word snapping is constrained by the points column (points → length); unread points are "unknown", not a failure.
+- 2026-10-26 PLAN mismatch (§1/§3.5): masked rows show ONE "?" (not one per letter); length comes from the points column. VIEW ALL WORDS reveals only the player's first 20 found words. §3.6 matching therefore = revealed words are the list-order prefix of a board's accepted words (≥80% overlap after snapping), not per-length found counts.
+- 2026-10-26 Scroll tracking: 1-D profile SAD with a pull towards the previous shift (rows repeat every 61 px); word crops only from still frames; gap = cost > 25 or overlap < 300 px.

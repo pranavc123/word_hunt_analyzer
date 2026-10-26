@@ -82,7 +82,7 @@ early (they only need the schema).
   - done: `uv run pytest -q server/tests/test_reconcile.py` and ≥ 4 of 5 labelled played boards reconcile
   - deps: T2, T9, T10
 
-- [ ] **S0.T12** All-words feasibility + matching
+- [x] **S0.T12** All-words feasibility + matching
   - files: `server/whcore/allwords.py`, `server/tests/test_allwords.py`
   - do: per §3.5–3.7 on allwords1.mov: stitch rows with 1-D profile shifts, count `?` per row, OCR unmasked rows, run the self-checks, compute per-length counts, match each capture to its session1 board (§3.6), and slot-match. Measure the largest per-frame shift that still overlaps, at 30 and 15 fps.
   - done: ≥ 3 captures matched to the right board; per-length totals compared with YAWL and ENABLE solver counts and logged; max safe shift in measurements.md

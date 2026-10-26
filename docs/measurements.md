@@ -52,9 +52,22 @@
 | reconciliation (§3.3) | 11/12 verified (session1 #15 needs_review: TEENS visible, no consistent pick) | |
 
 ## All-words list (allwords1)
-- captures matched to the right board:
-- per-length totals vs YAWL / ENABLE solver counts:
-- max safe shift px/frame (30 / 15 fps) and equivalent flick speed:
+- Screen: pinned header, rows every 61.1 px; unfound = yellow bar with ONE "?" (bar width varies with the
+  hidden word), found = tan bar with the word; points column gives the length.
+- Only the player's FIRST 20 found words (list order) are revealed; later found words look masked.
+- captures matched to the right board: 6/6 (revealed words = prefix of the board's accepted words in list order).
+- All 6 complete down to 3 letters at 30 fps (end of list seen, no gaps). 15 fps: same counts on all 6.
+- per-length totals (game list vs solver; game ≈ YAWL + a few, ENABLE far smaller):
+  allwords1#0: game {'8': 1, '7': 7, '6': 28, '5': 64, '4': 92, '3': 54} | YAWL {'8': 1, '7': 8, '6': 28, '5': 63, '4': 92, '3': 54} | ENABLE {'7': 4, '6': 21, '5': 48, '4': 70, '3': 44} | slot-confirmed 39
+  allwords1#1: game {'8': 1, '7': 5, '6': 14, '5': 44, '4': 100, '3': 82} | YAWL {'8': 1, '7': 5, '6': 13, '5': 44, '4': 99, '3': 82} | ENABLE {'7': 2, '6': 8, '5': 34, '4': 82, '3': 69} | slot-confirmed 45
+  allwords1#2: game {'8': 2, '7': 10, '6': 29, '5': 55, '4': 76, '3': 65} | YAWL {'8': 2, '7': 10, '6': 29, '5': 54, '4': 76, '3': 63} | ENABLE {'8': 2, '7': 8, '6': 21, '5': 40, '4': 60, '3': 53} | slot-confirmed 19
+  allwords1#3: game {'8': 1, '7': 2, '6': 9, '5': 30, '4': 62, '3': 55} | YAWL {'8': 1, '7': 2, '6': 9, '5': 30, '4': 61, '3': 54} | ENABLE {'8': 1, '7': 2, '6': 7, '5': 25, '4': 47, '3': 44} | slot-confirmed 44
+  allwords1#4: game {'7': 6, '6': 17, '5': 48, '4': 93, '3': 73} | YAWL {'7': 6, '6': 17, '5': 47, '4': 91, '3': 70} | ENABLE {'7': 4, '6': 15, '5': 41, '4': 73, '3': 58} | slot-confirmed 39
+  allwords1#5: game {'8': 2, '7': 10, '6': 21, '5': 52, '4': 81, '3': 56} | YAWL {'8': 1, '7': 9, '6': 19, '5': 53, '4': 82, '3': 54} | ENABLE {'8': 1, '7': 6, '6': 14, '5': 33, '4': 60, '3': 44} | slot-confirmed 50
+- Game words not in YAWL confirmed by count + trace: BAWK, TEC (allwords1 #3).
+- max per-frame shift tracked: 1423 px at 30 fps (≈42,700 px/s), 1485 px at 15 fps (≈22,300 px/s); bound =
+  list band 1988 px − 300 px overlap = 1688 px/frame (50,600 px/s at 30 fps, 25,300 px/s at 15 fps).
+  Typical flicks: p99 150–250 px/frame at 30 fps. Repeating rows need a velocity prior (±30 px).
 
 ## Letters / digits (S0.T10)
 - Letter templates: 23 letters seen (no J, Q, Z yet). LOBO misses: R→P, O→C (allwords1 #2).

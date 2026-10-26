@@ -28,6 +28,7 @@ Current sprint: **S0** → `docs/sprints/S0-bootstrap-feasibility.md`
 - S0.T10 ✓ 2026-10-26 — LOBO 99.55%; digit templates read SCORE/WORDS on all 12 played boards (live == end).
 - S0.T9 ✓ 2026-10-26 — traces for 12 played boards; accepted (WORDS rise at release) == end WORDS on 12/12.
 - S0.T11 ✓ 2026-10-26 — 11/12 played boards verified; OOV words accepted by the game: DORES, DOSAS, TASES.
+- S0.T12 ✓ 2026-10-26 — 6/6 all-words captures matched; game list ≈ YAWL (+BAWK, TEC); only first 20 found words revealed; max tracked shift 1423 px/frame.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
