@@ -99,11 +99,11 @@ early (they only need the schema).
   - done: `xcodegen generate --spec ios/App/project.yml && xcodebuild ... -quiet build` succeeds
   - deps: T4
 
-- [ ] **S0.T15** `[HUMAN]` Device run (~35 min)
+- [x] **S0.T15** `[HUMAN]` Device run (~35 min)
   - Copy `Signing.example.xcconfig` → `Signing.xcconfig` (set your team ID) and `Config.example.xcconfig` → `Config.xcconfig` (your `https://<mac>.<tailnet>.ts.net` URL and `$WH_TOKEN`). Start the server and `tailscale serve --bg 8000`. Run on the iPhone from Xcode, turn on the Focus, start the broadcast, play 30+ minutes normally, then stop.
   - deps: T14
 
-- [ ] **S0.T16** Go/no-go report
+- [x] **S0.T16** Go/no-go report
   - files: `tools/report.py` (with `--gate s0`)
   - do: summarise diag.jsonl (memory peak, fps distribution, drops, App Groups) and T7–T13 numbers; write the decision to measurements.md.
   - done: the gate command prints PASS or FAIL with reasons

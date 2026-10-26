@@ -33,3 +33,5 @@
 - 2026-10-26 PLAN mismatch (§1/§3.5): masked rows show ONE "?" (not one per letter); length comes from the points column. VIEW ALL WORDS reveals only the player's first 20 found words. §3.6 matching therefore = revealed words are the list-order prefix of a board's accepted words (≥80% overlap after snapping), not per-length found counts.
 - 2026-10-26 Scroll tracking: 1-D profile SAD with a pull towards the previous shift (rows repeat every 61 px); word crops only from still frames; gap = cost > 25 or overlap < 300 px.
 - 2026-10-26 S0.T13: traces need 30 processed fps during play (15 fps loses short swipes and tiles); menus/all-words can drop to 15 fps to save power.
+- 2026-10-26 S0 gate PASS → GO. ReplayKit delivers 884×1920 420f on iPhone 17 Pro, so the extension scales calibration coordinates by buffer size (already in the probe).
+- 2026-10-26 Companion app opens the system broadcast picker from its own labelled button (the picker's icon is invisible on a dark background).

@@ -85,8 +85,14 @@
 - End-list OCR flickers on some video frames: read 5 frames, keep length/points-consistent reads, vote.
 
 ## Device probe (30 min)
-- mem peak MB / fps p50 / p5 / frames dropped:
-- App Groups available on Personal Team: yes / no
+- 2026-10-26, iPhone 17 Pro, 31.2 min broadcast (clean start/finish): mem peak 8.3 MB (flat after 10 min);
+  fps p50 59.9 / p5 59.4 (one 10 s window at 19.6); 10 of 111,555 frames dropped.
+- ReplayKit buffers: 884×1920, 420f (full-range YUV), i.e. 0.733× the 1206×2622 screen (same aspect).
+- Phone-domain resting tile RGB (sample patch, BT.601/709 per buffer attachment): (251, 217, 163).
+- App Groups available on Personal Team: not tested (optional experiment left off).
 
 ## Go / no-go
--
+- 2026-10-26 GO. `tools/report.py --gate s0` = PASS: segmentation 27/27, reconciliation 11/12, all-words 6/6
+  matched, extension 8.3 MB peak at ~60 fps over 31 min, max tracked flick 1423 px/frame.
+- Carry into S1/S2: read boards ≥ 0.8 s after open; ≥ 30 fps in play; acceptance from the WORDS digits;
+  phone colour thresholds from the phone domain (resting (251,217,163)); all-words reveals only 20 found words.

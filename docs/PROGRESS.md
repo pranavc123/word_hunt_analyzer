@@ -1,11 +1,11 @@
 # PROGRESS
 
-Current sprint: **S0** → `docs/sprints/S0-bootstrap-feasibility.md`
+Current sprint: **S1** → `docs/sprints/S1-core-oracle.md`
 
 | Sprint | Status | Gate |
 | --- | --- | --- |
-| S0 Bootstrap + feasibility | in progress | — |
-| S1 Core + oracle | todo | — |
+| S0 Bootstrap + feasibility | done | PASS 2026-10-26 |
+| S1 Core + oracle | in progress | — |
 | S2 Capture app | todo | — |
 | S3 Ingest + live | todo | — |
 | S4 Review app | todo | — |
@@ -30,7 +30,8 @@ Current sprint: **S0** → `docs/sprints/S0-bootstrap-feasibility.md`
 - S0.T11 ✓ 2026-10-26 — 11/12 played boards verified; OOV words accepted by the game: DORES, DOSAS, TASES.
 - S0.T12 ✓ 2026-10-26 — 6/6 all-words captures matched; game list ≈ YAWL (+BAWK, TEC); only first 20 found words revealed; max tracked shift 1423 px/frame.
 - S0.T13 ✓ 2026-10-26 — 15 fps: segmentation + all-words identical; traces 7/12, reconciliation 1/12 → need 30 fps in play.
+- S0.T15 ✓ 2026-10-26 — 31-min device run: 8.3 MB peak, ~60 fps, 10 drops; buffers 884×1920 420f.
+- S0.T16 ✓ 2026-10-26 — tools/report.py --gate s0 → PASS (GO recorded in measurements.md).
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
-- S0.T15 device run (Signing.xcconfig + Config.xcconfig, 30+ min broadcast) → unblocks S0.T16 + the S0 gate.
