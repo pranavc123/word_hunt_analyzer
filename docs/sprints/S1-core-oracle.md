@@ -36,7 +36,7 @@ CI green; fixtures < 2 MB).
   - done: `uv run pytest -q server/tests` and coverage of these modules ≥ 80% (`--cov`)
   - deps: T1
 
-- [ ] **S1.T5** CI
+- [x] **S1.T5** CI
   - files: `.github/workflows/ci.yml`
   - do: uv + ruff + pytest on push; cache uv.
   - done: workflow file passes `actionlint` (or a manual dry-run note in PROGRESS)

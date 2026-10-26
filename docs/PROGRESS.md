@@ -36,6 +36,7 @@ Current sprint: **S1** → `docs/sprints/S1-core-oracle.md`
 - S1.T2 ✓ 2026-10-26 — streaming state machine (machine.py): 27/27 statuses, 1490/1491 attempts = S0 traces, 12/12 accepted == WORDS; 0.2 s per recording.
 - S1.T3 ✓ 2026-10-26 — 6 fixture segments (4 played, 2 skipped, 2 all-words) + expected + labels.json; fixtures 1.7 MB (PNG→JPEG).
 - S1.T4 ✓ 2026-10-26 — read_letters/build_words/reconcile/process_allwords on fixtures; phone-style crops reproduce S0 all-words counts 6/6; coverage ≥ 84%.
+- S1.T5 ✓ 2026-10-26 — .github/workflows/ci.yml (python: ruff+schema+pytest+fixture size; web: test+build; swift: WHCapture tests); actionlint clean.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
