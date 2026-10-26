@@ -37,7 +37,7 @@ gate: `swift test --package-path ios/WHCapture` passes the parity tests AND the 
   - done: iOS build succeeds (`xcodegen generate ... && xcodebuild ... -quiet build`)
   - deps: T2, T3, T4
 
-- [ ] **S2.T6** Companion app
+- [x] **S2.T6** Companion app
   - files: `ios/App/CompanionApp/*`
   - do: SwiftUI with a Start button (S0: a labelled button that triggers the hidden `RPSystemBroadcastPickerView` — its own icon is invisible on dark backgrounds), the compiled server URL with a reachability check (`GET /v1/health`, done in S0), a last-session status line (`GET /v1/sessions/latest`), and a signing-expiry countdown parsed from `embedded.mobileprovision` (red on the last day). Add a Focus and "Tailscale on" reminder. Show editable settings only if App Groups work.
   - done: iOS build succeeds; unit test for the provision-date parser passes

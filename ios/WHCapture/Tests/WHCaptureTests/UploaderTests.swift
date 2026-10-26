@@ -75,13 +75,14 @@ final class UploaderTests: XCTestCase {
     }
 
     func testQueueIsOrderedAtomicAndIdempotent() throws {
-        var now = 1_000.0
+        var now = 1_793_000_000.0  // a real epoch: ms values overflow 32-bit formatting
         let q = try RecordQueue(directory: dir, clock: { now += 1; return Date(timeIntervalSince1970: now) })
         try q.enqueue(board(0), images: ["board_0.jpg": Data([1, 2, 3])])
         try q.enqueue(allWords(), images: ["allwords_0_0.jpg": Data([4])])
         try q.enqueue(board(0), images: ["board_0.jpg": Data([9])])  // same id → replaced, moved to the back
         let items = q.pending()
         XCTAssertEqual(items.map(\.kind), ["all_words", "board"])
+        XCTAssertEqual(Int(items[0].directory.lastPathComponent.prefix(13)), 1_793_000_002_000)
         XCTAssertEqual(try Data(contentsOf: items[1].images()[0]), Data([9]))
         XCTAssertFalse(try FileManager.default.contentsOfDirectory(atPath: dir.path).contains { $0.hasPrefix(".tmp") })
         let rec = try WHJSON.decoder().decode(Record.self, from: Data(contentsOf: items[1].recordURL))
@@ -113,7 +114,7 @@ final class UploaderTests: XCTestCase {
     func testRetriesWithBackoffThenSucceeds() async throws {
         let q = try RecordQueue(directory: dir)
         try q.enqueue(board(1), images: [:])
-        StubProtocol.responses = [500, 0, 503, 200]  // 0 = network error
+        StubProtocol.responses = [500, 0, 404, 200]  // 0 = network error; 404 = endpoint not deployed yet
         let up = Uploader(baseURL: URL(string: "https://example.test")!, token: "t", queue: q, session: session,
                           jitter: { 1.0 })
         var waits: [TimeInterval] = []

@@ -44,7 +44,7 @@ public final class RecordQueue {
         // strictly increasing keys keep queue order even within one millisecond / across restarts
         let newest = existing.compactMap { Int($0.directory.lastPathComponent.prefix(13)) }.max() ?? 0
         let ms = max(Int(clock().timeIntervalSince1970 * 1000), newest + 1)
-        let name = String(format: "%013d_%@_%@", ms, kind, id)
+        let name = String(format: "%013lld_%@_%@", Int64(ms), kind, id)  // 64-bit: ms overflow %d
         let tmp = directory.appendingPathComponent(".tmp-\(UUID().uuidString)")
         try fm.createDirectory(at: tmp, withIntermediateDirectories: true)
         try WHJSON.encoder().encode(record).write(to: tmp.appendingPathComponent("record.json"))

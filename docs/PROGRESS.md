@@ -42,6 +42,7 @@ Current sprint: **S2** → `docs/sprints/S2-capture-app.md`
 - S2.T3 ✓ 2026-10-26 — Sampler.swift (BGRA + 420f, matrix-aware, scaled rects, ROI stride 2, optional profile), DigitReader (exact on 5 crops), parity ±2 vs Python.
 - S2.T4 ✓ 2026-10-26 — CropStore (live + ring crops, JPEG), RecordQueue (atomic, ordered, idempotent), Uploader (multipart, bearer, backoff); 7 tests; crop refs now .jpg.
 - S2.T5 ✓ 2026-10-26 — extension wired: Sampler(420f, phone states) → Machine → CropStore → RecordQueue → Uploader; diag adds ROI sample + queue; iOS build OK.
+- S2.T6 ✓ 2026-10-26 — companion app: health, last-session line (S3 endpoint), signing countdown (Provisioning parser, 4 tests), Tailscale/Focus reminders. Uploader: 404/405 retry; queue key 64-bit fix.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->

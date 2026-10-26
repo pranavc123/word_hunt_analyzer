@@ -5,7 +5,8 @@ import Foundation
 /// `files` part per image (filename = the reference used in the record). The server is idempotent
 /// on board_id / record_id, so a retry after a lost response is harmless.
 ///
-/// Outcomes: 2xx or 409 → done (removed); 401/403 → stop until the config is fixed; other 4xx →
+/// Outcomes: 2xx or 409 → done (removed); 401/403 → stop until the config is fixed; 404/405 →
+/// retry (server not updated yet); other 4xx →
 /// the record is malformed for this server, moved to `failed/`; 5xx or network error →
 /// exponential backoff (1 s doubling to 5 min, ±20% jitter) and retry.
 public final class Uploader {
@@ -76,6 +77,9 @@ public final class Uploader {
                 return .uploaded(item.id)
             case 401, 403:
                 return .unauthorized
+            case 404, 405:  // endpoint missing: the server is older than the app — keep and retry
+                failures += 1
+                return .retry(after: backoff())
             case 400..<500:
                 queue.markFailed(item)
                 return .rejected(item.id, code)
