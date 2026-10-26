@@ -49,7 +49,7 @@
 | board segmentation | | |
 | accepted attempts == WORDS | 12/12 | |
 | letters (LOBO) | 99.55% (446/448; 27 boards + IMG_0717) | |
-| reconciliation (§3.3) | | |
+| reconciliation (§3.3) | 11/12 verified (session1 #15 needs_review: TEENS visible, no consistent pick) | |
 
 ## All-words list (allwords1)
 - captures matched to the right board:
@@ -60,6 +60,12 @@
 - Letter templates: 23 letters seen (no J, Q, Z yet). LOBO misses: R→P, O→C (allwords1 #2).
 - Digit templates bootstrapped from tesseract (count-consistent reads); template reads of SCORE/WORDS agree
   live vs end on all 12 played boards. Tesseract misread session1 #2 SCORE 38300 as 33300.
+
+## Words (S0.T11)
+- 775 accepted attempts on 12 boards; 742 traced exactly, 33 repaired (mostly a missed last tile).
+- Accepted by GamePigeon but not in YAWL, confirmed on end screens: DORES, DOSAS, TASES. Traced cleanly
+  but unconfirmed: BAWK, DOSA, TASE, TEC (check against VIEW ALL WORDS in T12).
+- End-list OCR flickers on some video frames: read 5 frames, keep length/points-consistent reads, vote.
 
 ## Device probe (30 min)
 - mem peak MB / fps p50 / p5 / frames dropped:

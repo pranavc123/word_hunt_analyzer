@@ -73,7 +73,9 @@ def frames(
     if dur_s is not None:
         cmd += ["-t", str(dur_s)]
     cmd += ["-i", str(path), "-an", "-vf", f"fps={fps}", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]
-    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, bufsize=w * h * 3 * 2)
+    proc = subprocess.Popen(
+        cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, bufsize=w * h * 3 * 2
+    )
     n = w * h * 3
     try:
         while True:

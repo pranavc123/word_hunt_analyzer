@@ -41,7 +41,7 @@ IMG = LABELS / "review_img"
 SETTLE_FRAMES = 24  # 0.8 s at 30 fps: the board slides in from the right for ~0.6 s
 FIELDS = [
     "recording", "seq", "status", "t_start_ms", "t_end_ms", "view_ms",
-    "board_frame_ms", "end_t_ms", "all_words_t_ms",
+    "board_frame_ms", "end_t_ms", "end_last_ms", "all_words_t_ms",
 ]  # fmt: skip
 
 
@@ -91,6 +91,11 @@ def segment(name: str) -> list[dict]:
                 "view_ms": b.view_ms,
                 "board_frame_ms": t[best],
                 "end_t_ms": b.end_t_ms if b.end_t_ms is not None else "",
+                # the list animates in and the last frames already transition out: read it 3 frames
+                # before the end run ends
+                "end_last_ms": t[max(b.end_first, b.end_last - 3)]
+                if b.end_last is not None
+                else "",
                 "all_words_t_ms": t[cap] if cap is not None else "",
             }
         )

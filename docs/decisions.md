@@ -28,3 +28,5 @@
 - 2026-10-26 Acceptance = the live WORDS count rising right after a release (digit templates on the banner); release colour is kept as `colour_state`. Same signal is available on the phone.
 - 2026-10-26 Board image/letters are taken ≥ 0.8 s after a board opens (slide-in animation); the phone must wait the same before saving the board crop.
 - 2026-10-26 Letter/digit templates are committed in fixtures/templates/ (52 KB) so tests and the phone port can use them; masters in $WH_DATA/templates/.
+- 2026-10-26 Word resolution: align traced tiles to solver paths (missing + extra tiles); a clean contiguous trace of a non-dictionary word is an OOV candidate (cost 1). Board-level search enforces distinct words, Σ points == end SCORE, visible words present.
+- 2026-10-26 Visible-word snapping is constrained by the points column (points → length); unread points are "unknown", not a failure.

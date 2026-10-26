@@ -76,7 +76,7 @@ early (they only need the schema).
   - done: leave-one-board-out tile accuracy ≥ 99%; SCORE and WORDS read correctly on all played boards
   - deps: T4, T8
 
-- [ ] **S0.T11** Words + reconciliation
+- [x] **S0.T11** Words + reconciliation
   - files: `server/whcore/words.py`, `server/whcore/reconcile.py`, `server/tests/test_reconcile.py`
   - do: path → word; gap-fill non-adjacent steps with solver paths; reconcile per §3.3 (score, word count, visible top words via tesseract with an A–Z allow-list, snapped to the nearest solver word; points column checked against the formula). Unit test on IMG_0718: the 15 visible words and their points are read correctly.
   - done: `uv run pytest -q server/tests/test_reconcile.py` and ≥ 4 of 5 labelled played boards reconcile

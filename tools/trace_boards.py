@@ -94,6 +94,14 @@ def trace_board(b: dict, codes, t_ms, fps: float, step: int) -> dict:
             t_end_ms=int(sub_t[a.last]),
         )
         out.append(d)
+    # settled SCORE after each accepted word: read just before the next acceptance's release
+    # (the counter rolls up for ~1 s), and at the end of the board for the last one
+    acc = [d for d in out if d["release_state"] == "valid_new"]
+    for j, d in enumerate(acc):
+        upto = acc[j + 1]["last"] if j + 1 < len(acc) else hi
+        vals = [series[i - first][1] for i in range(max(d["last"], upto - 2), upto + 1)]
+        vals = [v for v in vals if v is not None]
+        d["banner_score_after"] = max(vals) if vals else None
     end = frame_at(b["recording"], int(b["end_t_ms"]))
     end_words, end_score, end_conf = lt.read_banner(end, CAL, DIGITS, end=True)
     final = [x for x in series[-15:] if x[0] is not None]
