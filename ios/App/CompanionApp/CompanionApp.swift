@@ -16,6 +16,7 @@ enum AppConfig {
 struct ContentView: View {
     @State private var health = "checking…"
     @State private var healthy = false
+    private let picker = PickerHandle()
 
     var body: some View {
         VStack(spacing: 24) {
@@ -26,9 +27,21 @@ struct ContentView: View {
                     .foregroundStyle(healthy ? .green : .red)
                 Button("Re-check") { Task { await checkHealth() } }.font(.footnote)
             }
-            BroadcastPicker(extensionID: AppConfig.extensionBundleID)
-                .frame(width: 80, height: 80)
-            Text("Tap to start capture, then turn on the Word Hunt Focus.")
+            // The system picker's own icon is dark-on-dark here, so a labelled button opens it.
+            Button {
+                picker.open()
+            } label: {
+                Label("Start / stop capture", systemImage: "record.circle")
+                    .font(.headline)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 14)
+                    .background(Color.red.opacity(0.85), in: Capsule())
+                    .foregroundStyle(.white)
+            }
+            BroadcastPicker(extensionID: AppConfig.extensionBundleID, handle: picker)
+                .frame(width: 1, height: 1)
+                .opacity(0.01)
+            Text("Then choose Start Broadcast and turn on the Word Hunt Focus.")
                 .font(.footnote).foregroundStyle(.secondary).multilineTextAlignment(.center)
         }
         .padding()
@@ -52,13 +65,24 @@ struct ContentView: View {
     }
 }
 
+/// Lets a SwiftUI button trigger the hidden system broadcast picker.
+final class PickerHandle {
+    weak var view: RPSystemBroadcastPickerView?
+
+    func open() {
+        view?.subviews.compactMap { $0 as? UIButton }.first?.sendActions(for: .touchUpInside)
+    }
+}
+
 struct BroadcastPicker: UIViewRepresentable {
     let extensionID: String
+    let handle: PickerHandle
 
     func makeUIView(context: Context) -> RPSystemBroadcastPickerView {
-        let picker = RPSystemBroadcastPickerView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+        let picker = RPSystemBroadcastPickerView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         picker.preferredExtension = extensionID
         picker.showsMicrophoneButton = false
+        handle.view = picker
         return picker
     }
 
