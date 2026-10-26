@@ -45,6 +45,7 @@ Current sprint: **S3** → `docs/sprints/S3-ingest-live.md`
 - S2.T6 ✓ 2026-10-26 — companion app: health, last-session line (S3 endpoint), signing countdown (Provisioning parser, 4 tests), Tailscale/Focus reminders. Uploader: 404/405 retry; queue key 64-bit fix.
 - S2.T7 ✓ 2026-10-26 — gate s2 PASS: 25 Swift tests (machine + sampler parity), iOS build OK. Phone thresholds provisional until the S3 live session.
 - S3.T1 ✓ 2026-10-26 — SQLModel tables (PLAN §5 + worker fields), Alembic baseline, SQLite WAL at $WH_DATA/wh.db.
+- S3.T2 ✓ 2026-10-26 — POST /v1/boards + /v1/allwords (multipart, bearer, idempotent → 200 duplicate), images under $WH_DATA/images/<session>/, GET /v1/sessions/latest.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->

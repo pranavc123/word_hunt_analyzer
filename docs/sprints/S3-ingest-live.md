@@ -10,7 +10,7 @@ record, every board arrived — seq contiguous — and ≥ 95% of played boards 
   - done: `uv run alembic -c server/alembic.ini upgrade head && uv run pytest -q server/tests/test_db.py`
   - deps: S1
 
-- [ ] **S3.T2** Ingest API `[parallel]`
+- [x] **S3.T2** Ingest API `[parallel]`
   - files: `server/app/main.py`, `server/app/api_ingest.py`, `server/tests/test_ingest.py`
   - do: `POST /v1/boards` and `POST /v1/allwords` (multipart: JSON + images; bearer token; idempotent on board_id / record_id; images to `$WH_DATA/images/<session>/`), `GET /v1/health`, `GET /v1/sessions/latest`. Keep `/diag` from S0.
   - done: `uv run pytest -q server/tests/test_ingest.py` (posts a fixture record twice → stored once)

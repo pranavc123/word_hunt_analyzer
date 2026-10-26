@@ -39,3 +39,6 @@ known-first-party = ["whcore", "app"]
 
 [tool.ruff.lint.per-file-ignores]
 "tools/make_review.py" = ["E501"]  # embedded HTML/CSS/JS template
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.File", "fastapi.Depends", "fastapi.Header", "fastapi.Form", "fastapi.Query"]

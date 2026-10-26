@@ -1,29 +1,28 @@
-"""FastAPI app. S0: health + device diagnostics sink."""
+"""FastAPI app: health, device diagnostics (S0), ingest + sessions (S3)."""
 
 from __future__ import annotations
 
 import json
-import os
+from contextlib import asynccontextmanager
 from datetime import UTC, datetime
-from pathlib import Path
 
-from fastapi import Depends, FastAPI, Header, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Request
 from pydantic import BaseModel
 
-ROOT = Path(__file__).resolve().parents[2]
+from . import api_ingest, db
+from .api_ingest import require_token
+
 VERSION = "0.1.0"
 
-app = FastAPI(title="Word Hunt Analyzer", version=VERSION)
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    db.create_all()  # creates missing tables; schema changes go through Alembic
+    yield
 
 
-def data_dir() -> Path:
-    return Path(os.environ.get("WH_DATA", ROOT / "wordhunt-data"))
-
-
-def require_token(authorization: str | None = Header(default=None)) -> None:
-    token = os.environ.get("WH_TOKEN")
-    if token and authorization != f"Bearer {token}":
-        raise HTTPException(status_code=401, detail="bad token")
+app = FastAPI(title="Word Hunt Analyzer", version=VERSION, lifespan=lifespan)
+app.include_router(api_ingest.router)
 
 
 class Health(BaseModel):
@@ -45,7 +44,7 @@ async def diag(request: Request) -> dict:
     if not isinstance(payload, dict):
         raise HTTPException(status_code=400, detail="body must be a JSON object")
     payload["received_at"] = datetime.now(UTC).isoformat()
-    out = data_dir() / "diag.jsonl"
+    out = db.data_dir() / "diag.jsonl"
     out.parent.mkdir(parents=True, exist_ok=True)
     with out.open("a") as f:
         f.write(json.dumps(payload, separators=(",", ":")) + "\n")
