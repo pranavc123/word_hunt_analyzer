@@ -23,7 +23,8 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "server"))
 
 from whcore.calibration import load_calibration  # noqa: E402
-from whcore.oracle.sampler import columns, sample_frame, scale_calibration  # noqa: E402
+from whcore.letters import load_templates  # noqa: E402
+from whcore.oracle.sampler import Sampler, columns, scale_calibration  # noqa: E402
 
 WH_DATA = Path(os.environ.get("WH_DATA", ROOT / "wordhunt-data"))
 CAL_PATH = ROOT / "fixtures/calibration/iphone-1206x2622.json"
@@ -109,8 +110,9 @@ def main() -> int:
     with gzip.open(out_dir / "samples.csv.gz", "wt", newline="") as f:
         wr = csv.writer(f)
         wr.writerow(columns())
+        sampler = Sampler(cal, load_templates(ROOT / "fixtures/templates/digits.npz"))
         for n, img in enumerate(frames(path, meta["width"], meta["height"], args.fps)):
-            vals = sample_frame(img, cal)
+            vals = sampler.sample(img)
             wr.writerow([n, round(n * 1000 / args.fps)] + [round(v, 1) for v in vals])
     meta.update(sampled_fps=args.fps, sampled_frames=n + 1, calibration=cal["version"])
     (out_dir / "meta.json").write_text(json.dumps(meta, indent=1))

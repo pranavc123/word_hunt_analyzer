@@ -12,7 +12,7 @@ Python and Swift run the identical state machine on identical inputs.
 gate: `uv run python tools/report.py --gate s1` → PASS (oracle events match the labels on session1;
 CI green; fixtures < 2 MB).
 
-- [ ] **S1.T1** Sampler contract
+- [x] **S1.T1** Sampler contract
   - files: `server/whcore/oracle/sampler.py`, `fixtures/samples/README.md`
   - do: freeze the per-frame sample record. S0 already writes `t_ms, tiles[16][3]` (top-strip patches), mean RGB + std for `banner, banner_words, banner_score, timer, end_banner, end_list`, and a 64-bin profile. Add what the machine needs and the phone can compute: `words` (live WORDS count from digit templates, blank if unreadable) and `list_shift` (all-words scroll shift from the full-resolution list-band profile with a velocity prior, blank off-screen). Document it in the README, which is the Swift contract (colour values are in the source's domain: recording vs phone).
   - done: `uv run pytest -q server/tests -k sampler`

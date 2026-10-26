@@ -1,6 +1,11 @@
-"""Per-frame numeric sampling (PLAN §2.1): pixels → numbers. Mirrors the phone sampler."""
+"""Per-frame numeric sampling (PLAN §2.1): pixels → numbers. Mirrors the phone sampler.
+
+The record layout is the Swift contract; see fixtures/samples/README.md.
+"""
 
 from __future__ import annotations
+
+import math
 
 import numpy as np
 
@@ -22,6 +27,7 @@ def columns() -> list[str]:
         name = k.removeprefix("roi_")
         cols += [f"{name}_{c}" for c in "rgb"] + [f"{name}_std"]
     cols += [f"p{i}" for i in range(PROFILE_BINS)]
+    cols += ["words", "list_shift"]
     return cols
 
 
@@ -41,6 +47,42 @@ def sample_frame(img: np.ndarray, cal: dict) -> list[float]:
     gray_rows = img[:, ::4].mean(axis=(1, 2))  # row means of every 4th column
     out += [float(b.mean()) for b in np.array_split(gray_rows, PROFILE_BINS)]
     return out
+
+
+class Sampler:
+    """Stateful per-frame sampler: the stateless means of `sample_frame`, plus the live WORDS count
+    (board frames only) and the all-words scroll shift (all-words frames only, with a velocity
+    prior). Unavailable values are NaN."""
+
+    def __init__(self, cal: dict, digits: dict, classify=None):
+        from .screens import classify_row
+
+        self.cal, self.digits = cal, digits
+        self.classify = classify or classify_row
+        self.prev_profile: np.ndarray | None = None
+        self.velocity = 0
+
+    def sample(self, img: np.ndarray) -> list[float]:
+        from ..allwords import estimate_shift, profile
+        from ..letters import gray_roi, read_number
+
+        base = sample_frame(img, self.cal)
+        row = dict(zip(columns()[2:-2], base, strict=True))
+        screen = self.classify(row)
+        words = math.nan
+        if screen == "board":
+            value, _ = read_number(gray_roi(img, self.cal["roi_banner_words"]), self.digits)
+            words = float(value) if value is not None else math.nan
+        shift = math.nan
+        if screen == "all_words":
+            prof = profile(img)
+            if self.prev_profile is not None:
+                s, _ = estimate_shift(self.prev_profile, prof, self.velocity)
+                self.velocity, shift = s, float(s)
+            self.prev_profile = prof
+        else:
+            self.prev_profile, self.velocity = None, 0
+        return base + [words, shift]
 
 
 def scale_calibration(cal: dict, width: int, height: int) -> dict:

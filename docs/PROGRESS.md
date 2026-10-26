@@ -32,6 +32,7 @@ Current sprint: **S1** → `docs/sprints/S1-core-oracle.md`
 - S0.T13 ✓ 2026-10-26 — 15 fps: segmentation + all-words identical; traces 7/12, reconciliation 1/12 → need 30 fps in play.
 - S0.T15 ✓ 2026-10-26 — 31-min device run: 8.3 MB peak, ~60 fps, 10 drops; buffers 884×1920 420f.
 - S0.T16 ✓ 2026-10-26 — tools/report.py --gate s0 → PASS (GO recorded in measurements.md).
+- S1.T1 ✓ 2026-10-26 — sample contract (fixtures/samples/README.md) + `words` and `list_shift`; Sampler class; samples re-extracted.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
