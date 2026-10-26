@@ -166,3 +166,28 @@ def _search(res: list[Resolved], end_score: int, visible: set[str]) -> None:
     if best:
         for i, k in zip(free, best[1], strict=True):
             res[i].pick = k
+
+
+def build_words(attempts, letters: str, solution: dict, end_score: int | None = None,
+                visible: set[str] | None = None) -> list[dict]:  # fmt: skip
+    """S1 signature: accepted attempts (schema Attempt or dicts with tiles_seen/release_state) →
+    one resolved word per accepted attempt, in order."""
+
+    def get(a, k):
+        return a[k] if isinstance(a, dict) else getattr(a, k)
+
+    acc = [a for a in attempts if get(a, "release_state") == "valid_new"]
+    res = resolve_board([list(get(a, "tiles_seen")) for a in acc], solution, letters.lower(),
+                        end_score, visible)  # fmt: skip
+    return [
+        {
+            "word": r.chosen.word if r.chosen else None,
+            "path": r.chosen.path if r.chosen else None,
+            "observed": r.observed,
+            "cost": r.chosen.cost if r.chosen else None,
+            "oov": r.chosen.oov if r.chosen else None,
+            "ambiguous": r.ambiguous,
+            "t_start_ms": get(a, "t_start_ms"),
+        }
+        for r, a in zip(res, acc, strict=True)
+    ]

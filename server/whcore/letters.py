@@ -111,3 +111,19 @@ def save_templates(templates: dict[str, np.ndarray], path: str | Path) -> None:
 def load_templates(path: str | Path) -> dict[str, np.ndarray]:
     with np.load(path) as z:
         return {k: z[k] for k in z.files}
+
+
+_DEFAULT: dict[str, dict] = {}
+
+
+def default_templates(kind: str) -> dict[str, np.ndarray]:
+    """Committed templates (fixtures/templates/<kind>.npz), loaded once."""
+    if kind not in _DEFAULT:
+        root = Path(__file__).resolve().parents[2]
+        _DEFAULT[kind] = load_templates(root / "fixtures" / "templates" / f"{kind}.npz")
+    return _DEFAULT[kind]
+
+
+def read_letters(img: np.ndarray, cal: dict, templates: dict | None = None):
+    """S1 signature: (letters, conf[16]) where conf is the best-vs-runner-up NCC margin."""
+    return read_board(img, cal, templates or default_templates("letters"))

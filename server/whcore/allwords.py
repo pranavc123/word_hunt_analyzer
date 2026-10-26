@@ -26,6 +26,7 @@ PITCH = 61.1
 MIN_OVERLAP = 300  # px of profile two frames must share to estimate a shift
 GAP_COST = 25  # mean |diff| above this = frames do not overlap (motion blur stays ~15–20)
 POINTS_TO_LEN = {word_points(n): n for n in range(3, 17)}
+LIST_BAND_RECT = [300, LIST_Y0, 680, LIST_Y1 - LIST_Y0]  # x, y, w, h of the crop the phone saves
 
 
 def _runs(mask: np.ndarray) -> list[tuple[int, int]]:
@@ -65,16 +66,6 @@ class Row:
     word_crop: np.ndarray | None = field(default=None, repr=False)
 
 
-def _bar_masks(img: np.ndarray):
-    """Bright bar pixels split by hue: yellow (masked, ~(249,246,131)) vs tan (found,
-    ~(228,183,118))."""
-    r, g, b = (img[..., i].astype(int) for i in range(3))
-    bar = (r > 170) & (r - b > 60)
-    yellow = bar & (g > r - 20)
-    tan = bar & (r - g > 30)
-    return yellow, tan
-
-
 def read_points(gray: np.ndarray, digits: dict) -> tuple[int | None, float]:
     """White digits on the dark panel → int via the (dark-ink) digit templates."""
     inv = 255 - gray
@@ -91,28 +82,11 @@ def read_points(gray: np.ndarray, digits: dict) -> tuple[int | None, float]:
     return int("".join(out)), worst
 
 
-def parse_rows(img: np.ndarray, digits: dict) -> list[Row]:
-    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    band = gray[LIST_Y0:LIST_Y1]
-    white = band[:, PTS_X0:PTS_X1] > 200
-    yellow, brown = _bar_masks(img[LIST_Y0:LIST_Y1, BAR_X0:BAR_X1])
-    rows = []
-    for a, b in _runs(white.any(1)):
-        if b - a < 18 or a == 0 or b >= len(band) - 1:  # partial rows at the band edges
-            continue
-        yc = (a + b) // 2
-        ys = slice(max(0, yc - 14), yc + 14)
-        ny, nb = yellow[ys].sum(), brown[ys].sum()
-        kind = "masked" if ny > nb and ny > 400 else "found" if nb > 400 else "unknown"
-        cols = np.where(yellow[yc] if kind == "masked" else brown[yc])[0]
-        bar_w = int(cols[-1] - cols[0]) if len(cols) else 0
-        pts, conf = read_points(band[a - 4 : b + 4, PTS_X0:PTS_X1], digits)
-        crop = None
-        if kind == "found" and len(cols) > 20:  # tight crop inside the tan bar
-            x0, x1 = BAR_X0 + int(cols[0]) + 8, BAR_X0 + int(cols[-1]) - 6
-            crop = img[LIST_Y0 + yc - 20 : LIST_Y0 + yc + 20, x0:x1]
-        rows.append(Row(LIST_Y0 + yc, kind, bar_w, pts, conf, crop))
-    return rows
+def band_gray(img: np.ndarray) -> np.ndarray:
+    """The list-band crop the phone saves (LIST_BAND_RECT), grayscale."""
+    x, y, w, h = LIST_BAND_RECT
+    crop = img[y : y + h, x : x + w]
+    return crop if crop.ndim == 2 else cv2.cvtColor(np.ascontiguousarray(crop), cv2.COLOR_RGB2GRAY)
 
 
 # ---- stitching ---------------------------------------------------------------
@@ -169,9 +143,9 @@ def stitch(frames, digits: dict, max_shift: int = 1500) -> Capture:
         still = prev is None or (shifts and shifts[-1] == 0)
         prev = prof
         offsets.append(offset)
-        rows = parse_rows(img, digits)
+        rows = parse_band_rows(band_gray(img), digits)
         # end of list: rows on screen but the last one sits well above the band bottom
-        if len(rows) >= 3 and rows[-1].y < LIST_Y1 - 2 * PITCH:
+        if len(rows) >= 3 and rows[-1].y < (LIST_Y1 - LIST_Y0) - 2 * PITCH:
             reached_end = True
         for row in rows:
             abs_y = row.y + offset
@@ -310,3 +284,75 @@ def slot_evidence(rows: list[tuple[int | None, str, str | None]], accepted: set[
                 w for w in solver_words if len(w) == n1 and w1 < w < w2 and w not in accepted
             )
     return {"confirmed": sorted(confirmed), "rejected": sorted(rejected), "unknown_extra": extra}
+
+
+# ---- server side: phone crops (grayscale list band) + offsets → rows ---------------
+
+_BX0, _BX1 = BAR_X0 - 300, BAR_X1 - 300  # bar / points columns inside the band crop
+_PX0, _PX1 = PTS_X0 - 300, PTS_X1 - 300
+MASKED_GRAY, FOUND_GRAY = 215, 160  # yellow bar ≈ 234, tan bar ≈ 189 (luma)
+
+
+def parse_band_rows(gray: np.ndarray, digits: dict) -> list[Row]:
+    """Rows of one grayscale list-band crop (LIST_BAND_RECT); y is relative to the crop."""
+    white = gray[:, _PX0:_PX1] > 200
+    bar = gray[:, _BX0:_BX1]
+    rows = []
+    for a, b in _runs(white.any(1)):
+        if b - a < 18 or a == 0 or b >= len(gray) - 1:
+            continue
+        yc = (a + b) // 2
+        strip = bar[max(0, yc - 14) : yc + 14]
+        bright = strip[strip > 150]
+        level = float(np.median(bright)) if bright.size > 400 else 0.0
+        kind = "masked" if level >= MASKED_GRAY else "found" if level >= FOUND_GRAY else "unknown"
+        cols = np.where(bar[yc] > 150)[0]
+        bar_w = int(cols[-1] - cols[0]) if len(cols) else 0
+        pts, conf = read_points(gray[a - 4 : b + 4, _PX0:_PX1], digits)
+        crop = None
+        if kind == "found" and len(cols) > 20:
+            crop = gray[yc - 20 : yc + 20, _BX0 + int(cols[0]) + 8 : _BX0 + int(cols[-1]) - 6]
+        rows.append(Row(yc, kind, bar_w, pts, conf, crop))
+    return rows
+
+
+def ocr_word(crop: np.ndarray) -> str:
+    import re
+
+    import pytesseract
+
+    g = crop if crop.ndim == 2 else cv2.cvtColor(crop, cv2.COLOR_RGB2GRAY)
+    g = cv2.resize(g, None, fx=2, fy=2, interpolation=cv2.INTER_CUBIC)
+    _, b = cv2.threshold(g, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    if b.mean() < 128:
+        b = 255 - b
+    cfg = "--psm 7 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    return re.sub("[^A-Z]", "", pytesseract.image_to_string(b, config=cfg)).lower()
+
+
+def process_allwords(crops: list[np.ndarray], offsets: list[int], gap_flags: list[bool],
+                     digits: dict, read_words: bool = True) -> Capture:  # fmt: skip
+    """S1 signature: an AllWordsRecord's crops (grayscale list band) + per-crop offsets → slots."""
+    slots: dict[int, Slot] = defaultdict(Slot)
+    y_ref = None
+    for gray, off in zip(crops, offsets, strict=True):
+        for row in parse_band_rows(gray, digits):
+            abs_y = row.y + off
+            y_ref = abs_y if y_ref is None else y_ref
+            sl = slots[int(round((abs_y - y_ref) / PITCH))]
+            sl.kinds[row.kind] += 1
+            if row.points is not None and row.points_conf > 0.5:
+                sl.points[row.points] += 1
+            if row.bar_w:
+                sl.widths.append(row.bar_w)
+            if row.word_crop is not None and len(sl.crops) < 3:
+                sl.crops.append(row.word_crop)
+    if read_words:
+        for sl in slots.values():
+            if sl.kind == "found" and sl.crops:
+                sl.word = ocr_word(sl.crops[len(sl.crops) // 2])
+    last = crops[-1] if crops else None
+    end_seen = bool(last is not None and (r := parse_band_rows(last, digits)) and len(r) >= 3
+                    and r[-1].y < last.shape[0] - 2 * PITCH)  # fmt: skip
+    return Capture(dict(slots), list(offsets), [0.0] * len(offsets), list(gap_flags), end_seen,
+                   list(offsets))  # fmt: skip

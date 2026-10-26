@@ -18,19 +18,19 @@ CI green; fixtures < 2 MB).
   - done: `uv run pytest -q server/tests -k sampler`
   - deps: S0
 
-- [ ] **S1.T2** State machine (pure function)
+- [x] **S1.T2** State machine (pure function)
   - files: `server/whcore/oracle/machine.py`, `server/tests/test_machine.py`
   - do: `run(samples, calibration) -> list[BoardRecord | AllWordsRecord]` implementing PLAN §2 steps 2–6 as updated after S0 (screen thresholds from `screens.py`; board crop request ≥ 0.8 s after open; attempts from tile colours; accepted = WORDS rose after release; end-list crop requested ~3 frames before the end screen leaves; all-words shifts/gap flags), with no I/O. Image crops are emitted as requests (frame index + rect), not pixels.
   - done: on `fixtures/samples/session1_*.csv`, output == `fixtures/expected/session1_events.json`; on all 27 S0 boards, board status matches `boards.csv` and accepted counts match the end WORDS
   - deps: T1
 
-- [ ] **S1.T3** Fixtures `[parallel]`
+- [x] **S1.T3** Fixtures `[parallel]`
   - files: `tools/make_fixtures.py`, `fixtures/samples/*.csv.gz`, `fixtures/expected/*.json`, `fixtures/crops/*.png`
   - do: export samples for 6 boards (4 played, 2 skipped; session1 + allwords1) and 2 all-words captures (from allwords1) plus their expected events (from the S0 labels: traces.json, reconciled.json, allwords.json). Include tile and score crops for 3 boards, and export `fixtures/templates/{letters,digits}.npz` also as JSON for Swift. Keep the total under 2 MB (S0 fixtures are ~0.85 MB).
   - done: `du -sh fixtures` < 2M; `uv run pytest -q server/tests`
   - deps: T1
 
-- [ ] **S1.T4** Server-side modules final shape `[parallel]`
+- [x] **S1.T4** Server-side modules final shape `[parallel]`
   - files: `server/whcore/{letters,words,reconcile,allwords,solver}.py` + tests
   - do: give them clean signatures, starting from the S0 functions — `letters.read_board(img, cal, templates) -> (letters, margins[16])`, `words.resolve_board(observed, solution, letters, end_score, visible)`, `reconcile.reconcile(words, end_words, end_score, visible)`, `allwords.stitch/summarise(frames) -> rows + counts`, `allwords.match_revealed(revealed, boards)`, `allwords.slot_evidence(rows, accepted, solver)`. Move the orchestration now in `tools/*_boards.py` into whcore so the worker can call it. Tests use only fixtures.
   - done: `uv run pytest -q server/tests` and coverage of these modules ≥ 80% (`--cov`)

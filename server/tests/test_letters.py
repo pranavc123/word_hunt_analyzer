@@ -19,7 +19,7 @@ def test_templates_cover_digits_and_common_letters():
 
 
 def test_reads_img0717_crop_with_video_templates():
-    crop = load_rgb(FIX / "crops/img0717_tiles.png")  # 0.5x PNG crop; templates are from video
+    crop = load_rgb(FIX / "crops/img0717_tiles.jpg")  # 0.5x PNG crop; templates are from video
     letters, margins = lt.read_board(crop, detect_grid(crop), LETTERS)
     expected = json.loads((FIX / "boards/img0717.json").read_text())["letters"]
     assert letters == expected

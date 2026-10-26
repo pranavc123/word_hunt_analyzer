@@ -35,3 +35,7 @@
 - 2026-10-26 S0.T13: traces need 30 processed fps during play (15 fps loses short swipes and tiles); menus/all-words can drop to 15 fps to save power.
 - 2026-10-26 S0 gate PASS → GO. ReplayKit delivers 884×1920 420f on iPhone 17 Pro, so the extension scales calibration coordinates by buffer size (already in the probe).
 - 2026-10-26 Companion app opens the system broadcast picker from its own labelled button (the picker's icon is invisible on a dark background).
+- 2026-10-26 Schema v1 semantics (no structural change): AllWordsRecord.shifts_px[k] = scroll offset of frames[k] from frames[0]; gap_flags[k] = a gap occurred between crops k-1 and k. Crops are taken every ~0.5 viewport, preferring still frames.
+- 2026-10-26 S1: the state machine is streaming (feed one row, no look-ahead) with 3-frame screen confirmation and a replay of held-back frames; ids are uuid5(session, seq) so outputs are deterministic for fixtures/parity.
+- 2026-10-26 S1: all-words parsing is grayscale only (yellow bar ≈ 234, tan ≈ 189 luma), same code for S0 tools and the server; the colour-frame parser was removed.
+- 2026-10-26 S1: fixtures omit the 64 profile columns and use JPEG crops (q75–90) to stay under 2 MB; only digits templates are exported as JSON (the phone does not read letters).

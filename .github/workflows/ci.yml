@@ -1,0 +1,50 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tesseract
+        run: sudo apt-get update && sudo apt-get install -y tesseract-ocr
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+      - name: Sync
+        run: uv sync --frozen
+      - name: Lint
+        run: uv run ruff check server tools
+      - name: Schema export is current
+        run: uv run python tools/export_schema.py --check
+      - name: Tests (fixtures only; $WH_DATA tests skip)
+        run: uv run pytest -q server/tests
+      - name: Fixtures stay small
+        run: test "$(du -sk fixtures | cut -f1)" -lt 2048
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+      - run: pnpm -C web install --frozen-lockfile
+      - run: pnpm -C web test --run
+      - run: pnpm -C web build
+
+  swift:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: WHCapture tests
+        run: swift test --package-path ios/WHCapture

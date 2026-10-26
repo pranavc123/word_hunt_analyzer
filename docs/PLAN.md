@@ -106,6 +106,10 @@ AllWordsRecord {
   schema: "v1", kind: "all_words", record_id: uuid, session_id: uuid, captured_at: datetime,
   frames: str[], shifts_px: int[], gap_flags: bool[], bounced_at_end: bool
 }
+(S1) AllWordsRecord semantics: `frames[k]` is a grayscale crop of the list band (x 300–980,
+y 612–2600); `shifts_px[k]` = its scroll offset from `frames[0]` in px; `gap_flags[k]` = a gap
+happened between crops k−1 and k. Crops come every ~0.5 viewport on still frames; the first and
+last are ≥ 0.2 s inside the list screen (it animates in and out).
 ```
 Images go up in the same multipart request; refs are filenames.
 

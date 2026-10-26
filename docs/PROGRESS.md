@@ -33,6 +33,9 @@ Current sprint: **S1** → `docs/sprints/S1-core-oracle.md`
 - S0.T15 ✓ 2026-10-26 — 31-min device run: 8.3 MB peak, ~60 fps, 10 drops; buffers 884×1920 420f.
 - S0.T16 ✓ 2026-10-26 — tools/report.py --gate s0 → PASS (GO recorded in measurements.md).
 - S1.T1 ✓ 2026-10-26 — sample contract (fixtures/samples/README.md) + `words` and `list_shift`; Sampler class; samples re-extracted.
+- S1.T2 ✓ 2026-10-26 — streaming state machine (machine.py): 27/27 statuses, 1490/1491 attempts = S0 traces, 12/12 accepted == WORDS; 0.2 s per recording.
+- S1.T3 ✓ 2026-10-26 — 6 fixture segments (4 played, 2 skipped, 2 all-words) + expected + labels.json; fixtures 1.7 MB (PNG→JPEG).
+- S1.T4 ✓ 2026-10-26 — read_letters/build_words/reconcile/process_allwords on fixtures; phone-style crops reproduce S0 all-words counts 6/6; coverage ≥ 84%.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
