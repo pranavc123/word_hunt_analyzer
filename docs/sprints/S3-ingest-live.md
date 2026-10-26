@@ -22,7 +22,7 @@ record, every board arrived — seq contiguous — and ≥ 95% of played boards 
   - done: `uv run pytest -q server/tests/test_worker.py` (fixture board → verified; fixture all-words capture → matched to its board, even when uploaded before the board)
   - deps: T1, T2
 
-- [ ] **S3.T4** Run-as-service
+- [x] **S3.T4** Run-as-service
   - files: `tools/launchd/com.wordhunt.server.plist`, `tools/launchd/com.wordhunt.worker.plist`, `docs/RUNNING.md`
   - do: launchd agents with env vars and logs to `$WH_DATA/logs/`. RUNNING.md covers install, `tailscale serve --bg 8000` (App Store Tailscale: the CLI is `/Applications/Tailscale.app/Contents/MacOS/Tailscale`; Serve is already enabled on the tailnet since S0), the phone's Tailscale + "Use Tailscale DNS", and how to check health (`curl https://<mac>.<tailnet>.ts.net/v1/health`).
   - done: `plutil -lint tools/launchd/*.plist`
