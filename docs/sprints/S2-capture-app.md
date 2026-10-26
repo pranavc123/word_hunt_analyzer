@@ -19,7 +19,7 @@ gate: `swift test --package-path ios/WHCapture` passes the parity tests AND the 
   - done: `swift test --package-path ios/WHCapture --filter MachineParityTests`
   - deps: T1
 
-- [ ] **S2.T3** Sampler port `[parallel]`
+- [x] **S2.T3** Sampler port `[parallel]`
   - files: `Sources/WHCapture/Sampler.swift`, `Tests/WHCaptureTests/SamplerTests.swift`
   - do: read patches straight from a locked `CVPixelBuffer` (BGRA and 420f, honouring the buffer's YCbCr matrix attachment), no copies; scale calibration rects by buffer size. Read the live WORDS digits with the templates from `fixtures/templates/digits.json`. The test builds pixel buffers from `fixtures/crops/*.png` and matches the Python sampler within ±2 per channel and reads the banner digit crops exactly.
   - done: `swift test --package-path ios/WHCapture --filter SamplerTests`

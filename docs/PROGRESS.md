@@ -39,6 +39,7 @@ Current sprint: **S2** → `docs/sprints/S2-capture-app.md`
 - S1.T5 ✓ 2026-10-26 — .github/workflows/ci.yml (python: ruff+schema+pytest+fixture size; web: test+build; swift: WHCapture tests); actionlint clean.
 - S1.T6 ✓ 2026-10-26 — gate s1 PASS: oracle 27/27 vs labels, fixtures 1.47 MB, CI green (python, web, swift) on a700610.
 - S2.T2 ✓ 2026-10-26 — Machine.swift (+ Screens, TileStates, uuid5): output identical to Python on all 6 fixtures (records + crops).
+- S2.T3 ✓ 2026-10-26 — Sampler.swift (BGRA + 420f, matrix-aware, scaled rects, ROI stride 2, optional profile), DigitReader (exact on 5 crops), parity ±2 vs Python.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
