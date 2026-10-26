@@ -1,0 +1,665 @@
+{
+ "session1_b00_played": {
+  "recording": "session1",
+  "boards": [
+   {
+    "seq": 0,
+    "letters": "RAASTSNUETUIEDVI",
+    "status": "played",
+    "end_words": 54,
+    "end_score": 28000,
+    "verified": true,
+    "words": [
+     "ratted",
+     "rat",
+     "sat",
+     "star",
+     "rate",
+     "rates",
+     "rated",
+     "sate",
+     "sant",
+     "san",
+     "sants",
+     "ranted",
+     "rants",
+     "rant",
+     "trants",
+     "tranted",
+     "trant",
+     "tan",
+     "tasted",
+     "taste",
+     "tas",
+     "rast",
+     "nutted",
+     "nuts",
+     "nut",
+     "sui",
+     "ante",
+     "antes",
+     "ant",
+     "stet",
+     "steed",
+     "teed",
+     "deets",
+     "deet",
+     "dun",
+     "duns",
+     "dunts",
+     "dunt",
+     "vins",
+     "vin",
+     "nudes",
+     "nude",
+     "nas",
+     "arts",
+     "art",
+     "ars",
+     "ras",
+     "rats",
+     "seta",
+     "set",
+     "tars",
+     "tar",
+     "arsed",
+     "arse"
+    ],
+    "visible": [
+     [
+      "TRANTED",
+      1800
+     ],
+     [
+      "NUTTED",
+      1400
+     ],
+     [
+      "RANTED",
+      1400
+     ],
+     [
+      "RATTED",
+      1400
+     ],
+     [
+      "TASTED",
+      1400
+     ],
+     [
+      "TRANTS",
+      1400
+     ],
+     [
+      "ANTES",
+      800
+     ],
+     [
+      "ARSED",
+      800
+     ],
+     [
+      "DEETS",
+      800
+     ],
+     [
+      "DUNTS",
+      800
+     ],
+     [
+      "NUDES",
+      800
+     ],
+     [
+      "RANTS",
+      800
+     ],
+     [
+      "RATED",
+      800
+     ],
+     [
+      "RATES",
+      800
+     ],
+     [
+      "SANTS",
+      800
+     ]
+    ]
+   }
+  ],
+  "board_crop": {
+   "file": "crops/session1_b00_played_board.jpg",
+   "origin": [
+    166,
+    1174
+   ]
+  }
+ },
+ "session1_b01_skipped": {
+  "recording": "session1",
+  "boards": [
+   {
+    "seq": 1,
+    "letters": "RUNLIOAIEHAHFOER",
+    "status": "skipped"
+   }
+  ]
+ },
+ "session1_b02_played": {
+  "recording": "session1",
+  "boards": [
+   {
+    "seq": 2,
+    "letters": "ARNHIORHDESFESAW",
+    "status": "played",
+    "end_words": 64,
+    "end_score": 38300,
+    "verified": true,
+    "words": [
+     "rode",
+     "rodes",
+     "riders",
+     "rider",
+     "ride",
+     "rid",
+     "nod",
+     "doser",
+     "dose",
+     "dos",
+     "dosas",
+     "dosa",
+     "roses",
+     "rosed",
+     "rose",
+     "fas",
+     "wase",
+     "wases",
+     "was",
+     "son",
+     "sorn",
+     "sed",
+     "seeds",
+     "seed",
+     "see",
+     "reeds",
+     "reed",
+     "ree",
+     "rod",
+     "raiders",
+     "raider",
+     "raid",
+     "aids",
+     "raids",
+     "aides",
+     "aiders",
+     "aider",
+     "aid",
+     "dorse",
+     "dorses",
+     "dors",
+     "dor",
+     "dores",
+     "dore",
+     "erodes",
+     "erode",
+     "sore",
+     "sores",
+     "soree",
+     "seas",
+     "seased",
+     "eased",
+     "ease",
+     "eas",
+     "frees",
+     "freed",
+     "free",
+     "sedes",
+     "seers",
+     "seer",
+     "deers",
+     "deer",
+     "dern",
+     "dorr"
+    ],
+    "visible": [
+     [
+      "RAIDERS",
+      1800
+     ],
+     [
+      "AIDERS",
+      1400
+     ],
+     [
+      "DORSES",
+      1400
+     ],
+     [
+      "ERODES",
+      1400
+     ],
+     [
+      "RAIDER",
+      1400
+     ],
+     [
+      "RIDERS",
+      1400
+     ],
+     [
+      "SEASED",
+      1400
+     ],
+     [
+      "AIDER",
+      800
+     ],
+     [
+      "AIDES",
+      800
+     ],
+     [
+      "DEERS",
+      800
+     ],
+     [
+      "DORES",
+      800
+     ],
+     [
+      "DORSE",
+      800
+     ],
+     [
+      "DOSAS",
+      800
+     ],
+     [
+      "DOSER",
+      800
+     ],
+     [
+      "EASED",
+      800
+     ]
+    ]
+   }
+  ],
+  "board_crop": {
+   "file": "crops/session1_b02_played_board.jpg",
+   "origin": [
+    166,
+    1174
+   ]
+  }
+ },
+ "session1_b12_skipped": {
+  "recording": "session1",
+  "boards": [
+   {
+    "seq": 12,
+    "letters": "TDEENOOAWMMRHDSH",
+    "status": "skipped"
+   }
+  ]
+ },
+ "allwords1_b00_played_allwords": {
+  "recording": "allwords1",
+  "boards": [
+   {
+    "seq": 0,
+    "letters": "FDTYOVREIVALLMES",
+    "status": "played",
+    "end_words": 63,
+    "end_score": 33300,
+    "verified": true,
+    "words": [
+     "var",
+     "mare",
+     "mar",
+     "males",
+     "mae",
+     "vales",
+     "laves",
+     "lave",
+     "raves",
+     "rave",
+     "reaves",
+     "reave",
+     "leaves",
+     "leave",
+     "lives",
+     "live",
+     "marls",
+     "marl",
+     "meare",
+     "leare",
+     "lear",
+     "seare",
+     "sear",
+     "tear",
+     "teals",
+     "teal",
+     "tel",
+     "reames",
+     "reame",
+     "leam",
+     "lea",
+     "tea",
+     "tease",
+     "lease",
+     "leas",
+     "lames",
+     "lame",
+     "mels",
+     "melas",
+     "mela",
+     "mel",
+     "ram",
+     "real",
+     "reals",
+     "sale",
+     "sealer",
+     "seal",
+     "seam",
+     "sea",
+     "else",
+     "mals",
+     "mal",
+     "mase",
+     "mas",
+     "mart",
+     "mary",
+     "sar",
+     "evil",
+     "oil",
+     "limes",
+     "lime",
+     "lima",
+     "limas"
+    ],
+    "visible": [
+     [
+      "LEAVES",
+      1400
+     ],
+     [
+      "REAMES",
+      1400
+     ],
+     [
+      "REAVES",
+      1400
+     ],
+     [
+      "SEALER",
+      1400
+     ],
+     [
+      "LAMES",
+      800
+     ],
+     [
+      "LAVES",
+      800
+     ],
+     [
+      "LEARE",
+      800
+     ],
+     [
+      "LEASE",
+      800
+     ],
+     [
+      "LEAVE",
+      800
+     ],
+     [
+      "LIMAS",
+      800
+     ],
+     [
+      "LIMES",
+      800
+     ],
+     [
+      "LIVES",
+      800
+     ],
+     [
+      "MALES",
+      800
+     ],
+     [
+      "MARLS",
+      800
+     ],
+     [
+      "MEARE",
+      800
+     ]
+    ]
+   }
+  ],
+  "all_words": {
+   "counts_by_length": {
+    "8": 1,
+    "7": 7,
+    "6": 28,
+    "5": 64,
+    "4": 92,
+    "3": 54
+   },
+   "board": "allwords1#0",
+   "revealed": [
+    "leaves",
+    "reames",
+    "reaves",
+    "sealer",
+    "lames",
+    "laves",
+    "leare",
+    "lease",
+    "leave",
+    "limas",
+    "limes",
+    "lives",
+    "males",
+    "marls",
+    "meare",
+    "melas",
+    "raves",
+    "reals",
+    "reame",
+    "reave"
+   ],
+   "status": "complete",
+   "complete_down_to": 3
+  },
+  "board_crop": {
+   "file": "crops/allwords1_b00_played_allwords_board.jpg",
+   "origin": [
+    166,
+    1174
+   ]
+  }
+ },
+ "allwords1_b03_played_allwords": {
+  "recording": "allwords1",
+  "boards": [
+   {
+    "seq": 3,
+    "letters": "ERIIHWNCAKESBTCA",
+    "status": "played",
+    "end_words": 59,
+    "end_score": 23400,
+    "verified": true,
+    "words": [
+     "hawk",
+     "haw",
+     "bawk",
+     "taw",
+     "take",
+     "takes",
+     "hakes",
+     "hake",
+     "bakes",
+     "bake",
+     "wakes",
+     "wake",
+     "wink",
+     "wines",
+     "wine",
+     "rines",
+     "rine",
+     "cines",
+     "cine",
+     "rink",
+     "rin",
+     "case",
+     "tak",
+     "kat",
+     "bates",
+     "bate",
+     "bat",
+     "herns",
+     "hern",
+     "rices",
+     "rice",
+     "winces",
+     "wince",
+     "win",
+     "wice",
+     "ices",
+     "ice",
+     "rew",
+     "hew",
+     "hewn",
+     "hates",
+     "hate",
+     "hat",
+     "wate",
+     "wat",
+     "tew",
+     "teas",
+     "tea",
+     "sea",
+     "sack",
+     "sac",
+     "sec",
+     "tec",
+     "tens",
+     "ten",
+     "nice",
+     "wire",
+     "set",
+     "awes"
+    ],
+    "visible": [
+     [
+      "WINCES",
+      1400
+     ],
+     [
+      "BAKES",
+      800
+     ],
+     [
+      "BATES",
+      800
+     ],
+     [
+      "CINES",
+      800
+     ],
+     [
+      "HAKES",
+      800
+     ],
+     [
+      "HATES",
+      800
+     ],
+     [
+      "HERNS",
+      800
+     ],
+     [
+      "RICES",
+      800
+     ],
+     [
+      "RINES",
+      800
+     ],
+     [
+      "TAKES",
+      800
+     ],
+     [
+      "WAKES",
+      800
+     ],
+     [
+      "WINCE",
+      800
+     ],
+     [
+      "WINES",
+      800
+     ],
+     [
+      "AWES",
+      400
+     ],
+     [
+      "BAKE",
+      400
+     ]
+    ]
+   }
+  ],
+  "all_words": {
+   "counts_by_length": {
+    "8": 1,
+    "7": 2,
+    "6": 9,
+    "5": 30,
+    "4": 62,
+    "3": 55
+   },
+   "board": "allwords1#3",
+   "revealed": [
+    "winces",
+    "bakes",
+    "bates",
+    "cines",
+    "hakes",
+    "hates",
+    "herns",
+    "rices",
+    "rines",
+    "takes",
+    "wakes",
+    "wince",
+    "wines",
+    "awes",
+    "bake",
+    "bate",
+    "bawk",
+    "case",
+    "cine",
+    "hake"
+   ],
+   "status": "complete",
+   "complete_down_to": 3
+  },
+  "list_crops": [
+   "crops/allwords1_b03_played_allwords_allwords_0_0.jpg",
+   "crops/allwords1_b03_played_allwords_allwords_0_8.jpg"
+  ]
+ }
+}

@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 WH_DATA = Path(os.environ.get("WH_DATA", ROOT / "wordhunt-data"))
 LETTERS = json.loads((ROOT / "fixtures/boards/img0717.json").read_text())["letters"]
 CAL = cb.load_calibration(ROOT / "fixtures/calibration/iphone-1206x2622.json")
-CROP = cb.load_rgb(ROOT / "fixtures/crops/img0717_tiles.png")
+CROP = cb.load_rgb(ROOT / "fixtures/crops/img0717_tiles.jpg")
 BOARD_PNG = WH_DATA / "recordings/IMG_0717.PNG"
 END_PNG = WH_DATA / "recordings/IMG_0718.PNG"
 needs_screens = pytest.mark.skipif(not BOARD_PNG.exists(), reason="screenshots not in $WH_DATA")

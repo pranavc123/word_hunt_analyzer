@@ -19,6 +19,10 @@ buffer size when the frame is not 1206×2622 (the phone's ReplayKit buffers are 
 
 Rounding: all floats to 1 decimal.
 
+Committed fixtures (`*.csv.gz` here) omit `p0`…`p63` to stay within the 2 MB budget: the state
+machine never reads them. Each fixture has its machine output in `fixtures/expected/<name>.json`
+(records + crop requests) and S0 ground truth in `fixtures/expected/labels.json`.
+
 ## Colour domains
 Values are in the colour domain of the source and are **not** interchangeable:
 screen recordings (BT.709, resting tile ≈ (247, 209, 151)) vs the phone's ReplayKit buffers

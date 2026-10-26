@@ -1,0 +1,207 @@
+{
+ "source": {
+  "recording": "session1",
+  "first_frame": 9536,
+  "rows": 322,
+  "session_id": "0b7d9e10-2c3a-4f5b-8e6d-7a8b9c0d1e2f",
+  "started_at": "2026-10-26T00:00:00+00:00"
+ },
+ "records": [
+  {
+   "schema": "v1",
+   "kind": "board",
+   "board_id": "46ec7ec4-5112-5686-bfca-1fda2248e6e1",
+   "session_id": "0b7d9e10-2c3a-4f5b-8e6d-7a8b9c0d1e2f",
+   "seq": 0,
+   "device": "oracle",
+   "app_version": "oracle",
+   "calibration_version": "iphone-1206x2622@1",
+   "opened_at": "2026-10-26T00:05:19.367000Z",
+   "view_ms": 7700,
+   "status": "skipped",
+   "board_image": "board_0.png",
+   "attempts": [
+    {
+     "seq": 0,
+     "t_start_ms": 320500,
+     "t_end_ms": 321033,
+     "tiles_seen": [
+      1,
+      5,
+      6,
+      11,
+      14
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 1,
+     "confidence": 1.0
+    },
+    {
+     "seq": 1,
+     "t_start_ms": 321333,
+     "t_end_ms": 321533,
+     "tiles_seen": [
+      1,
+      5,
+      6,
+      11
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 2,
+     "confidence": 1.0
+    },
+    {
+     "seq": 2,
+     "t_start_ms": 321767,
+     "t_end_ms": 321900,
+     "tiles_seen": [
+      9,
+      5
+     ],
+     "release_state": "not_a_word",
+     "banner_words_after": 2,
+     "confidence": 1.0
+    },
+    {
+     "seq": 3,
+     "t_start_ms": 322033,
+     "t_end_ms": 322400,
+     "tiles_seen": [
+      10,
+      5,
+      6,
+      11
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 3,
+     "confidence": 1.0
+    },
+    {
+     "seq": 4,
+     "t_start_ms": 322567,
+     "t_end_ms": 323033,
+     "tiles_seen": [
+      10,
+      5,
+      6,
+      11,
+      14
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 4,
+     "confidence": 1.0
+    },
+    {
+     "seq": 5,
+     "t_start_ms": 323267,
+     "t_end_ms": 323500,
+     "tiles_seen": [
+      10,
+      5,
+      6
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 5,
+     "confidence": 1.0
+    },
+    {
+     "seq": 6,
+     "t_start_ms": 323667,
+     "t_end_ms": 324100,
+     "tiles_seen": [
+      11,
+      6,
+      5,
+      10,
+      14,
+      13
+     ],
+     "release_state": "not_a_word",
+     "banner_words_after": 5,
+     "confidence": 1.0
+    },
+    {
+     "seq": 7,
+     "t_start_ms": 324267,
+     "t_end_ms": 324733,
+     "tiles_seen": [
+      11,
+      6,
+      5,
+      10,
+      14
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 6,
+     "confidence": 1.0
+    },
+    {
+     "seq": 8,
+     "t_start_ms": 324933,
+     "t_end_ms": 325267,
+     "tiles_seen": [
+      11,
+      6,
+      5,
+      10
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 7,
+     "confidence": 1.0
+    },
+    {
+     "seq": 9,
+     "t_start_ms": 325433,
+     "t_end_ms": 325633,
+     "tiles_seen": [
+      11,
+      6,
+      5
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 8,
+     "confidence": 1.0
+    },
+    {
+     "seq": 10,
+     "t_start_ms": 325833,
+     "t_end_ms": 326300,
+     "tiles_seen": [
+      11,
+      7,
+      10,
+      6
+     ],
+     "release_state": "not_a_word",
+     "banner_words_after": 8,
+     "confidence": 1.0
+    },
+    {
+     "seq": 11,
+     "t_start_ms": 326533,
+     "t_end_ms": 326767,
+     "tiles_seen": [
+      11,
+      7,
+      10
+     ],
+     "release_state": "valid_new",
+     "banner_words_after": 9,
+     "confidence": 1.0
+    }
+   ],
+   "diagnostics": {
+    "fps_processed": 30.0,
+    "frames_dropped": 0,
+    "mem_peak_mb": 0.0
+   }
+  }
+ ],
+ "crops": [
+  {
+   "name": "board_0.png",
+   "frame": 69,
+   "rect": "board"
+  }
+ ]
+}

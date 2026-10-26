@@ -1,7 +1,7 @@
 """Build the device calibration from a board screenshot (+ optional end screenshot).
 
 uv run python tools/calibrate.py [--board IMG_0717.PNG] [--end IMG_0718.PNG]
-Writes fixtures/calibration/iphone-<w>x<h>.json, fixtures/crops/img0717_tiles.png (0.5x board
+Writes fixtures/calibration/iphone-<w>x<h>.json, fixtures/crops/img0717_tiles.jpg (0.5x board
 crop) and $WH_DATA/templates/seed.npz (letter templates seeded from the known board letters).
 """
 
@@ -62,9 +62,11 @@ def main() -> int:
     box = [round(x0 - m), round(y0 - m), round(x1 + m), round(y1 + m)]
     crop = board[box[1] : box[3], box[0] : box[2]]
     crop = cv2.resize(crop, None, fx=CROP_SCALE, fy=CROP_SCALE, interpolation=cv2.INTER_AREA)
-    crop_path = ROOT / "fixtures/crops/img0717_tiles.png"
+    crop_path = ROOT / "fixtures/crops/img0717_tiles.jpg"
     crop_path.parent.mkdir(parents=True, exist_ok=True)
-    cv2.imwrite(str(crop_path), cv2.cvtColor(crop, cv2.COLOR_RGB2BGR))
+    cv2.imwrite(
+        str(crop_path), cv2.cvtColor(crop, cv2.COLOR_RGB2BGR), [cv2.IMWRITE_JPEG_QUALITY, 90]
+    )
 
     templates = cb.seed_templates(board, cal, letters)
     (WH_DATA / "templates").mkdir(parents=True, exist_ok=True)

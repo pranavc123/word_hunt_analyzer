@@ -16,7 +16,7 @@ SOL = solve(LETTERS, load_trie(ROOT / "fixtures/words_small.txt"))
 
 
 def test_img0718_visible_words_and_points():
-    crop = load_rgb(ROOT / "fixtures/crops/img0718_list.png")
+    crop = load_rgb(ROOT / "fixtures/crops/img0718_list.jpg")
     img = np.zeros((CAL["height"], CAL["width"], 3), np.uint8)
     x, y, w, h = CAL["roi_end_list"]
     img[y : y + h, x : x + w] = crop

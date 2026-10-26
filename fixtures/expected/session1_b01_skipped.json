@@ -1,0 +1,38 @@
+{
+ "source": {
+  "recording": "session1",
+  "first_frame": 2684,
+  "rows": 116,
+  "session_id": "0b7d9e10-2c3a-4f5b-8e6d-7a8b9c0d1e2f",
+  "started_at": "2026-10-26T00:00:00+00:00"
+ },
+ "records": [
+  {
+   "schema": "v1",
+   "kind": "board",
+   "board_id": "46ec7ec4-5112-5686-bfca-1fda2248e6e1",
+   "session_id": "0b7d9e10-2c3a-4f5b-8e6d-7a8b9c0d1e2f",
+   "seq": 0,
+   "device": "oracle",
+   "app_version": "oracle",
+   "calibration_version": "iphone-1206x2622@1",
+   "opened_at": "2026-10-26T00:01:30.967000Z",
+   "view_ms": 833,
+   "status": "skipped",
+   "board_image": "board_0.png",
+   "attempts": [],
+   "diagnostics": {
+    "fps_processed": 30.0,
+    "frames_dropped": 0,
+    "mem_peak_mb": 0.0
+   }
+  }
+ ],
+ "crops": [
+  {
+   "name": "board_0.png",
+   "frame": 69,
+   "rect": "board"
+  }
+ ]
+}
