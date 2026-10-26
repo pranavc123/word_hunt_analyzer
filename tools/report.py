@@ -234,7 +234,54 @@ def gate_s2() -> tuple[bool, list[str]]:
     return all(ok for ok, _ in checks), [("ok   " if ok else "FAIL ") + msg for ok, msg in checks]
 
 
-GATES = {"s0": gate_s0, "s1": gate_s1, "s2": gate_s2}
+def gate_s3() -> tuple[bool, list[str]]:
+    """Latest live session: clean broadcast, every board arrived (seq contiguous), all processed,
+    ≥ 95% of played boards verified."""
+    sys.path.insert(0, str(ROOT / "server"))
+    from sqlmodel import select
+
+    from app.db import session
+    from app.models import Board, Session
+
+    with session() as s:
+        sess = s.exec(select(Session).order_by(Session.started_at.desc())).first()
+        if sess is None:
+            return False, ["FAIL no sessions in the database yet (play the first live session)"]
+        boards = s.exec(select(Board).where(Board.session_id == sess.id).order_by(Board.seq)).all()
+    seqs = [b.seq for b in boards]
+    played = [b for b in boards if b.status == "played"]
+    verified = sum(b.review_status == "verified" for b in played)
+    pending = [b.seq for b in boards if b.processed_at is None]
+    errors = [b.seq for b in boards if b.error]
+    runs = [summarise_run(r) for r in diag_runs(WH_DATA / "diag.jsonl")]
+    last = runs[-1] if runs else None
+    rate = verified / len(played) if played else 0.0
+    checks = [
+        (
+            last is not None and last["finished_cleanly"],
+            f"broadcast ended cleanly: {last['finished_cleanly'] if last else 'no diag run'}"
+            + (f" ({last['duration_min']} min, mem peak {last['mem_peak_mb']} MB)" if last else ""),
+        ),
+        (
+            seqs == list(range(len(seqs))) and len(seqs) > 0,
+            f"boards arrived: {len(seqs)} (seq contiguous: {seqs == list(range(len(seqs)))})",
+        ),
+        (
+            not pending and not errors,
+            f"processed: {len(boards) - len(pending)}/{len(boards)}, errors: {errors}",
+        ),
+        (
+            rate >= 0.95,
+            f"played boards verified: {verified}/{len(played)} ({rate:.0%}, need ≥ 95%)",
+        ),
+    ]
+    head = f"session {sess.id[:8]} started {sess.started_at:%Y-%m-%d %H:%M}"
+    return all(ok for ok, _ in checks), [head] + [
+        ("ok   " if ok else "FAIL ") + m for ok, m in checks
+    ]
+
+
+GATES = {"s0": gate_s0, "s1": gate_s1, "s2": gate_s2, "s3": gate_s3}
 
 
 def main() -> int:
