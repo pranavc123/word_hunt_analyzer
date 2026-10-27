@@ -1,19 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { getHealth } from "../api/client";
-
-function Page({ title, headline, children }: { title: string; headline: string; children?: React.ReactNode }) {
-  return (
-    <main className="page">
-      <h1>{title}</h1>
-      <p className="headline">{headline}</p>
-      {children}
-    </main>
-  );
-}
-
-export function Sessions() {
-  return <Page title="Sessions" headline="Your latest session will show up here after you play." />;
-}
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import { getHealth, getToken, setToken } from "../api/client";
+import { Page } from "./Sessions";
 
 export function Patterns() {
   return <Page title="Patterns" headline="Patterns appear once a few sessions are in." />;
@@ -28,9 +16,12 @@ export function Dictionary() {
 }
 
 export function Settings() {
+  const qc = useQueryClient();
   const health = useQuery({ queryKey: ["health"], queryFn: getHealth, retry: false });
+  const [token, setLocal] = useState(getToken());
+  const [saved, setSaved] = useState(false);
   return (
-    <Page title="Settings" headline="Server connection and app info.">
+    <Page title="Settings" headline="Server connection and access.">
       <div className="card">
         Server:{" "}
         {health.isPending ? (
@@ -41,6 +32,23 @@ export function Settings() {
           <span className="status-bad">unreachable</span>
         )}
       </div>
+      <form
+        className="card form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          setToken(token);
+          setSaved(true);
+          qc.invalidateQueries();
+        }}
+      >
+        <label>
+          Access token (the WH_TOKEN from your Mac)
+          <input type="password" autoComplete="off" value={token} onChange={(e) => (setLocal(e.target.value), setSaved(false))} />
+        </label>
+        <button className="btn" type="submit">
+          {saved ? "Saved" : "Save token"}
+        </button>
+      </form>
     </Page>
   );
 }
