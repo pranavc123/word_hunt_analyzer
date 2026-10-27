@@ -232,11 +232,19 @@ public final class Machine {
             }
             let attempt = a!
             attempt.last = i
+            var new: [Int] = []
             for (tile, c) in codes.enumerated() where !attempt.tiles.contains(tile) {
                 let fresh = c == "?" && b.prevCodes != nil && b.prevCodes![tile] == "R"
                 if TileStates.selected.contains(c) || (fresh && i > attempt.first) {
-                    attempt.tiles.append(tile)
+                    new.append(tile)
                 }
+            }
+            // several tiles lit in one frame: follow the path (each next tile adjacent to the last)
+            while !new.isEmpty {
+                let last = attempt.tiles.last
+                let nxt = new.first { t in last.map { Machine.adjacent($0, t) } ?? false } ?? new[0]
+                attempt.tiles.append(nxt)
+                new.removeAll { $0 == nxt }
             }
             let rel = codes.filter { TileStates.selected.contains($0) }
             attempt.release = Machine.majority(rel)
@@ -244,6 +252,10 @@ public final class Machine {
             closeAttempt(b)
         }
         b.prevCodes = codes
+    }
+
+    static func adjacent(_ a: Int, _ b: Int) -> Bool {
+        a != b && abs(a / 4 - b / 4) <= 1 && abs(a % 4 - b % 4) <= 1
     }
 
     /// Python `max("GYWX", key=rel.count)`: the first of G, Y, W, X with the highest count.

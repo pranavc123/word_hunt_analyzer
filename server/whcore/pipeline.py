@@ -99,6 +99,86 @@ def read_end_list(end_list: np.ndarray, cal: dict) -> list[tuple[str, int | None
     return out[:15]  # the end screen shows the top 15
 
 
+def _evaluate(letters: str, attempts: list[dict], rows, end_words, end_score, trie) -> dict:
+    """Solve, resolve the accepted attempts and reconcile against the end screen."""
+    sol = solve(letters.lower(), trie)
+    lw = letters.lower()
+    accepted = [a for a in attempts if a["release_state"] == "valid_new"]
+    oov = {"".join(lw[i] for i in a["tiles_seen"]) for a in accepted if len(a["tiles_seen"]) >= 3}
+    visible = snap_visible(rows, set(sol) | oov)
+    vis_words = {v["word"] for v in visible if v["word"]}
+    words = build_words(attempts, letters, sol, end_score, vis_words)
+    rec = reconcile([w["word"] for w in words if w["word"]], end_words, end_score, visible)
+    exact = sum(raw.lower() in sol for raw, _ in rows)
+    return {"sol": sol, "words": words, "rec": rec, "visible": visible, "exact_visible": exact}
+
+
+def _try_letter_fixes(
+    letters,
+    ranked,
+    margins,
+    attempts,
+    rows,
+    end_words,
+    end_score,
+    trie,
+    base,
+    max_tiles: int = 6,
+    max_full: int = 4,
+):
+    """A misread tile shows up as visible end-screen words the board cannot spell. Try the
+    runner-up letters on the least certain tiles; keep a variant only if it then reconciles."""
+    raw = [w.lower() for w, _ in rows]
+    order = sorted(range(16), key=lambda i: margins[i])[:max_tiles]
+    variants = []
+    for i in order:
+        for ch, _ in ranked[i][1:]:
+            v = letters[:i] + ch + letters[i + 1 :]
+            sol = solve(v.lower(), trie)
+            variants.append((sum(w in sol for w in raw), i, ch, v))
+    variants.sort(key=lambda x: -x[0])
+    for exact, i, ch, v in variants[:max_full]:
+        if exact <= base["exact_visible"]:
+            break
+        ev = _evaluate(v, attempts, rows, end_words, end_score, trie)
+        if ev["rec"]["verified"]:
+            return ev, v, f"tile {i}: {letters[i]}→{ch} (end-screen words)"
+    return None
+
+
+def _try_dropping(letters, attempts, rows, end_words, end_score, trie, base, max_tries: int = 30):
+    """More accepted attempts than the end screen's WORDS: a WORDS misread or a last-instant
+    acceptance. Drop the likeliest single extra attempt if that makes the board reconcile."""
+    accepted = [k for k, a in enumerate(attempts) if a["release_state"] == "valid_new"]
+    if len(accepted) - end_words != 1:
+        return None
+    words = base["words"]
+
+    # likeliest first: colour disagreed, then repaired/OOV reads, then short words, then the rest
+    def rank(j):
+        a, w = attempts[accepted[j]], words[j] if j < len(words) else {}
+        return (
+            a.get("confidence", 1.0) >= 1.0,
+            not (w.get("cost") or w.get("oov")),
+            len(a["tiles_seen"]) > 3,
+            -j,
+        )
+
+    for j in sorted(range(len(accepted)), key=rank)[:max_tries]:
+        k = accepted[j]
+        trial = [
+            dict(a, release_state="not_a_word") if n == k else a for n, a in enumerate(attempts)
+        ]
+        ev = _evaluate(letters, trial, rows, end_words, end_score, trie)
+        if ev["rec"]["verified"]:
+            return (
+                ev,
+                trial,
+                f"attempt {attempts[k]['seq']} not counted (WORDS {len(accepted)}→{end_words})",
+            )
+    return None
+
+
 def process_board(
     record: dict,
     images: dict[str, np.ndarray],
@@ -112,28 +192,44 @@ def process_board(
     out: dict = {"error": None}
     if "board" not in images:
         return {**out, "review_status": "needs_letter_fix", "error": "no board image"}
-    letters, margins = read_board_letters(images["board"], cal, templates)
+    rect = crop_rect(cal, "board")
+    g = to_cal_scale(images["board"], rect)
+    local = {
+        "tile_centers": [[x - rect[0], y - rect[1]] for x, y in cal["tile_centers"]],
+        "tile_size": cal["tile_size"],
+    }
+    ranked = lt.rank_board(g, local, templates or lt.default_templates("letters"))
+    letters = "".join(r[0][0] for r in ranked)
+    margins = [r[0][1] - (r[1][1] if len(r) > 1 else 0.0) for r in ranked]
     out.update(letters=letters, letters_conf=[round(float(m), 3) for m in margins])
     low = min(margins) < LOW_LETTER_MARGIN
-    sol = solve(letters.lower(), trie)
     played = record["status"] == "played"
     attempts = record.get("attempts", [])
+    sol = solve(letters.lower(), trie)
     words = []
     if played:
         end_words = end_score = None
         if "end_banner" in images:
             end_words, end_score = read_end_banner(images["end_banner"], cal)
         rows = read_end_list(images["end_list"], cal) if "end_list" in images else []
-        lw = letters.lower()
-        accepted = [a for a in attempts if a["release_state"] == "valid_new"]
-        oov = {
-            "".join(lw[i] for i in a["tiles_seen"]) for a in accepted if len(a["tiles_seen"]) >= 3
-        }
-        visible = snap_visible(rows, set(sol) | oov)
-        vis_words = {v["word"] for v in visible if v["word"]}
-        words = build_words(attempts, letters, sol, end_score, vis_words)
-        rec = reconcile([w["word"] for w in words if w["word"]], end_words, end_score, visible)
+        ev = _evaluate(letters, attempts, rows, end_words, end_score, trie)
+        fixes: list[str] = []
+        if not ev["rec"]["verified"]:
+            better = _try_letter_fixes(
+                letters, ranked, margins, attempts, rows, end_words, end_score, trie, ev
+            )
+            if better:
+                ev, letters, fix = better
+                fixes.append(fix)
+                low = False  # the end screen confirmed the corrected letters
+        if not ev["rec"]["verified"] and end_words is not None:
+            dropped = _try_dropping(letters, attempts, rows, end_words, end_score, trie, ev)
+            if dropped:
+                ev, attempts, fix = dropped
+                fixes.append(fix)
+        sol, words, rec, visible = ev["sol"], ev["words"], ev["rec"], ev["visible"]
         out.update(
+            letters=letters,
             final_word_count=end_words,
             final_score=end_score,
             extracted_score=rec["points"],
@@ -141,6 +237,7 @@ def process_board(
             end_visible_words=[v["word"] or v["raw"] for v in visible],
             reconcile=rec,
             visible=visible,
+            fixes=fixes,
         )
         status = "verified" if rec["verified"] else "needs_review"
     else:

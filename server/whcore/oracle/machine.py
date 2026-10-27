@@ -32,6 +32,10 @@ CROP_EVERY_PX = BAND_PX // 2  # save a list crop every ~0.5 viewport of scrollin
 GAP_PX = BAND_PX - 300  # a shift this big leaves too little overlap
 
 
+def _adjacent(a: int, b: int) -> bool:
+    return a != b and abs(a // 4 - b // 4) <= 1 and abs(a % 4 - b % 4) <= 1
+
+
 @dataclass
 class CropRequest:
     name: str  # image filename referenced by the record
@@ -197,12 +201,19 @@ class Machine:
                     first=i, last=i, tiles=[], release="", words_before=b.words
                 )
             a.last = i
+            new = []
             for tile, c in enumerate(codes):
                 if tile in a.tiles:
                     continue
                 fresh = c == "?" and b.prev_codes is not None and b.prev_codes[tile] == "R"
                 if c in SELECTED or (fresh and i > a.first):
-                    a.tiles.append(tile)
+                    new.append(tile)
+            # several tiles lit in one frame: follow the path (each next tile adjacent to the last)
+            while new:
+                last = a.tiles[-1] if a.tiles else None
+                nxt = next((t for t in new if last is not None and _adjacent(last, t)), new[0])
+                a.tiles.append(nxt)
+                new.remove(nxt)
             rel = "".join(c for c in codes if c in SELECTED)
             a.release = max("GYWX", key=rel.count) if rel else "W"
         elif a is not None and i - a.last > 2:
@@ -285,7 +296,7 @@ class Machine:
         self.crops.append(CropRequest(f"board_{b.seq}.jpg", crop, "board"))
         end_banner = end_list = None
         if played:
-            # the end screen slides away at the end: step back END_CROP_BACK_MS (frame-rate independent)
+            # the end screen slides away: step back END_CROP_BACK_MS (frame-rate independent)
             fe = b.end_last
             while fe > b.end_first and self.t[b.end_last] - self.t[fe] < END_CROP_BACK_MS:
                 fe -= 1

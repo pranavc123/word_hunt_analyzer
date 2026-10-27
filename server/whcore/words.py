@@ -76,6 +76,9 @@ def candidates(observed: list[int], solution: dict, letters: str = "") -> list[C
         best = None
         for p in info["paths"]:
             c = align_cost(observed, p)
+            # same tiles, different order: tiles lit in one frame were recorded out of order
+            if c > 1 and len(p) == len(observed) and set(p) == set(observed):
+                c = 1
             if c <= MAX_COST and (best is None or (c, direction_changes(p)) < best[:2]):
                 best = (c, direction_changes(p), p)
         if best:

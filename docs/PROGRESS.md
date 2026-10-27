@@ -1,14 +1,14 @@
 # PROGRESS
 
-Current sprint: **S3** → `docs/sprints/S3-ingest-live.md`
+Current sprint: **S4** → `docs/sprints/S4-review-app.md`
 
 | Sprint | Status | Gate |
 | --- | --- | --- |
 | S0 Bootstrap + feasibility | done | PASS 2026-10-26 |
 | S1 Core + oracle | done | PASS 2026-10-26 |
 | S2 Capture app | done | PASS 2026-10-26 |
-| S3 Ingest + live | in progress | — |
-| S4 Review app | todo | — |
+| S3 Ingest + live | done | PASS 2026-10-27 |
+| S4 Review app | in progress (T3 done early) | — |
 | S5 Dictionary + patterns | todo | — |
 | S6 Triage | todo | — |
 | S7 Perception + strategy | todo | — |
@@ -49,7 +49,8 @@ Current sprint: **S3** → `docs/sprints/S3-ingest-live.md`
 - S3.T3 ✓ 2026-10-26 — Huey worker: phone crops (gray, 0.73×) → letters/end screen/words/reconcile → DB; all-words matched on arrival or when its board lands. Phone-style crops: letters 11/12 (miss flagged), end banner 12/12.
 - S3.T4 ✓ 2026-10-26 — launchd templates (server + Huey worker) + install/uninstall scripts (token injected, chmod 600), docs/RUNNING.md.
 - S3.T5 ✓ 2026-10-26 — DebugRecorder (160-px gray ring, ±0.5 s around colour≠words / unreadable WORDS, 20 MB cap) behind WH_DEBUG; server accepts debug_*.jpg; tools/reprocess.py.
+- S3.T6 ✓ 2026-10-27 — 3 short live sessions (4, 7, 9 boards): #1 Debug build 4.4 fps; #2 52 fps, end crops mid-slide; #3 52 fps, 2/2 played verified after fixes.
+- S3.T7 ✓ 2026-10-27 — gate s3 PASS (session #3). Fixes: Release builds, time-based end crop, path-ordered same-frame tiles, letter self-correction from end-screen words, drop one extra acceptance; `boards.fixes` column.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
-- S3.T6: live #1 Debug build 4.4 fps; live #2 Release 52 fps but end-banner crops mid-slide → 0/2 verified. Time-based end crop installed 2026-10-27; needs live session #3.

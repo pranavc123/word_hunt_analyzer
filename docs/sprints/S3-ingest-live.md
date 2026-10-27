@@ -34,11 +34,11 @@ record, every board arrived — seq contiguous — and ≥ 95% of played boards 
   - done: `swift test --package-path ios/WHCapture` green
   - deps: S2
 
-- [ ] **S3.T6** `[HUMAN]` First live session (~50 min)
+- [x] **S3.T6** `[HUMAN]` First live session (~50 min)
   - Install the services (RUNNING.md). The agent builds and installs the app (`xcodebuild … -allowProvisioningUpdates` + `xcrun devicectl device install app`); the user turns on Tailscale on the phone, opens Word Hunt (server reachable), taps Start / stop capture → Start Broadcast, turns on the Focus, plays a normal session, then stops.
   - deps: T3, T4, T5
 
-- [ ] **S3.T7** Live analysis + fixes
+- [x] **S3.T7** Live analysis + fixes
   - files: `tools/report.py` (`--gate s3`)
   - do: run the gate; for each failure, look at the debug frames numerically first, add fix tasks, and re-run on the stored records (the worker can reprocess).
   - done: gate PASS (if a fix touches the state machine, update the oracle, the Swift port, and fixtures together)

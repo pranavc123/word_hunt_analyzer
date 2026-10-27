@@ -99,6 +99,7 @@ def run_board(board_id: str) -> str:
             "end_visible_words",
             "review_status",
             "error",
+            "fixes",
         ):
             if k in res:
                 setattr(b, k, res[k])

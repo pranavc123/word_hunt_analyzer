@@ -107,6 +107,10 @@
 - #2 2026-10-27: 3.7 min, 7 boards (2 played), Release → 51.7 fps p50 (p5 51.5), 1,498/13,296 dropped,
   mem 7.5 MB; 75 and 52 accepted words captured; 0/2 verified only because the end-banner crops were
   taken mid-slide (fixed: time-based end crop).
+- #3 2026-10-27: 5.5 min, 9 boards (2 played), 51.7 fps, 2,324/19,559 dropped, mem 9.2 MB. End banners
+  read (77/45,600; 68/30,800). Both verified after fixes: board 7 had one extra acceptance (live WORDS 78
+  vs end 77; dropped) and "TEDARR" (= DARTER, same-frame tile order); board 8 had a G read as C (tile 5,
+  margin 0.066) → corrected from the end-screen words.
 
 ## Go / no-go
 - 2026-10-26 GO. `tools/report.py --gate s0` = PASS: segmentation 27/27, reconciliation 11/12, all-words 6/6

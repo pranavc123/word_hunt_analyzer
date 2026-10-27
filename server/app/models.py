@@ -61,6 +61,9 @@ class Board(SQLModel, table=True):
     received_at: datetime | None = None
     processed_at: datetime | None = None
     error: str | None = None
+    fixes: list | None = Field(
+        default=None, sa_column=Column(JSON)
+    )  # automatic corrections applied
 
 
 class AllWordsCapture(SQLModel, table=True):

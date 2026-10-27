@@ -154,8 +154,9 @@ def main() -> int:
                 t = traces[(rec, seq)]
                 acc = sum(x.release_state == "valid_new" for x in b.attempts)
                 assert acc == t["end_words"], (name, acc, t["end_words"])
-                ref = [(x["tiles_seen"], x["release_state"]) for x in t["attempts"]]
-                same = sum((x.tiles_seen, x.release_state) in ref for x in b.attempts)
+                # compare tile sets: S0 traces used index order within a frame
+                ref = [(sorted(x["tiles_seen"]), x["release_state"]) for x in t["attempts"]]
+                same = sum((sorted(x.tiles_seen), x.release_state) in ref for x in b.attempts)
                 assert same >= 0.99 * len(ref), (name, same, len(ref))
         assert len(aws) == int(with_aw), (name, len(aws))
         frame0 = int(float(seg[0][hdr.index("frame")]))
