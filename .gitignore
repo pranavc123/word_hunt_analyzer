@@ -16,3 +16,4 @@ __pycache__/
 web/dist/
 ios/App/*/Info.plist
 *.tsbuildinfo
+.claude/launch.json
