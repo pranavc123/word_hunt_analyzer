@@ -5,7 +5,7 @@ Develop against a seeded fixture DB so no live data is needed.
 gate: `uv run python tools/report.py --gate s4` → PASS (≥ 3 live sessions, ≥ 95% of played boards
 verified, ≥ 90% of boards need no letter fix) AND `pnpm -C web build` succeeds.
 
-- [ ] **S4.T1** Seed DB from fixtures `[parallel]`
+- [x] **S4.T1** Seed DB from fixtures `[parallel]`
   - files: `tools/seed_fixture_db.py`
   - do: build `$WH_DATA/dev.db` from fixtures (2 sessions, 12 boards) through the real worker path.
   - done: script runs; `GET /v1/sessions` on dev.db returns 2
