@@ -1,0 +1,32 @@
+{
+ "id": "4c4a2509-83ae-554d-9525-db2378ff92fb",
+ "seq": 3,
+ "status": "skipped",
+ "review_status": "needs_letter_fix",
+ "letters": null,
+ "opened_at": "2026-10-25T20:04:45+00:00",
+ "view_ms": 833,
+ "final_score": null,
+ "final_word_count": null,
+ "extracted_score": null,
+ "max_points": null,
+ "solver_words": null,
+ "fixes": [],
+ "all_words_status": "none",
+ "session_id": "a728685e-8e47-5b31-bdd5-26f7b5f7447f",
+ "letters_conf": null,
+ "letters_confirmed": false,
+ "end_visible_words": null,
+ "reconciled": false,
+ "error": "no board image",
+ "images": {
+  "board": null,
+  "end_banner": null,
+  "end_list": null
+ },
+ "attempts": [],
+ "words": [],
+ "all_words": null,
+ "prev_id": "45c19bfc-6925-5bb6-8065-94c4d407244a",
+ "next_id": "5c4147ce-0a8f-5857-8b25-5c347fcade51"
+}

@@ -1,0 +1,4765 @@
+{
+ "id": "8d95edd7-d6f6-5c54-852f-21e8c0044d51",
+ "seq": 0,
+ "status": "played",
+ "review_status": "verified",
+ "letters": "RAASTSNUETUIEDVI",
+ "opened_at": "2026-10-25T20:00:00+00:00",
+ "view_ms": 80766,
+ "final_score": 28000,
+ "final_word_count": 54,
+ "extracted_score": 28000,
+ "max_points": 112300,
+ "solver_words": 181,
+ "fixes": [],
+ "all_words_status": "pending",
+ "session_id": "a728685e-8e47-5b31-bdd5-26f7b5f7447f",
+ "letters_conf": [
+  0.139,
+  0.452,
+  0.473,
+  0.192,
+  0.213,
+  0.199,
+  0.221,
+  0.183,
+  0.221,
+  0.191,
+  0.179,
+  0.201,
+  0.217,
+  0.182,
+  0.35,
+  0.201
+ ],
+ "letters_confirmed": false,
+ "end_visible_words": [
+  "tranted",
+  "nutted",
+  "ranted",
+  "ratted",
+  "tasted",
+  "trants",
+  "antes",
+  "arsed",
+  "deets",
+  "dunts",
+  "nudes",
+  "rants",
+  "rated",
+  "rates",
+  "sants"
+ ],
+ "reconciled": true,
+ "error": null,
+ "images": {
+  "board": "/v1/images/a728685e-8e47-5b31-bdd5-26f7b5f7447f/8d95edd7-d6f6-5c54-852f-21e8c0044d51/board_0.jpg",
+  "end_banner": "/v1/images/a728685e-8e47-5b31-bdd5-26f7b5f7447f/8d95edd7-d6f6-5c54-852f-21e8c0044d51/end_banner_0.jpg",
+  "end_list": "/v1/images/a728685e-8e47-5b31-bdd5-26f7b5f7447f/8d95edd7-d6f6-5c54-852f-21e8c0044d51/end_list_0.jpg"
+ },
+ "attempts": [
+  {
+   "seq": 0,
+   "t_start_ms": 4867,
+   "t_end_ms": 5467,
+   "tiles_seen": [
+    0,
+    1,
+    4,
+    9,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 1,
+   "t_start_ms": 5733,
+   "t_end_ms": 6400,
+   "tiles_seen": [
+    0,
+    1,
+    4,
+    9,
+    8,
+    13
+   ],
+   "path": [
+    0,
+    1,
+    4,
+    9,
+    8,
+    13
+   ],
+   "word": "ratted",
+   "result": "valid_new",
+   "points": 1400
+  },
+  {
+   "seq": 2,
+   "t_start_ms": 6667,
+   "t_end_ms": 6900,
+   "tiles_seen": [
+    0,
+    1,
+    4
+   ],
+   "path": [
+    0,
+    1,
+    4
+   ],
+   "word": "rat",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 3,
+   "t_start_ms": 7200,
+   "t_end_ms": 7367,
+   "tiles_seen": [
+    5,
+    1,
+    4
+   ],
+   "path": [
+    5,
+    1,
+    4
+   ],
+   "word": "sat",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 4,
+   "t_start_ms": 7633,
+   "t_end_ms": 7767,
+   "tiles_seen": [
+    5,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 5,
+   "t_start_ms": 7933,
+   "t_end_ms": 8367,
+   "tiles_seen": [
+    5,
+    4,
+    1,
+    0
+   ],
+   "path": [
+    5,
+    4,
+    1,
+    0
+   ],
+   "word": "star",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 6,
+   "t_start_ms": 8700,
+   "t_end_ms": 8900,
+   "tiles_seen": [
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 7,
+   "t_start_ms": 9100,
+   "t_end_ms": 9433,
+   "tiles_seen": [
+    0,
+    1,
+    4,
+    8
+   ],
+   "path": [
+    0,
+    1,
+    4,
+    8
+   ],
+   "word": "rate",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 8,
+   "t_start_ms": 9733,
+   "t_end_ms": 10100,
+   "tiles_seen": [
+    0,
+    1,
+    4,
+    8,
+    5
+   ],
+   "path": [
+    0,
+    1,
+    4,
+    8,
+    5
+   ],
+   "word": "rates",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 9,
+   "t_start_ms": 10233,
+   "t_end_ms": 10633,
+   "tiles_seen": [
+    0,
+    1,
+    4,
+    8,
+    12,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 10,
+   "t_start_ms": 11000,
+   "t_end_ms": 11333,
+   "tiles_seen": [
+    0,
+    1,
+    4,
+    8,
+    13
+   ],
+   "path": [
+    0,
+    1,
+    4,
+    8,
+    13
+   ],
+   "word": "rated",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 11,
+   "t_start_ms": 11667,
+   "t_end_ms": 12067,
+   "tiles_seen": [
+    5,
+    1,
+    4,
+    8
+   ],
+   "path": [
+    5,
+    1,
+    4,
+    8
+   ],
+   "word": "sate",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 12,
+   "t_start_ms": 12233,
+   "t_end_ms": 12433,
+   "tiles_seen": [
+    5,
+    1,
+    4,
+    8
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 13,
+   "t_start_ms": 12800,
+   "t_end_ms": 12967,
+   "tiles_seen": [
+    5,
+    2
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 14,
+   "t_start_ms": 13167,
+   "t_end_ms": 13267,
+   "tiles_seen": [
+    5,
+    1
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 15,
+   "t_start_ms": 13633,
+   "t_end_ms": 13967,
+   "tiles_seen": [
+    3,
+    2,
+    6,
+    10,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 16,
+   "t_start_ms": 14200,
+   "t_end_ms": 14433,
+   "tiles_seen": [
+    3,
+    2,
+    6,
+    9
+   ],
+   "path": [
+    3,
+    2,
+    6,
+    9
+   ],
+   "word": "sant",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 17,
+   "t_start_ms": 14633,
+   "t_end_ms": 14800,
+   "tiles_seen": [
+    3,
+    2,
+    6
+   ],
+   "path": [
+    3,
+    2,
+    6
+   ],
+   "word": "san",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 18,
+   "t_start_ms": 14967,
+   "t_end_ms": 15467,
+   "tiles_seen": [
+    3,
+    6,
+    9,
+    8,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 19,
+   "t_start_ms": 15667,
+   "t_end_ms": 15967,
+   "tiles_seen": [
+    3,
+    2,
+    6,
+    9,
+    5
+   ],
+   "path": [
+    3,
+    2,
+    6,
+    9,
+    5
+   ],
+   "word": "sants",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 20,
+   "t_start_ms": 16133,
+   "t_end_ms": 16667,
+   "tiles_seen": [
+    3,
+    2,
+    6,
+    10,
+    9,
+    8,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 21,
+   "t_start_ms": 16833,
+   "t_end_ms": 17467,
+   "tiles_seen": [
+    3,
+    2,
+    6,
+    9,
+    8,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 22,
+   "t_start_ms": 18033,
+   "t_end_ms": 18600,
+   "tiles_seen": [
+    0,
+    1,
+    6,
+    9,
+    8,
+    13
+   ],
+   "path": [
+    0,
+    1,
+    6,
+    9,
+    8,
+    13
+   ],
+   "word": "ranted",
+   "result": "valid_new",
+   "points": 1400
+  },
+  {
+   "seq": 23,
+   "t_start_ms": 18833,
+   "t_end_ms": 19133,
+   "tiles_seen": [
+    0,
+    1,
+    6,
+    9,
+    5
+   ],
+   "path": [
+    0,
+    1,
+    6,
+    9,
+    5
+   ],
+   "word": "rants",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 24,
+   "t_start_ms": 19367,
+   "t_end_ms": 19600,
+   "tiles_seen": [
+    0,
+    1,
+    6,
+    9
+   ],
+   "path": [
+    0,
+    1,
+    6,
+    9
+   ],
+   "word": "rant",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 25,
+   "t_start_ms": 19833,
+   "t_end_ms": 20233,
+   "tiles_seen": [
+    4,
+    0,
+    1,
+    6,
+    9,
+    5
+   ],
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    9,
+    5
+   ],
+   "word": "trants",
+   "result": "valid_new",
+   "points": 1400
+  },
+  {
+   "seq": 26,
+   "t_start_ms": 20467,
+   "t_end_ms": 21167,
+   "tiles_seen": [
+    4,
+    0,
+    1,
+    6,
+    9,
+    8,
+    12,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 27,
+   "t_start_ms": 21433,
+   "t_end_ms": 22267,
+   "tiles_seen": [
+    4,
+    0,
+    1,
+    6,
+    9,
+    8,
+    13
+   ],
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    9,
+    8,
+    13
+   ],
+   "word": "tranted",
+   "result": "valid_new",
+   "points": 1800
+  },
+  {
+   "seq": 28,
+   "t_start_ms": 22533,
+   "t_end_ms": 22833,
+   "tiles_seen": [
+    4,
+    0,
+    1,
+    6,
+    9
+   ],
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    9
+   ],
+   "word": "trant",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 29,
+   "t_start_ms": 23500,
+   "t_end_ms": 23867,
+   "tiles_seen": [
+    4,
+    1,
+    6
+   ],
+   "path": [
+    4,
+    1,
+    6
+   ],
+   "word": "tan",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 30,
+   "t_start_ms": 24100,
+   "t_end_ms": 24567,
+   "tiles_seen": [
+    4,
+    1,
+    5,
+    9,
+    8,
+    13
+   ],
+   "path": [
+    4,
+    1,
+    5,
+    9,
+    8,
+    13
+   ],
+   "word": "tasted",
+   "result": "valid_new",
+   "points": 1400
+  },
+  {
+   "seq": 31,
+   "t_start_ms": 24767,
+   "t_end_ms": 25067,
+   "tiles_seen": [
+    4,
+    1,
+    5,
+    9,
+    8
+   ],
+   "path": [
+    4,
+    1,
+    5,
+    9,
+    8
+   ],
+   "word": "taste",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 32,
+   "t_start_ms": 25267,
+   "t_end_ms": 25467,
+   "tiles_seen": [
+    4,
+    5,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 33,
+   "t_start_ms": 25767,
+   "t_end_ms": 26000,
+   "tiles_seen": [
+    4,
+    1,
+    5
+   ],
+   "path": [
+    4,
+    1,
+    5
+   ],
+   "word": "tas",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 34,
+   "t_start_ms": 26367,
+   "t_end_ms": 26900,
+   "tiles_seen": [
+    0,
+    1,
+    5,
+    9,
+    8,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 35,
+   "t_start_ms": 27167,
+   "t_end_ms": 27333,
+   "tiles_seen": [
+    0,
+    1,
+    5,
+    9
+   ],
+   "path": [
+    0,
+    1,
+    5,
+    9
+   ],
+   "word": "rast",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 36,
+   "t_start_ms": 28233,
+   "t_end_ms": 28400,
+   "tiles_seen": [
+    14,
+    10,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 37,
+   "t_start_ms": 28667,
+   "t_end_ms": 28800,
+   "tiles_seen": [
+    14,
+    10,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 38,
+   "t_start_ms": 29100,
+   "t_end_ms": 29500,
+   "tiles_seen": [
+    6,
+    10,
+    9,
+    8,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 39,
+   "t_start_ms": 29667,
+   "t_end_ms": 30100,
+   "tiles_seen": [
+    6,
+    10,
+    9,
+    4,
+    8,
+    13
+   ],
+   "path": [
+    6,
+    10,
+    9,
+    4,
+    8,
+    13
+   ],
+   "word": "nutted",
+   "result": "valid_new",
+   "points": 1400
+  },
+  {
+   "seq": 40,
+   "t_start_ms": 30300,
+   "t_end_ms": 30567,
+   "tiles_seen": [
+    6,
+    10,
+    14,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 41,
+   "t_start_ms": 30767,
+   "t_end_ms": 31067,
+   "tiles_seen": [
+    6,
+    10,
+    9,
+    5
+   ],
+   "path": [
+    6,
+    10,
+    9,
+    5
+   ],
+   "word": "nuts",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 42,
+   "t_start_ms": 31200,
+   "t_end_ms": 31400,
+   "tiles_seen": [
+    6,
+    10,
+    9
+   ],
+   "path": [
+    6,
+    10,
+    9
+   ],
+   "word": "nut",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 43,
+   "t_start_ms": 32533,
+   "t_end_ms": 32600,
+   "tiles_seen": [
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 44,
+   "t_start_ms": 32767,
+   "t_end_ms": 33100,
+   "tiles_seen": [
+    5,
+    10,
+    6,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 45,
+   "t_start_ms": 33300,
+   "t_end_ms": 33433,
+   "tiles_seen": [
+    5,
+    10
+   ],
+   "path": [
+    5,
+    10,
+    15
+   ],
+   "word": "sui",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 46,
+   "t_start_ms": 33800,
+   "t_end_ms": 34067,
+   "tiles_seen": [
+    5,
+    1,
+    6
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 47,
+   "t_start_ms": 34367,
+   "t_end_ms": 34767,
+   "tiles_seen": [
+    1,
+    6,
+    9,
+    8
+   ],
+   "path": [
+    1,
+    6,
+    9,
+    8
+   ],
+   "word": "ante",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 48,
+   "t_start_ms": 34967,
+   "t_end_ms": 35300,
+   "tiles_seen": [
+    1,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 49,
+   "t_start_ms": 35500,
+   "t_end_ms": 35833,
+   "tiles_seen": [
+    1,
+    6,
+    9,
+    8,
+    5
+   ],
+   "path": [
+    1,
+    6,
+    9,
+    8,
+    5
+   ],
+   "word": "antes",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 50,
+   "t_start_ms": 36067,
+   "t_end_ms": 36267,
+   "tiles_seen": [
+    1,
+    6,
+    9
+   ],
+   "path": [
+    1,
+    6,
+    9
+   ],
+   "word": "ant",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 51,
+   "t_start_ms": 36533,
+   "t_end_ms": 36767,
+   "tiles_seen": [
+    4,
+    1
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 52,
+   "t_start_ms": 37067,
+   "t_end_ms": 37267,
+   "tiles_seen": [
+    4,
+    1,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 53,
+   "t_start_ms": 37467,
+   "t_end_ms": 37733,
+   "tiles_seen": [
+    5,
+    1,
+    4,
+    8
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 54,
+   "t_start_ms": 37933,
+   "t_end_ms": 38600,
+   "tiles_seen": [
+    5,
+    4,
+    8,
+    9
+   ],
+   "path": [
+    5,
+    4,
+    8,
+    9
+   ],
+   "word": "stet",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 55,
+   "t_start_ms": 38767,
+   "t_end_ms": 39133,
+   "tiles_seen": [
+    5,
+    4,
+    8,
+    12,
+    13
+   ],
+   "path": [
+    5,
+    4,
+    8,
+    12,
+    13
+   ],
+   "word": "steed",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 56,
+   "t_start_ms": 39400,
+   "t_end_ms": 39433,
+   "tiles_seen": [
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 57,
+   "t_start_ms": 39667,
+   "t_end_ms": 39867,
+   "tiles_seen": [
+    4,
+    8,
+    12,
+    13
+   ],
+   "path": [
+    4,
+    8,
+    12,
+    13
+   ],
+   "word": "teed",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 58,
+   "t_start_ms": 40100,
+   "t_end_ms": 40200,
+   "tiles_seen": [
+    4,
+    8,
+    12
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 59,
+   "t_start_ms": 40367,
+   "t_end_ms": 40700,
+   "tiles_seen": [
+    13,
+    12,
+    8,
+    4,
+    5
+   ],
+   "path": [
+    13,
+    12,
+    8,
+    4,
+    5
+   ],
+   "word": "deets",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 60,
+   "t_start_ms": 40900,
+   "t_end_ms": 41100,
+   "tiles_seen": [
+    13,
+    12,
+    8,
+    4
+   ],
+   "path": [
+    13,
+    12,
+    8,
+    4
+   ],
+   "word": "deet",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 61,
+   "t_start_ms": 41300,
+   "t_end_ms": 41533,
+   "tiles_seen": [
+    13,
+    8
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 62,
+   "t_start_ms": 41800,
+   "t_end_ms": 42133,
+   "tiles_seen": [
+    13,
+    8,
+    5,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 63,
+   "t_start_ms": 42433,
+   "t_end_ms": 42567,
+   "tiles_seen": [
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 64,
+   "t_start_ms": 42733,
+   "t_end_ms": 43067,
+   "tiles_seen": [
+    13,
+    10,
+    6,
+    5,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 65,
+   "t_start_ms": 43300,
+   "t_end_ms": 43533,
+   "tiles_seen": [
+    13,
+    10,
+    6
+   ],
+   "path": [
+    13,
+    10,
+    6
+   ],
+   "word": "dun",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 66,
+   "t_start_ms": 43800,
+   "t_end_ms": 44000,
+   "tiles_seen": [
+    13,
+    10,
+    6
+   ],
+   "path": [
+    13,
+    10,
+    6,
+    3
+   ],
+   "word": "duns",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 67,
+   "t_start_ms": 44233,
+   "t_end_ms": 44700,
+   "tiles_seen": [
+    13,
+    10,
+    6,
+    9,
+    5
+   ],
+   "path": [
+    13,
+    10,
+    6,
+    9,
+    5
+   ],
+   "word": "dunts",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 68,
+   "t_start_ms": 44933,
+   "t_end_ms": 45200,
+   "tiles_seen": [
+    13,
+    10,
+    6,
+    9
+   ],
+   "path": [
+    13,
+    10,
+    6,
+    9
+   ],
+   "word": "dunt",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 69,
+   "t_start_ms": 45567,
+   "t_end_ms": 45667,
+   "tiles_seen": [
+    14,
+    10,
+    6
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 70,
+   "t_start_ms": 45900,
+   "t_end_ms": 46233,
+   "tiles_seen": [
+    14,
+    11,
+    6,
+    10
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 71,
+   "t_start_ms": 46433,
+   "t_end_ms": 46700,
+   "tiles_seen": [
+    14,
+    11,
+    6,
+    5
+   ],
+   "path": [
+    14,
+    11,
+    6,
+    5
+   ],
+   "word": "vins",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 72,
+   "t_start_ms": 46933,
+   "t_end_ms": 47200,
+   "tiles_seen": [
+    14,
+    11,
+    6
+   ],
+   "path": [
+    14,
+    11,
+    6
+   ],
+   "word": "vin",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 73,
+   "t_start_ms": 47433,
+   "t_end_ms": 47667,
+   "tiles_seen": [
+    6,
+    11,
+    14
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 74,
+   "t_start_ms": 47967,
+   "t_end_ms": 48267,
+   "tiles_seen": [
+    6,
+    10,
+    9,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 75,
+   "t_start_ms": 48600,
+   "t_end_ms": 48933,
+   "tiles_seen": [
+    6,
+    10,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 76,
+   "t_start_ms": 49133,
+   "t_end_ms": 49533,
+   "tiles_seen": [
+    6,
+    10,
+    13,
+    8,
+    5
+   ],
+   "path": [
+    6,
+    10,
+    13,
+    8,
+    5
+   ],
+   "word": "nudes",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 77,
+   "t_start_ms": 49733,
+   "t_end_ms": 50000,
+   "tiles_seen": [
+    6,
+    10,
+    13,
+    8
+   ],
+   "path": [
+    6,
+    10,
+    13,
+    8
+   ],
+   "word": "nude",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 78,
+   "t_start_ms": 50200,
+   "t_end_ms": 50500,
+   "tiles_seen": [
+    6,
+    10,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 79,
+   "t_start_ms": 50667,
+   "t_end_ms": 51000,
+   "tiles_seen": [
+    6,
+    10,
+    9,
+    8,
+    12
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 80,
+   "t_start_ms": 52000,
+   "t_end_ms": 52567,
+   "tiles_seen": [
+    6,
+    2,
+    5,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 81,
+   "t_start_ms": 52800,
+   "t_end_ms": 52933,
+   "tiles_seen": [
+    6,
+    2,
+    5
+   ],
+   "path": [
+    6,
+    2,
+    5
+   ],
+   "word": "nas",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 82,
+   "t_start_ms": 53167,
+   "t_end_ms": 53533,
+   "tiles_seen": [
+    6,
+    1,
+    0,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 83,
+   "t_start_ms": 53867,
+   "t_end_ms": 53933,
+   "tiles_seen": [
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 84,
+   "t_start_ms": 54367,
+   "t_end_ms": 54667,
+   "tiles_seen": [
+    1,
+    0,
+    4,
+    8,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 85,
+   "t_start_ms": 54833,
+   "t_end_ms": 55133,
+   "tiles_seen": [
+    1,
+    0,
+    4,
+    5
+   ],
+   "path": [
+    1,
+    0,
+    4,
+    5
+   ],
+   "word": "arts",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 86,
+   "t_start_ms": 55333,
+   "t_end_ms": 55500,
+   "tiles_seen": [
+    1,
+    0,
+    4
+   ],
+   "path": [
+    1,
+    0,
+    4
+   ],
+   "word": "art",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 87,
+   "t_start_ms": 56367,
+   "t_end_ms": 56700,
+   "tiles_seen": [
+    1,
+    0,
+    5,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 88,
+   "t_start_ms": 56900,
+   "t_end_ms": 57133,
+   "tiles_seen": [
+    1,
+    0,
+    5
+   ],
+   "path": [
+    1,
+    0,
+    5
+   ],
+   "word": "ars",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 89,
+   "t_start_ms": 57567,
+   "t_end_ms": 57800,
+   "tiles_seen": [
+    0,
+    1,
+    5,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 90,
+   "t_start_ms": 58100,
+   "t_end_ms": 58200,
+   "tiles_seen": [
+    0,
+    1,
+    5
+   ],
+   "path": [
+    0,
+    1,
+    5
+   ],
+   "word": "ras",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 91,
+   "t_start_ms": 58400,
+   "t_end_ms": 58700,
+   "tiles_seen": [
+    0,
+    1,
+    5,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 92,
+   "t_start_ms": 59033,
+   "t_end_ms": 59300,
+   "tiles_seen": [
+    0,
+    1,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 93,
+   "t_start_ms": 59533,
+   "t_end_ms": 59833,
+   "tiles_seen": [
+    0,
+    1,
+    4,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 94,
+   "t_start_ms": 60200,
+   "t_end_ms": 60500,
+   "tiles_seen": [
+    0,
+    1,
+    4,
+    5
+   ],
+   "path": [
+    0,
+    1,
+    4,
+    5
+   ],
+   "word": "rats",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 95,
+   "t_start_ms": 61267,
+   "t_end_ms": 61600,
+   "tiles_seen": [
+    13,
+    8,
+    4,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 96,
+   "t_start_ms": 61900,
+   "t_end_ms": 62533,
+   "tiles_seen": [
+    13,
+    8,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 97,
+   "t_start_ms": 63300,
+   "t_end_ms": 65667,
+   "tiles_seen": [
+    13,
+    8,
+    5,
+    1,
+    6,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 98,
+   "t_start_ms": 66000,
+   "t_end_ms": 66167,
+   "tiles_seen": [
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 99,
+   "t_start_ms": 67067,
+   "t_end_ms": 67467,
+   "tiles_seen": [
+    5,
+    8
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 100,
+   "t_start_ms": 67633,
+   "t_end_ms": 67933,
+   "tiles_seen": [
+    5,
+    8,
+    4,
+    1
+   ],
+   "path": [
+    5,
+    8,
+    4,
+    1
+   ],
+   "word": "seta",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 101,
+   "t_start_ms": 68033,
+   "t_end_ms": 68033,
+   "tiles_seen": [
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 102,
+   "t_start_ms": 68233,
+   "t_end_ms": 68767,
+   "tiles_seen": [
+    5,
+    8,
+    4
+   ],
+   "path": [
+    5,
+    8,
+    4
+   ],
+   "word": "set",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 103,
+   "t_start_ms": 68967,
+   "t_end_ms": 69467,
+   "tiles_seen": [
+    5,
+    8,
+    4,
+    1,
+    6,
+    3
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 104,
+   "t_start_ms": 69800,
+   "t_end_ms": 70867,
+   "tiles_seen": [
+    5,
+    8,
+    4
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 105,
+   "t_start_ms": 71467,
+   "t_end_ms": 72033,
+   "tiles_seen": [
+    5,
+    8,
+    4,
+    0,
+    1,
+    6,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 106,
+   "t_start_ms": 72400,
+   "t_end_ms": 73000,
+   "tiles_seen": [
+    13,
+    8,
+    4,
+    0,
+    1,
+    5,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 107,
+   "t_start_ms": 73233,
+   "t_end_ms": 73900,
+   "tiles_seen": [
+    13,
+    8,
+    4,
+    1,
+    6,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 108,
+   "t_start_ms": 74100,
+   "t_end_ms": 74733,
+   "tiles_seen": [
+    13,
+    8,
+    4,
+    0,
+    1,
+    5,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 109,
+   "t_start_ms": 74967,
+   "t_end_ms": 75667,
+   "tiles_seen": [
+    13,
+    8,
+    4,
+    0,
+    1,
+    6,
+    9,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 110,
+   "t_start_ms": 76933,
+   "t_end_ms": 77233,
+   "tiles_seen": [
+    4,
+    0,
+    1,
+    5,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 111,
+   "t_start_ms": 77767,
+   "t_end_ms": 77933,
+   "tiles_seen": [
+    0,
+    1,
+    5,
+    9
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  },
+  {
+   "seq": 112,
+   "t_start_ms": 78267,
+   "t_end_ms": 78500,
+   "tiles_seen": [
+    4,
+    1
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 113,
+   "t_start_ms": 78733,
+   "t_end_ms": 79033,
+   "tiles_seen": [
+    4,
+    1,
+    0,
+    5
+   ],
+   "path": [
+    4,
+    1,
+    0,
+    5
+   ],
+   "word": "tars",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 114,
+   "t_start_ms": 79233,
+   "t_end_ms": 79433,
+   "tiles_seen": [
+    4,
+    1,
+    0
+   ],
+   "path": [
+    4,
+    1,
+    0
+   ],
+   "word": "tar",
+   "result": "valid_new",
+   "points": 100
+  },
+  {
+   "seq": 115,
+   "t_start_ms": 79567,
+   "t_end_ms": 80133,
+   "tiles_seen": [
+    4,
+    1,
+    0,
+    5,
+    9,
+    8,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 116,
+   "t_start_ms": 80367,
+   "t_end_ms": 81967,
+   "tiles_seen": [
+    4,
+    1,
+    0,
+    5,
+    8,
+    13
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 117,
+   "t_start_ms": 82367,
+   "t_end_ms": 82867,
+   "tiles_seen": [
+    1,
+    0,
+    5,
+    8,
+    13
+   ],
+   "path": [
+    1,
+    0,
+    5,
+    8,
+    13
+   ],
+   "word": "arsed",
+   "result": "valid_new",
+   "points": 800
+  },
+  {
+   "seq": 118,
+   "t_start_ms": 83100,
+   "t_end_ms": 83400,
+   "tiles_seen": [
+    1,
+    0,
+    5,
+    8
+   ],
+   "path": [
+    1,
+    0,
+    5,
+    8
+   ],
+   "word": "arse",
+   "result": "valid_new",
+   "points": 400
+  },
+  {
+   "seq": 119,
+   "t_start_ms": 83633,
+   "t_end_ms": 83800,
+   "tiles_seen": [
+    1,
+    0
+   ],
+   "path": null,
+   "word": null,
+   "result": "not_a_word",
+   "points": 0
+  },
+  {
+   "seq": 120,
+   "t_start_ms": 84433,
+   "t_end_ms": 84567,
+   "tiles_seen": [
+    0,
+    1,
+    5
+   ],
+   "path": null,
+   "word": null,
+   "result": "already_found",
+   "points": 0
+  }
+ ],
+ "words": [
+  {
+   "word": "insetted",
+   "path": [
+    11,
+    6,
+    5,
+    8,
+    4,
+    9,
+    12,
+    13
+   ],
+   "points": 2200,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "transude",
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    5,
+    10,
+    13,
+    8
+   ],
+   "points": 2200,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ansated",
+   "path": [
+    2,
+    6,
+    5,
+    1,
+    4,
+    8,
+    13
+   ],
+   "points": 1800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "saunted",
+   "path": [
+    3,
+    2,
+    7,
+    6,
+    9,
+    12,
+    13
+   ],
+   "points": 1800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "tetanus",
+   "path": [
+    9,
+    8,
+    4,
+    1,
+    6,
+    7,
+    3
+   ],
+   "points": 1800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tranted",
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    9,
+    12,
+    13
+   ],
+   "points": 1800,
+   "found": true,
+   "found_at_ms": 21433,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "unsated",
+   "path": [
+    7,
+    6,
+    5,
+    1,
+    4,
+    8,
+    13
+   ],
+   "points": 1800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ansate",
+   "path": [
+    2,
+    6,
+    5,
+    1,
+    4,
+    8
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "anteed",
+   "path": [
+    1,
+    6,
+    9,
+    12,
+    8,
+    13
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "astuns",
+   "path": [
+    1,
+    5,
+    9,
+    10,
+    6,
+    3
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "detest",
+   "path": [
+    13,
+    12,
+    9,
+    8,
+    5,
+    4
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "etudes",
+   "path": [
+    12,
+    9,
+    10,
+    13,
+    8,
+    5
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "instar",
+   "path": [
+    11,
+    6,
+    5,
+    4,
+    1,
+    0
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "intuse",
+   "path": [
+    11,
+    6,
+    9,
+    10,
+    5,
+    8
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "nasute",
+   "path": [
+    6,
+    1,
+    5,
+    10,
+    9,
+    8
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "nudest",
+   "path": [
+    6,
+    10,
+    13,
+    8,
+    5,
+    4
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "nutted",
+   "path": [
+    6,
+    10,
+    9,
+    4,
+    8,
+    13
+   ],
+   "points": 1400,
+   "found": true,
+   "found_at_ms": 29667,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ranted",
+   "path": [
+    0,
+    1,
+    6,
+    9,
+    12,
+    13
+   ],
+   "points": 1400,
+   "found": true,
+   "found_at_ms": 18033,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ratted",
+   "path": [
+    0,
+    1,
+    4,
+    9,
+    8,
+    13
+   ],
+   "points": 1400,
+   "found": true,
+   "found_at_ms": 5733,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sansar",
+   "path": [
+    3,
+    2,
+    6,
+    5,
+    1,
+    0
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sastra",
+   "path": [
+    3,
+    2,
+    5,
+    4,
+    0,
+    1
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "saunas",
+   "path": [
+    3,
+    2,
+    7,
+    6,
+    1,
+    5
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "saunts",
+   "path": [
+    3,
+    2,
+    7,
+    6,
+    9,
+    5
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "snaste",
+   "path": [
+    3,
+    6,
+    1,
+    5,
+    9,
+    8
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "suints",
+   "path": [
+    3,
+    7,
+    11,
+    6,
+    9,
+    5
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sunset",
+   "path": [
+    3,
+    7,
+    6,
+    5,
+    8,
+    4
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "suttee",
+   "path": [
+    5,
+    10,
+    9,
+    4,
+    8,
+    12
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tasted",
+   "path": [
+    4,
+    1,
+    5,
+    9,
+    8,
+    13
+   ],
+   "points": 1400,
+   "found": true,
+   "found_at_ms": 24100,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tested",
+   "path": [
+    4,
+    8,
+    5,
+    9,
+    12,
+    13
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tetras",
+   "path": [
+    9,
+    8,
+    4,
+    0,
+    1,
+    5
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "transe",
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    5,
+    8
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "trants",
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    9,
+    5
+   ],
+   "points": 1400,
+   "found": true,
+   "found_at_ms": 19833,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "unused",
+   "path": [
+    7,
+    6,
+    10,
+    5,
+    8,
+    13
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "vinted",
+   "path": [
+    14,
+    11,
+    6,
+    9,
+    12,
+    13
+   ],
+   "points": 1400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "anted",
+   "path": [
+    1,
+    6,
+    9,
+    12,
+    13
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "antes",
+   "path": [
+    1,
+    6,
+    9,
+    8,
+    5
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 35500,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "arsed",
+   "path": [
+    1,
+    0,
+    5,
+    8,
+    13
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 82367,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "astun",
+   "path": [
+    1,
+    5,
+    9,
+    10,
+    6
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "aunts",
+   "path": [
+    2,
+    7,
+    6,
+    9,
+    5
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "deets",
+   "path": [
+    13,
+    12,
+    8,
+    4,
+    5
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 40367,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "dunts",
+   "path": [
+    13,
+    10,
+    6,
+    9,
+    5
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 44233,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "etnas",
+   "path": [
+    12,
+    9,
+    6,
+    1,
+    5
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "etude",
+   "path": [
+    8,
+    9,
+    10,
+    13,
+    12
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "inset",
+   "path": [
+    11,
+    6,
+    5,
+    8,
+    4
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "inust",
+   "path": [
+    11,
+    6,
+    10,
+    5,
+    4
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "nates",
+   "path": [
+    6,
+    1,
+    4,
+    8,
+    5
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "nudes",
+   "path": [
+    6,
+    10,
+    13,
+    8,
+    5
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 49133,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ranas",
+   "path": [
+    0,
+    1,
+    6,
+    2,
+    3
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "rants",
+   "path": [
+    0,
+    1,
+    6,
+    9,
+    5
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 18833,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rased",
+   "path": [
+    0,
+    1,
+    5,
+    8,
+    13
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rated",
+   "path": [
+    0,
+    1,
+    4,
+    8,
+    13
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 11000,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rates",
+   "path": [
+    0,
+    1,
+    4,
+    8,
+    5
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 9733,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sansa",
+   "path": [
+    3,
+    2,
+    6,
+    5,
+    1
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "sants",
+   "path": [
+    3,
+    2,
+    6,
+    9,
+    5
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 15667,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "sated",
+   "path": [
+    5,
+    1,
+    4,
+    8,
+    13
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sauna",
+   "path": [
+    3,
+    2,
+    7,
+    6,
+    1
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "saunt",
+   "path": [
+    3,
+    2,
+    7,
+    6,
+    9
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "snars",
+   "path": [
+    3,
+    6,
+    1,
+    0,
+    5
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "stede",
+   "path": [
+    5,
+    4,
+    8,
+    13,
+    12
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "steed",
+   "path": [
+    5,
+    4,
+    8,
+    12,
+    13
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 38767,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "stuns",
+   "path": [
+    5,
+    9,
+    10,
+    6,
+    3
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "suint",
+   "path": [
+    3,
+    7,
+    11,
+    6,
+    9
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sutta",
+   "path": [
+    5,
+    10,
+    9,
+    4,
+    1
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tanas",
+   "path": [
+    4,
+    1,
+    6,
+    2,
+    3
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "taste",
+   "path": [
+    4,
+    1,
+    5,
+    9,
+    8
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 24767,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "testa",
+   "path": [
+    9,
+    8,
+    5,
+    4,
+    1
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "teste",
+   "path": [
+    4,
+    8,
+    5,
+    9,
+    12
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "tetra",
+   "path": [
+    9,
+    8,
+    4,
+    0,
+    1
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "trans",
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    3
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "trant",
+   "path": [
+    4,
+    0,
+    1,
+    6,
+    9
+   ],
+   "points": 800,
+   "found": true,
+   "found_at_ms": 22533,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "tunas",
+   "path": [
+    9,
+    10,
+    6,
+    2,
+    3
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "unaus",
+   "path": [
+    10,
+    6,
+    2,
+    7,
+    3
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "unset",
+   "path": [
+    7,
+    6,
+    5,
+    8,
+    4
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "vinas",
+   "path": [
+    14,
+    11,
+    6,
+    1,
+    5
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "vints",
+   "path": [
+    14,
+    11,
+    6,
+    9,
+    5
+   ],
+   "points": 800,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "anas",
+   "path": [
+    1,
+    6,
+    2,
+    3
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ansa",
+   "path": [
+    1,
+    6,
+    3,
+    2
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ante",
+   "path": [
+    1,
+    6,
+    9,
+    12
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 34367,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ants",
+   "path": [
+    1,
+    6,
+    9,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "anus",
+   "path": [
+    2,
+    6,
+    10,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "arse",
+   "path": [
+    1,
+    0,
+    5,
+    8
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 83100,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "arts",
+   "path": [
+    1,
+    0,
+    4,
+    5
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 54833,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "asar",
+   "path": [
+    2,
+    5,
+    1,
+    0
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "ates",
+   "path": [
+    1,
+    4,
+    8,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "aunt",
+   "path": [
+    2,
+    7,
+    6,
+    9
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "dees",
+   "path": [
+    13,
+    12,
+    8,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "deet",
+   "path": [
+    13,
+    12,
+    8,
+    4
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 40900,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "duns",
+   "path": [
+    13,
+    10,
+    6,
+    3
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 43800,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "dunt",
+   "path": [
+    13,
+    10,
+    6,
+    9
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 44933,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "dust",
+   "path": [
+    13,
+    10,
+    5,
+    4
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "etas",
+   "path": [
+    8,
+    4,
+    1,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "etna",
+   "path": [
+    12,
+    9,
+    6,
+    1
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "etui",
+   "path": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "nats",
+   "path": [
+    6,
+    1,
+    4,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "nude",
+   "path": [
+    6,
+    10,
+    13,
+    8
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 49733,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "nuts",
+   "path": [
+    6,
+    10,
+    9,
+    5
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 30767,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rana",
+   "path": [
+    0,
+    1,
+    6,
+    2
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "rani",
+   "path": [
+    0,
+    1,
+    6,
+    11
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rant",
+   "path": [
+    0,
+    1,
+    6,
+    9
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 19367,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rase",
+   "path": [
+    0,
+    1,
+    5,
+    8
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rast",
+   "path": [
+    0,
+    1,
+    5,
+    9
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 27167,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "rate",
+   "path": [
+    0,
+    1,
+    4,
+    8
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 9100,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rats",
+   "path": [
+    0,
+    1,
+    4,
+    5
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 60200,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sans",
+   "path": [
+    3,
+    2,
+    6,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sant",
+   "path": [
+    3,
+    2,
+    6,
+    9
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 14200,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "sate",
+   "path": [
+    5,
+    1,
+    4,
+    8
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 11667,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "seed",
+   "path": [
+    5,
+    8,
+    12,
+    13
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "seta",
+   "path": [
+    5,
+    8,
+    4,
+    1
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 67633,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sett",
+   "path": [
+    5,
+    8,
+    4,
+    9
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "snar",
+   "path": [
+    3,
+    6,
+    1,
+    0
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "star",
+   "path": [
+    5,
+    4,
+    1,
+    0
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 7933,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sted",
+   "path": [
+    5,
+    4,
+    8,
+    13
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "stet",
+   "path": [
+    5,
+    4,
+    8,
+    9
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 37933,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "stud",
+   "path": [
+    5,
+    9,
+    10,
+    13
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "stun",
+   "path": [
+    5,
+    9,
+    10,
+    6
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "suni",
+   "path": [
+    3,
+    7,
+    6,
+    11
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "suns",
+   "path": [
+    3,
+    7,
+    6,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tana",
+   "path": [
+    4,
+    1,
+    6,
+    2
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "tans",
+   "path": [
+    4,
+    1,
+    6,
+    3
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tars",
+   "path": [
+    4,
+    1,
+    0,
+    5
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 78733,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "teed",
+   "path": [
+    4,
+    8,
+    12,
+    13
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 39667,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tees",
+   "path": [
+    9,
+    12,
+    8,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "test",
+   "path": [
+    4,
+    8,
+    5,
+    9
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tete",
+   "path": [
+    4,
+    8,
+    9,
+    12
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "tets",
+   "path": [
+    4,
+    8,
+    9,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tsar",
+   "path": [
+    9,
+    5,
+    1,
+    0
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tuna",
+   "path": [
+    9,
+    10,
+    6,
+    2
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tuns",
+   "path": [
+    9,
+    10,
+    6,
+    3
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "unau",
+   "path": [
+    10,
+    6,
+    2,
+    7
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "used",
+   "path": [
+    10,
+    5,
+    8,
+    13
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "utes",
+   "path": [
+    10,
+    9,
+    8,
+    5
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "vina",
+   "path": [
+    14,
+    11,
+    6,
+    1
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "vins",
+   "path": [
+    14,
+    11,
+    6,
+    3
+   ],
+   "points": 400,
+   "found": true,
+   "found_at_ms": 46433,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "vint",
+   "path": [
+    14,
+    11,
+    6,
+    9
+   ],
+   "points": 400,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "aas",
+   "path": [
+    1,
+    2,
+    3
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ana",
+   "path": [
+    1,
+    6,
+    2
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ani",
+   "path": [
+    1,
+    6,
+    11
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ant",
+   "path": [
+    1,
+    6,
+    9
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 36067,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "anu",
+   "path": [
+    2,
+    6,
+    10
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "ars",
+   "path": [
+    1,
+    0,
+    5
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 56900,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "art",
+   "path": [
+    1,
+    0,
+    4
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 55333,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ate",
+   "path": [
+    1,
+    4,
+    8
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "att",
+   "path": [
+    1,
+    4,
+    9
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "dee",
+   "path": [
+    13,
+    8,
+    12
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "dui",
+   "path": [
+    13,
+    10,
+    11
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "dun",
+   "path": [
+    13,
+    10,
+    6
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 43300,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "est",
+   "path": [
+    8,
+    5,
+    4
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "eta",
+   "path": [
+    8,
+    4,
+    1
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ins",
+   "path": [
+    11,
+    6,
+    3
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "nas",
+   "path": [
+    6,
+    1,
+    5
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 52800,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "nat",
+   "path": [
+    6,
+    1,
+    4
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "nus",
+   "path": [
+    6,
+    7,
+    3
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "nut",
+   "path": [
+    6,
+    10,
+    9
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 31200,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ran",
+   "path": [
+    0,
+    1,
+    6
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ras",
+   "path": [
+    0,
+    1,
+    5
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 58100,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "rat",
+   "path": [
+    0,
+    1,
+    4
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 6667,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "san",
+   "path": [
+    3,
+    2,
+    6
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 14633,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "sar",
+   "path": [
+    5,
+    1,
+    0
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "sat",
+   "path": [
+    5,
+    1,
+    4
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 7200,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sau",
+   "path": [
+    3,
+    2,
+    7
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sed",
+   "path": [
+    5,
+    8,
+    13
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "see",
+   "path": [
+    5,
+    8,
+    12
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "set",
+   "path": [
+    5,
+    8,
+    4
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 68233,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "sud",
+   "path": [
+    5,
+    10,
+    13
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "sui",
+   "path": [
+    3,
+    7,
+    11
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 33300,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "sun",
+   "path": [
+    3,
+    7,
+    6
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tan",
+   "path": [
+    4,
+    1,
+    6
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 23500,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tar",
+   "path": [
+    4,
+    1,
+    0
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 79233,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tas",
+   "path": [
+    4,
+    1,
+    5
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 25767,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ted",
+   "path": [
+    4,
+    8,
+    13
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tee",
+   "path": [
+    4,
+    8,
+    12
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tes",
+   "path": [
+    4,
+    8,
+    5
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "tet",
+   "path": [
+    4,
+    8,
+    9
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tui",
+   "path": [
+    9,
+    10,
+    11
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "tun",
+   "path": [
+    9,
+    10,
+    6
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "uni",
+   "path": [
+    7,
+    6,
+    11
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "uns",
+   "path": [
+    7,
+    6,
+    5
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "use",
+   "path": [
+    10,
+    5,
+    8
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "ute",
+   "path": [
+    10,
+    9,
+    8
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": false,
+   "in_base": true
+  },
+  {
+   "word": "uts",
+   "path": [
+    10,
+    9,
+    5
+   ],
+   "points": 100,
+   "found": false,
+   "found_at_ms": null,
+   "in_enable": true,
+   "in_base": true
+  },
+  {
+   "word": "vin",
+   "path": [
+    14,
+    11,
+    6
+   ],
+   "points": 100,
+   "found": true,
+   "found_at_ms": 46933,
+   "in_enable": false,
+   "in_base": true
+  }
+ ],
+ "all_words": null,
+ "prev_id": null,
+ "next_id": "8736dda5-5575-5983-99a1-ced1d74fc115"
+}

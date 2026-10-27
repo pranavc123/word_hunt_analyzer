@@ -1,0 +1,114 @@
+[
+ {
+  "id": "77284a44-d7b0-5c9f-8865-c22b3499bad2",
+  "started_at": "2026-10-26T00:06:56.067000+00:00",
+  "device": "oracle",
+  "board_count": 6,
+  "played_count": 6,
+  "keep_rate": 1.0,
+  "count_30k": 3,
+  "skip_seconds": 0.0,
+  "verified_count": 3,
+  "needs_review": 3,
+  "needs_letter_fix": 0,
+  "best_board": {
+   "id": "fb790ded-d9f6-56e0-a6d0-c52eaacc80a7",
+   "seq": 0,
+   "status": "played",
+   "review_status": "needs_review",
+   "letters": "FDTYOVREIVALLMES",
+   "opened_at": "2026-10-26T20:00:00+00:00",
+   "view_ms": 80733,
+   "final_score": null,
+   "final_word_count": null,
+   "extracted_score": 33000,
+   "max_points": 148400,
+   "solver_words": 246,
+   "fixes": [],
+   "all_words_status": "pending"
+  },
+  "biggest_miss": {
+   "word": "rewakens",
+   "points": 2200,
+   "board_id": "0081c1ce-eddf-5899-8078-d9b116ab0672"
+  },
+  "score_by_position": [
+   {
+    "seq": 0,
+    "score": 33000
+   },
+   {
+    "seq": 1,
+    "score": 33000
+   },
+   {
+    "seq": 2,
+    "score": 33000
+   },
+   {
+    "seq": 3,
+    "score": 23400
+   },
+   {
+    "seq": 4,
+    "score": 23400
+   },
+   {
+    "seq": 5,
+    "score": 23400
+   }
+  ]
+ },
+ {
+  "id": "a728685e-8e47-5b31-bdd5-26f7b5f7447f",
+  "started_at": "2026-10-25T20:00:00+00:00",
+  "device": "oracle",
+  "board_count": 6,
+  "played_count": 4,
+  "keep_rate": 0.667,
+  "count_30k": 1,
+  "skip_seconds": 8.5,
+  "verified_count": 3,
+  "needs_review": 1,
+  "needs_letter_fix": 2,
+  "best_board": {
+   "id": "5c4147ce-0a8f-5857-8b25-5c347fcade51",
+   "seq": 4,
+   "status": "played",
+   "review_status": "needs_review",
+   "letters": "ARNHIORHDESFESAW",
+   "opened_at": "2026-10-25T20:06:20+00:00",
+   "view_ms": 80766,
+   "final_score": null,
+   "final_word_count": null,
+   "extracted_score": 36500,
+   "max_points": 138400,
+   "solver_words": 244,
+   "fixes": [],
+   "all_words_status": "pending"
+  },
+  "biggest_miss": {
+   "word": "insetted",
+   "points": 2200,
+   "board_id": "45c19bfc-6925-5bb6-8065-94c4d407244a"
+  },
+  "score_by_position": [
+   {
+    "seq": 0,
+    "score": 28000
+   },
+   {
+    "seq": 1,
+    "score": 28000
+   },
+   {
+    "seq": 2,
+    "score": 28000
+   },
+   {
+    "seq": 4,
+    "score": 36500
+   }
+  ]
+ }
+]

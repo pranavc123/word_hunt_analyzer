@@ -1,0 +1,150 @@
+{
+ "id": "a728685e-8e47-5b31-bdd5-26f7b5f7447f",
+ "started_at": "2026-10-25T20:00:00+00:00",
+ "device": "oracle",
+ "board_count": 6,
+ "played_count": 4,
+ "keep_rate": 0.667,
+ "count_30k": 1,
+ "skip_seconds": 8.5,
+ "verified_count": 3,
+ "needs_review": 1,
+ "needs_letter_fix": 2,
+ "best_board": {
+  "id": "5c4147ce-0a8f-5857-8b25-5c347fcade51",
+  "seq": 4,
+  "status": "played",
+  "review_status": "needs_review",
+  "letters": "ARNHIORHDESFESAW",
+  "opened_at": "2026-10-25T20:06:20+00:00",
+  "view_ms": 80766,
+  "final_score": null,
+  "final_word_count": null,
+  "extracted_score": 36500,
+  "max_points": 138400,
+  "solver_words": 244,
+  "fixes": [],
+  "all_words_status": "pending"
+ },
+ "biggest_miss": {
+  "word": "insetted",
+  "points": 2200,
+  "board_id": "45c19bfc-6925-5bb6-8065-94c4d407244a"
+ },
+ "score_by_position": [
+  {
+   "seq": 0,
+   "score": 28000
+  },
+  {
+   "seq": 1,
+   "score": 28000
+  },
+  {
+   "seq": 2,
+   "score": 28000
+  },
+  {
+   "seq": 4,
+   "score": 36500
+  }
+ ],
+ "boards": [
+  {
+   "id": "8d95edd7-d6f6-5c54-852f-21e8c0044d51",
+   "seq": 0,
+   "status": "played",
+   "review_status": "verified",
+   "letters": "RAASTSNUETUIEDVI",
+   "opened_at": "2026-10-25T20:00:00+00:00",
+   "view_ms": 80766,
+   "final_score": 28000,
+   "final_word_count": 54,
+   "extracted_score": 28000,
+   "max_points": 112300,
+   "solver_words": 181,
+   "fixes": [],
+   "all_words_status": "pending"
+  },
+  {
+   "id": "8736dda5-5575-5983-99a1-ced1d74fc115",
+   "seq": 1,
+   "status": "played",
+   "review_status": "verified",
+   "letters": "RAASTSNUETUIEDVI",
+   "opened_at": "2026-10-25T20:01:35+00:00",
+   "view_ms": 80766,
+   "final_score": 28000,
+   "final_word_count": 54,
+   "extracted_score": 28000,
+   "max_points": 112300,
+   "solver_words": 181,
+   "fixes": [],
+   "all_words_status": "pending"
+  },
+  {
+   "id": "45c19bfc-6925-5bb6-8065-94c4d407244a",
+   "seq": 2,
+   "status": "played",
+   "review_status": "verified",
+   "letters": "RAASTSNUETUIEDVI",
+   "opened_at": "2026-10-25T20:03:10+00:00",
+   "view_ms": 80766,
+   "final_score": 28000,
+   "final_word_count": 54,
+   "extracted_score": 28000,
+   "max_points": 112300,
+   "solver_words": 181,
+   "fixes": [],
+   "all_words_status": "pending"
+  },
+  {
+   "id": "4c4a2509-83ae-554d-9525-db2378ff92fb",
+   "seq": 3,
+   "status": "skipped",
+   "review_status": "needs_letter_fix",
+   "letters": null,
+   "opened_at": "2026-10-25T20:04:45+00:00",
+   "view_ms": 833,
+   "final_score": null,
+   "final_word_count": null,
+   "extracted_score": null,
+   "max_points": null,
+   "solver_words": null,
+   "fixes": [],
+   "all_words_status": "none"
+  },
+  {
+   "id": "5c4147ce-0a8f-5857-8b25-5c347fcade51",
+   "seq": 4,
+   "status": "played",
+   "review_status": "needs_review",
+   "letters": "ARNHIORHDESFESAW",
+   "opened_at": "2026-10-25T20:06:20+00:00",
+   "view_ms": 80766,
+   "final_score": null,
+   "final_word_count": null,
+   "extracted_score": 36500,
+   "max_points": 138400,
+   "solver_words": 244,
+   "fixes": [],
+   "all_words_status": "pending"
+  },
+  {
+   "id": "3d6cd318-ae6d-5034-8719-cd35e032b3c4",
+   "seq": 5,
+   "status": "skipped",
+   "review_status": "needs_letter_fix",
+   "letters": null,
+   "opened_at": "2026-10-25T20:07:55+00:00",
+   "view_ms": 7700,
+   "final_score": null,
+   "final_word_count": null,
+   "extracted_score": null,
+   "max_points": null,
+   "solver_words": null,
+   "fixes": [],
+   "all_words_status": "none"
+  }
+ ]
+}
