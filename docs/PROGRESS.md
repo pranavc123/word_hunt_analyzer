@@ -52,4 +52,4 @@ Current sprint: **S3** → `docs/sprints/S3-ingest-live.md`
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
-- S3.T6: live session #1 (2026-10-27, 4.3 min, 4 boards) ran a Debug build at 4.4 fps → 0/2 verified. Release build installed; needs live session #2.
+- S3.T6: live #1 Debug build 4.4 fps; live #2 Release 52 fps but end-banner crops mid-slide → 0/2 verified. Time-based end crop installed 2026-10-27; needs live session #3.

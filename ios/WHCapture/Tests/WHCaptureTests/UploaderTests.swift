@@ -168,16 +168,16 @@ final class CropTests: XCTestCase {
         CVPixelBufferLockBaseAddress(pb, .readOnly)
         defer { CVPixelBufferUnlockBaseAddress(pb, .readOnly) }
         let v = try XCTUnwrap(FrameView(pb))
-        for f in 0..<10 { store.observe(frame: f, screen: .end, label: .end, still: false, view: v) }
-        store.observe(frame: 10, screen: .board, label: .board, still: false, view: v)
-        store.observe(frame: 11, screen: .board, label: .board, still: false, view: v)  // throttled
-        store.capture(frame: 11, rect: "list_band", view: v)
+        for f in 0..<40 { store.observe(frame: f, screen: .end, label: .end, still: false, view: v) }
+        store.observe(frame: 40, screen: .board, label: .board, still: false, view: v)
+        store.observe(frame: 41, screen: .board, label: .board, still: false, view: v)  // throttled
+        store.capture(frame: 41, rect: "list_band", view: v)
         XCTAssertNil(store.image(for: CropRequest(name: "e", frame: 2, rect: "roi_end_list")))  // fell out of the ring
-        XCTAssertNotNil(store.image(for: CropRequest(name: "e", frame: 8, rect: "roi_end_list")))
-        let board = try XCTUnwrap(store.image(for: CropRequest(name: "b", frame: 11, rect: "board")))  // nearest earlier
+        XCTAssertNotNil(store.image(for: CropRequest(name: "e", frame: 38, rect: "roi_end_list")))
+        let board = try XCTUnwrap(store.image(for: CropRequest(name: "b", frame: 41, rect: "board")))  // nearest earlier
         XCTAssertEqual(board.width, cal.boardRect[2])
-        let jpegs = store.jpegs(for: [CropRequest(name: "allwords_0_0.jpg", frame: 11, rect: "list_band")])
+        let jpegs = store.jpegs(for: [CropRequest(name: "allwords_0_0.jpg", frame: 41, rect: "list_band")])
         XCTAssertEqual(Array(jpegs.keys), ["allwords_0_0.jpg"])
-        XCTAssertNil(store.image(for: CropRequest(name: "x", frame: 11, rect: "list_band")))  // released
+        XCTAssertNil(store.image(for: CropRequest(name: "x", frame: 41, rect: "list_band")))  // released
     }
 }

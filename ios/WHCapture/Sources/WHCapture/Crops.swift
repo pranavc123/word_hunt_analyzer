@@ -20,7 +20,7 @@ public final class CropStore {
     private(set) var wanted: [String: [Int: GrayImage]] = [:]  // rect → frame → crop
     private(set) var endRing: [Int: (GrayImage, GrayImage)] = [:]  // frame → (banner, list)
     private(set) var stillRing: [Int: GrayImage] = [:]  // still all-words frames
-    public let endRingSize = 6
+    public let endRingSize = 30  // ≥ 0.5 s of end frames at 60 fps (crop is taken 200 ms back)
     public let stillRingSize = 10
     public let boardEvery = 6
 

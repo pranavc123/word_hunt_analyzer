@@ -62,10 +62,19 @@ def _sub(rect: list[int], inner: list[int]) -> tuple[slice, slice]:
 
 
 def read_end_banner(banner: np.ndarray, cal: dict, digits: dict | None = None):
-    """(words, score) from the end-screen banner crop."""
+    """(words, score) from the end-screen banner crop. The two text lines are located from the
+    ink itself (robust to the screen sliding a little); calibrated offsets are the fallback."""
     digits = digits or lt.default_templates("digits")
     rect = crop_rect(cal, "roi_end_banner")
     g = to_cal_scale(banner, rect)
+    ink_rows = (g < 120).sum(1) > 3
+    lines = [(a, b) for a, b in _runs(ink_rows) if b - a >= 15]
+    if len(lines) >= 2:
+        (a1, b1), (a2, b2) = lines[0], lines[-1]
+        w, _ = lt.read_number(g[max(0, a1 - 3) : b1 + 3], digits)
+        s, _ = lt.read_number(g[max(0, a2 - 3) : b2 + 3], digits)
+        if w is not None and s is not None:
+            return w, s
     w, _ = lt.read_number(g[_sub(rect, cal["roi_end_words"])], digits)
     s, _ = lt.read_number(g[_sub(rect, cal["roi_end_score"])], digits)
     return w, s

@@ -104,6 +104,9 @@
 - #1 2026-10-27: 4.3 min, 4 boards (2 played), Debug build → 4.4 fps, 13,922/15,420 frames dropped,
   mem 8.8 MB; 0/2 verified (7 and 9 of 63/57 words caught; a played board filed as skipped: its ~1 s
   end screen was missed). Phone ROI values fit the board thresholds; letters + end numbers read.
+- #2 2026-10-27: 3.7 min, 7 boards (2 played), Release → 51.7 fps p50 (p5 51.5), 1,498/13,296 dropped,
+  mem 7.5 MB; 75 and 52 accepted words captured; 0/2 verified only because the end-banner crops were
+  taken mid-slide (fixed: time-based end crop).
 
 ## Go / no-go
 - 2026-10-26 GO. `tools/report.py --gate s0` = PASS: segmentation 27/27, reconciliation 11/12, all-words 6/6

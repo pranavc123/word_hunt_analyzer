@@ -25,7 +25,7 @@ END_WITHIN_MS = 4000  # an end screen this soon after a board closes → played
 SETTLE_MS = 800  # board slide-in: crop the board at least this long after open
 FIRST_CROP_MS = 200  # all-words list animates in: first crop no earlier than this
 AFTER_FRAMES = 4  # read the WORDS count this many frames after a release
-END_CROP_BACK = 3  # end list: crop this many frames before the end screen leaves
+END_CROP_BACK_MS = 200  # end screen: crop the latest frame at least this long before it leaves
 ALLWORDS_MERGE_MS = 1500
 BAND_PX = 2600 - 612  # all-words list band height
 CROP_EVERY_PX = BAND_PX // 2  # save a list crop every ~0.5 viewport of scrolling
@@ -285,7 +285,10 @@ class Machine:
         self.crops.append(CropRequest(f"board_{b.seq}.jpg", crop, "board"))
         end_banner = end_list = None
         if played:
-            fe = max(b.end_first, b.end_last - END_CROP_BACK)
+            # the end screen slides away at the end: step back END_CROP_BACK_MS (frame-rate independent)
+            fe = b.end_last
+            while fe > b.end_first and self.t[b.end_last] - self.t[fe] < END_CROP_BACK_MS:
+                fe -= 1
             end_banner, end_list = f"end_banner_{b.seq}.jpg", f"end_list_{b.seq}.jpg"
             self.crops.append(CropRequest(end_banner, fe, "roi_end_banner"))
             self.crops.append(CropRequest(end_list, fe, "roi_end_list"))

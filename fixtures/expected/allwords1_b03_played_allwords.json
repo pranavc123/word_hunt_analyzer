@@ -1747,12 +1747,12 @@
   },
   {
    "name": "end_banner_0.jpg",
-   "frame": 2516,
+   "frame": 2513,
    "rect": "roi_end_banner"
   },
   {
    "name": "end_list_0.jpg",
-   "frame": 2516,
+   "frame": 2513,
    "rect": "roi_end_list"
   },
   {

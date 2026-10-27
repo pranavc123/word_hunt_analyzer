@@ -1732,12 +1732,12 @@
   },
   {
    "name": "end_banner_0.jpg",
-   "frame": 2500,
+   "frame": 2497,
    "rect": "roi_end_banner"
   },
   {
    "name": "end_list_0.jpg",
-   "frame": 2500,
+   "frame": 2497,
    "rect": "roi_end_list"
   }
  ]

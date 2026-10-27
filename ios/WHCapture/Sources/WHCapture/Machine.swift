@@ -15,7 +15,7 @@ public enum MachineConfig {
     public static let settleMs = 800
     public static let firstCropMs = 200
     public static let afterFrames = 4
-    public static let endCropBack = 3
+    public static let endCropBackMs = 200
     public static let allWordsMergeMs = 1500
     public static let bandPx = 2600 - 612
     public static let cropEveryPx = bandPx / 2
@@ -338,7 +338,8 @@ public final class Machine {
         crops.append(CropRequest(name: "board_\(b.seq).jpg", frame: b.cropFrame ?? b.last, rect: "board"))
         var endBanner: String?, endList: String?
         if played, let ef = b.endFirst, let el = b.endLast {
-            let fe = max(ef, el - MachineConfig.endCropBack)
+            var fe = el  // the end screen slides away: step back endCropBackMs (frame-rate independent)
+            while fe > ef && t[el] - t[fe] < MachineConfig.endCropBackMs { fe -= 1 }
             endBanner = "end_banner_\(b.seq).jpg"
             endList = "end_list_\(b.seq).jpg"
             crops.append(CropRequest(name: endBanner!, frame: fe, rect: "roi_end_banner"))
