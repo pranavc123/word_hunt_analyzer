@@ -51,6 +51,7 @@ Current sprint: **S4** → `docs/sprints/S4-review-app.md`
 - S3.T5 ✓ 2026-10-26 — DebugRecorder (160-px gray ring, ±0.5 s around colour≠words / unreadable WORDS, 20 MB cap) behind WH_DEBUG; server accepts debug_*.jpg; tools/reprocess.py.
 - S3.T6 ✓ 2026-10-27 — 3 short live sessions (4, 7, 9 boards): #1 Debug build 4.4 fps; #2 52 fps, end crops mid-slide; #3 52 fps, 2/2 played verified after fixes.
 - S3.T7 ✓ 2026-10-27 — gate s3 PASS (session #3). Fixes: Release builds, time-based end crop, path-ordered same-frame tiles, letter self-correction from end-screen words, drop one extra acceptance; `boards.fixes` column.
+- S4.T2 ✓ 2026-10-27 — read API: /v1/sessions, /v1/sessions/{id} (§7 metrics), /v1/boards/{id}, PATCH letters (re-run with confirmed letters), /v1/images (auth), PWA served at /.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->

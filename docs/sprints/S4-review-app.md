@@ -11,7 +11,7 @@ verified, ≥ 90% of boards need no letter fix) AND `pnpm -C web build` succeeds
   - done: script runs; `GET /v1/sessions` on dev.db returns 2
   - deps: S3
 
-- [ ] **S4.T2** Read API `[parallel]`
+- [x] **S4.T2** Read API `[parallel]`
   - files: `server/app/api_read.py`, `server/tests/test_read.py`
   - do: `GET /v1/sessions`, `/v1/sessions/{id}` (summary metrics PLAN §7 per-session), `/v1/boards/{id}` (letters, conf, attempts, solver words + paths, found flags), `PATCH /v1/boards/{id}/letters` (re-solve + re-reconcile). Serve `web/dist` at `/`.
   - done: `uv run pytest -q server/tests/test_read.py`

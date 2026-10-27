@@ -186,19 +186,45 @@ def process_board(
     trie,
     enable: set[str],
     templates: dict | None = None,
+    letters_override: str | None = None,
 ) -> dict:
     """One uploaded BoardRecord → letters, words, reconciliation and the board's word list.
-    images: {"board": ..., "end_banner": ..., "end_list": ...} (gray or RGB, any scale)."""
+    images: {"board": ..., "end_banner": ..., "end_list": ...} (gray or RGB, any scale).
+    letters_override: letters a person confirmed (used as-is, no automatic letter fixes)."""
     out: dict = {"error": None}
-    if "board" not in images:
-        return {**out, "review_status": "needs_letter_fix", "error": "no board image"}
-    rect = crop_rect(cal, "board")
-    g = to_cal_scale(images["board"], rect)
-    local = {
-        "tile_centers": [[x - rect[0], y - rect[1]] for x, y in cal["tile_centers"]],
-        "tile_size": cal["tile_size"],
-    }
-    ranked = lt.rank_board(g, local, templates or lt.default_templates("letters"))
+    if letters_override:
+        ranked = [[(c, 1.0)] for c in letters_override.upper()]
+    elif "board" not in images:  # keep the attempts; letters come from a person (PATCH)
+        attempts = [
+            {
+                "seq": a["seq"],
+                "t_start_ms": a["t_start_ms"],
+                "t_end_ms": a["t_end_ms"],
+                "tiles_seen": a["tiles_seen"],
+                "result": a["release_state"],
+                "word": None,
+                "path": None,
+                "points": 0,
+                "confidence": a.get("confidence", 1.0),
+            }
+            for a in record.get("attempts", [])
+        ]
+        return {
+            **out,
+            "letters": None,
+            "review_status": "needs_letter_fix",
+            "error": "no board image",
+            "attempts": attempts,
+            "board_words": {},
+        }
+    else:
+        rect = crop_rect(cal, "board")
+        g = to_cal_scale(images["board"], rect)
+        local = {
+            "tile_centers": [[x - rect[0], y - rect[1]] for x, y in cal["tile_centers"]],
+            "tile_size": cal["tile_size"],
+        }
+        ranked = lt.rank_board(g, local, templates or lt.default_templates("letters"))
     letters = "".join(r[0][0] for r in ranked)
     margins = [r[0][1] - (r[1][1] if len(r) > 1 else 0.0) for r in ranked]
     out.update(letters=letters, letters_conf=[round(float(m), 3) for m in margins])
@@ -214,7 +240,7 @@ def process_board(
         rows = read_end_list(images["end_list"], cal) if "end_list" in images else []
         ev = _evaluate(letters, attempts, rows, end_words, end_score, trie)
         fixes: list[str] = []
-        if not ev["rec"]["verified"]:
+        if not ev["rec"]["verified"] and not letters_override:
             better = _try_letter_fixes(
                 letters, ranked, margins, attempts, rows, end_words, end_score, trie, ev
             )

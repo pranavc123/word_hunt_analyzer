@@ -9,7 +9,7 @@ from datetime import UTC, datetime
 from fastapi import Depends, FastAPI, HTTPException, Request
 from pydantic import BaseModel
 
-from . import api_ingest, db, worker  # noqa: F401  (worker registers its ingest hooks)
+from . import api_ingest, api_read, db, worker  # noqa: F401  (worker registers its ingest hooks)
 from .api_ingest import require_token
 
 VERSION = "0.1.0"
@@ -23,6 +23,7 @@ async def lifespan(_app: FastAPI):
 
 app = FastAPI(title="Word Hunt Analyzer", version=VERSION, lifespan=lifespan)
 app.include_router(api_ingest.router)
+app.include_router(api_read.router)
 
 
 class Health(BaseModel):
@@ -49,3 +50,6 @@ async def diag(request: Request) -> dict:
     with out.open("a") as f:
         f.write(json.dumps(payload, separators=(",", ":")) + "\n")
     return {"ok": True}
+
+
+api_read.mount_web(app)  # last: the SPA catch-all must not shadow API routes
