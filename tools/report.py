@@ -281,7 +281,41 @@ def gate_s3() -> tuple[bool, list[str]]:
     ]
 
 
-GATES = {"s0": gate_s0, "s1": gate_s1, "s2": gate_s2, "s3": gate_s3}
+def gate_s4(last_n: int = 3) -> tuple[bool, list[str]]:
+    """Latest `last_n` live sessions pooled: ≥ 95% of played boards verified, ≥ 90% of boards need
+    no letter fix; and the web app builds."""
+    sys.path.insert(0, str(ROOT / "server"))
+    from sqlmodel import select
+
+    from app.db import session
+    from app.models import Board, Session
+
+    with session() as s:
+        recent = s.exec(select(Session).order_by(Session.started_at.desc()).limit(last_n)).all()
+        boards = s.exec(select(Board).where(Board.session_id.in_([x.id for x in recent]))).all()
+    played = [b for b in boards if b.status == "played"]
+    verified = sum(b.review_status == "verified" for b in played)
+    fixes = sum(b.review_status == "needs_letter_fix" for b in boards)
+    v_rate = verified / len(played) if played else 0.0
+    f_rate = 1 - fixes / len(boards) if boards else 0.0
+    code, _ = _run(["pnpm", "-C", "web", "build"], timeout=600)
+    checks = [
+        (len(recent) >= last_n, f"live sessions: {len(recent)} (need {last_n})"),
+        (
+            v_rate >= 0.95,
+            f"played boards verified: {verified}/{len(played)} ({v_rate:.0%}, need ≥ 95%)",
+        ),
+        (
+            f_rate >= 0.90,
+            f"boards needing no letter fix: {len(boards) - fixes}/{len(boards)}"
+            f" ({f_rate:.0%}, need ≥ 90%)",
+        ),
+        (code == 0, f"web build: {'ok' if code == 0 else 'FAILED'}"),
+    ]
+    return all(ok for ok, _ in checks), [("ok   " if ok else "FAIL ") + m for ok, m in checks]
+
+
+GATES = {"s0": gate_s0, "s1": gate_s1, "s2": gate_s2, "s3": gate_s3, "s4": gate_s4}
 
 
 def main() -> int:

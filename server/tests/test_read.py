@@ -54,7 +54,7 @@ def test_sessions_summary_and_board_detail(client):
     assert len(sessions) == 1
     s = client.get(f"/v1/sessions/{sessions[0]['id']}", headers=AUTH).json()
     assert s["board_count"] == 2 and s["played_count"] == 1 and s["keep_rate"] == 0.5
-    assert s["verified_count"] == 1 and s["needs_letter_fix"] == 1  # the skip has no image
+    assert s["verified_count"] == 1 and s["needs_letter_fix"] == 0  # a 0.8 s skip is a glimpse
     assert s["best_board"]["id"] == played["board_id"] and s["biggest_miss"]["points"] > 0
     assert [b["seq"] for b in s["boards"]] == [0, 1]
 

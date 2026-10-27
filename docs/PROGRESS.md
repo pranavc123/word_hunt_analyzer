@@ -53,6 +53,9 @@ Current sprint: **S4** → `docs/sprints/S4-review-app.md`
 - S3.T7 ✓ 2026-10-27 — gate s3 PASS (session #3). Fixes: Release builds, time-based end crop, path-ordered same-frame tiles, letter self-correction from end-screen words, drop one extra acceptance; `boards.fixes` column.
 - S4.T2 ✓ 2026-10-27 — read API: /v1/sessions, /v1/sessions/{id} (§7 metrics), /v1/boards/{id}, PATCH letters (re-run with confirmed letters), /v1/images (auth), PWA served at /.
 - S4.T1 ✓ 2026-10-27 — tools/seed_fixture_db.py: $WH_DATA/dev.db (2 sessions, 12 boards: verified / needs_review / needs_letter_fix + a matched all-words capture) via the real ingest + worker.
+- S4.T4–T7 ✓ 2026-10-27 — Board (SVG, path under letters), Sessions + Session summary, Board confirm (16-letter field, tap-to-overwrite), Game review (scrubber, Found/Missed/Wasted); 11 web tests on real dev-DB fixtures; checked in the browser at phone size.
+- S4 extras 2026-10-27 — self-improving letter templates ($WH_DATA/templates/letters_store.npz, fed by verified/confirmed boards); skips < 1 s are glimpses (no letter-fix request); gate s4 pools the latest 3 sessions.
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
+- S4.T8: play 2 more sessions (short is fine) and use the review app on the phone (Safari → https://<mac>.<tailnet>.ts.net → Add to Home Screen → Settings → token); note any friction. Then the agent runs the s4 gate.

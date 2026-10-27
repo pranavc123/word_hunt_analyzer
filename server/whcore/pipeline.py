@@ -18,6 +18,7 @@ from .scoring import word_points
 from .solver import best_path, solve
 from .words import build_words
 
+GLIMPSE_MS = 1000  # skips shorter than this are glimpses (board still sliding in)
 LOW_LETTER_MARGIN = 0.03  # best-vs-runner-up NCC margin below this → needs_letter_fix
 TEXT_GRAY = 110  # tan list words / white points are brighter than this; the panel is ~63
 
@@ -42,6 +43,16 @@ def to_cal_scale(img: np.ndarray, rect: list[int]) -> np.ndarray:
     return cv2.resize(
         g, (w, h), interpolation=cv2.INTER_CUBIC if g.shape[1] < w else cv2.INTER_AREA
     )
+
+
+def board_glyph_input(board: np.ndarray, cal: dict) -> tuple[np.ndarray, dict]:
+    """(board crop at calibration scale, calibration relative to that crop)."""
+    rect = crop_rect(cal, "board")
+    local = {
+        "tile_centers": [[x - rect[0], y - rect[1]] for x, y in cal["tile_centers"]],
+        "tile_size": cal["tile_size"],
+    }
+    return to_cal_scale(board, rect), local
 
 
 def read_board_letters(board: np.ndarray, cal: dict, templates: dict | None = None):
@@ -209,10 +220,12 @@ def process_board(
             }
             for a in record.get("attempts", [])
         ]
+        glimpse = record.get("status") == "skipped" and record.get("view_ms", 0) < GLIMPSE_MS
         return {
             **out,
             "letters": None,
-            "review_status": "needs_letter_fix",
+            "glimpse": glimpse,
+            "review_status": "skipped" if glimpse else "needs_letter_fix",
             "error": "no board image",
             "attempts": attempts,
             "board_words": {},
@@ -268,8 +281,12 @@ def process_board(
         status = "verified" if rec["verified"] else "needs_review"
     else:
         status = "skipped"
-    if low:
+    # a glimpse (left before the board finished sliding in) cannot be read reliably: keep the
+    # best-effort letters but do not ask a person to fix them
+    glimpse = not played and record.get("view_ms", 0) < GLIMPSE_MS
+    if low and not glimpse:
         status = "needs_letter_fix"
+    out["glimpse"] = glimpse
     found_at = {}
     by_attempt = iter(words)
     resolved = []

@@ -44,6 +44,12 @@ def trie():
     return load_trie(os.environ.get("WH_DICT", ROOT / "dictionaries/yawl.txt"))
 
 
+def template_store():
+    from whcore.template_store import TemplateStore
+
+    return TemplateStore(db.data_dir() / "templates" / "letters_store.npz")
+
+
 @lru_cache(maxsize=1)
 def enable() -> set[str]:
     return load_words(ROOT / "dictionaries/enable1.txt")
@@ -75,9 +81,16 @@ def run_board(board_id: str) -> str:
         }
         record = b.record
         confirmed = b.letters if b.letters_confirmed else None
+    store = template_store()
     try:
         res = process_board(
-            record, images, calibration(), trie(), enable(), letters_override=confirmed
+            record,
+            images,
+            calibration(),
+            trie(),
+            enable(),
+            templates=store.templates(),
+            letters_override=confirmed,
         )
     except Exception as e:  # keep the board, flag it
         with db.session() as s:
@@ -115,6 +128,15 @@ def run_board(board_id: str) -> str:
             s.add(BoardWord(board_id=board_id, word=word, **info))
         s.commit()
         status, played = b.review_status, b.status == "played"
+        sure = (played and status == "verified") or b.letters_confirmed
+        letters_for_store = b.letters if sure and b.letters else None
+    # letters known for sure → their glyphs improve the templates for the next boards
+    if letters_for_store and "board" in images:
+        from whcore.pipeline import board_glyph_input
+
+        img, local = board_glyph_input(images["board"], calibration())
+        if store.add_board(board_id, img, local, letters_for_store):
+            store.save()
     if played and status in ("verified", "needs_review"):
         retry_unmatched_allwords()
     return status
