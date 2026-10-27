@@ -84,3 +84,24 @@ def test_one_extra_acceptance_is_dropped(yawl):
     dropped = int(note.split()[1])
     # any low-confidence acceptance may be the extra one; the reconciled board is what matters
     assert next(a for a in attempts if a["seq"] == dropped).get("confidence", 1.0) < 1.0
+
+
+def test_two_stacked_views_vote_per_tile():
+    import cv2
+    import numpy as np
+
+    from whcore.calibration import load_calibration
+    from whcore.pipeline import read_board_letters
+
+    cal = load_calibration(FIX / "calibration/iphone-1206x2622.json")
+    phone = LABELS[NAME]["phone_crops"]["board"]["file"]
+    one = cv2.imread(str(FIX / phone), cv2.IMREAD_GRAYSCALE)
+    assert read_board_letters(one, cal)[0] == TRUTH["letters"]
+    # the later look has a dark smear across tile 5 (e.g. a banner or finger path); voting with the
+    # clean first look still reads every tile
+    smeared = one.copy()
+    h = one.shape[0] // 4
+    smeared[h + 10 : 2 * h - 10, h + 10 : 2 * h - 10] = 40
+    letters, margins = read_board_letters(np.vstack([one, smeared]), cal)
+    assert letters == TRUTH["letters"]
+    assert len(margins) == 16

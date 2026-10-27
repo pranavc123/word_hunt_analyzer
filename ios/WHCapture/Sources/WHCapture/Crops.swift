@@ -23,6 +23,7 @@ public final class CropStore {
     public let endRingSize = 30  // ≥ 0.5 s of end frames at 60 fps (crop is taken 200 ms back)
     public let stillRingSize = 10
     public let boardEvery = 6
+    public let lateGap = 30  // ≈ 0.5 s at 60 fps
 
     public init(calibration: Calibration) {
         self.calibration = calibration
@@ -75,10 +76,17 @@ public final class CropStore {
     }
 
     /// Resolve and encode every request of a finished record, then forget crops it no longer needs.
+    /// A board crop gets a second look stacked below it (the board's latest kept frame, if it is
+    /// at least `lateGap` frames later): the server votes per tile over both views.
     public func jpegs(for requests: [CropRequest], quality: Double = 0.8) -> [String: Data] {
         var out: [String: Data] = [:]
         for r in requests {
-            if let img = image(for: r), let data = CropStore.jpeg(img, quality: quality) { out[r.name] = data }
+            guard var img = image(for: r) else { continue }
+            if r.rect == "board", let late = lastBoard, late.frame >= r.frame + lateGap,
+               late.image.width == img.width, late.image.height == img.height {
+                img = GrayImage(width: img.width, height: img.height * 2, pixels: img.pixels + late.image.pixels)
+            }
+            if let data = CropStore.jpeg(img, quality: quality) { out[r.name] = data }
             wanted[r.rect]?[r.frame] = nil
         }
         return out

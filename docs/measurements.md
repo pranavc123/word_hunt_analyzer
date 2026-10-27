@@ -112,6 +112,11 @@
   vs end 77; dropped) and "TEDARR" (= DARTER, same-frame tile order); board 8 had a G read as C (tile 5,
   margin 0.066) → corrected from the end-screen words.
 
+## Live sessions (S4)
+- 2026-10-27 06:54 (8 boards, 1 played) and 20:25 (15 boards, 3 played): 0 letter fixes in 23 boards
+  (only glimpses < 1 s read with low confidence). Played: 3/4 verified after the unread-row rule; the miss
+  (board 14) has two swipes with tile jumps (TROESN, OPEN) and no repair that sums to the end score.
+
 ## Go / no-go
 - 2026-10-26 GO. `tools/report.py --gate s0` = PASS: segmentation 27/27, reconciliation 11/12, all-words 6/6
   matched, extension 8.3 MB peak at ~60 fps over 31 min, max tracked flick 1423 px/frame.

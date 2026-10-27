@@ -39,6 +39,18 @@ def read_board(img: np.ndarray, cal: dict, templates: dict[str, np.ndarray]):
     return "".join(c for c, _, _ in out), [m for _, _, m in out]
 
 
+def score_board(
+    img: np.ndarray, cal: dict, templates: dict[str, np.ndarray]
+) -> list[dict[str, float]]:
+    """Per tile, the NCC score of every letter template."""
+    return [{ch: _ncc(g, t) for ch, t in templates.items()} for g in glyphs(img, cal)]
+
+
+def rank_scores(scores: list[dict[str, float]], k: int = 3):
+    """Per tile, the top-k (letter, score), best first."""
+    return [sorted(((ch, sc) for ch, sc in d.items()), key=lambda x: -x[1])[:k] for d in scores]
+
+
 def rank_board(img: np.ndarray, cal: dict, templates: dict[str, np.ndarray], k: int = 3):
     """Per tile, the top-k (letter, score) candidates, best first."""
     out = []

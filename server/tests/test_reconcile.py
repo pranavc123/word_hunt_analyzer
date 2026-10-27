@@ -72,3 +72,13 @@ def test_reconcile_checks():
     assert not bad["verified"] and not bad["checks"]["count"]
     missing = reconcile(["mister"], 1, 1400, vis)
     assert missing["visible_missing"] == ["master"]
+
+
+def test_unreadable_rows_are_unknown_not_failures():
+    rows = [("MASTER", 1400), ("ET", 800), ("MISTER", 1400)]  # "ET" snaps to nothing
+    vis = snap_visible(rows, SOL.keys())
+    assert vis[1]["word"] is None
+    ok = reconcile(["master", "mister"], 2, 2800, vis)
+    assert ok["verified"] and ok["rows_unread"] == 1
+    many_bad = snap_visible([("ET", 800), ("QQ", 800), ("ZZ", 100), ("MASTER", 1400)], SOL.keys())
+    assert not reconcile(["master"], 1, 1400, many_bad)["checks"]["visible"]

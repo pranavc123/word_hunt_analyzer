@@ -45,25 +45,41 @@ def to_cal_scale(img: np.ndarray, rect: list[int]) -> np.ndarray:
     )
 
 
-def board_glyph_input(board: np.ndarray, cal: dict) -> tuple[np.ndarray, dict]:
-    """(board crop at calibration scale, calibration relative to that crop)."""
+def board_views(board: np.ndarray) -> list[np.ndarray]:
+    """The phone may stack two looks at the board (settled + later) in one image."""
+    h, w = board.shape[:2]
+    if h > 1.6 * w:
+        half = h // 2
+        return [board[:half], board[half : 2 * half]]
+    return [board]
+
+
+def board_glyph_input(board: np.ndarray, cal: dict) -> tuple[list[np.ndarray], dict]:
+    """(each board view at calibration scale, calibration relative to a view)."""
     rect = crop_rect(cal, "board")
     local = {
         "tile_centers": [[x - rect[0], y - rect[1]] for x, y in cal["tile_centers"]],
         "tile_size": cal["tile_size"],
     }
-    return to_cal_scale(board, rect), local
+    return [to_cal_scale(v, rect) for v in board_views(board)], local
+
+
+def rank_board_views(board: np.ndarray, cal: dict, templates: dict, k: int = 3):
+    """Per tile top-k letters with each letter's score averaged over all views of the board."""
+    views, local = board_glyph_input(board, cal)
+    per_view = [lt.score_board(v, local, templates) for v in views]
+    mean = [
+        {ch: sum(p[i][ch] for p in per_view) / len(per_view) for ch in per_view[0][i]}
+        for i in range(16)
+    ]
+    return lt.rank_scores(mean, k)
 
 
 def read_board_letters(board: np.ndarray, cal: dict, templates: dict | None = None):
     """(letters, margins[16]) from a board crop (any scale, gray or RGB)."""
-    rect = crop_rect(cal, "board")
-    g = to_cal_scale(board, rect)
-    local = {
-        "tile_centers": [[x - rect[0], y - rect[1]] for x, y in cal["tile_centers"]],
-        "tile_size": cal["tile_size"],
-    }
-    return lt.read_letters(g, local, templates)
+    ranked = rank_board_views(board, cal, templates or lt.default_templates("letters"))
+    letters = "".join(r[0][0] for r in ranked)
+    return letters, [r[0][1] - (r[1][1] if len(r) > 1 else 0.0) for r in ranked]
 
 
 def _sub(rect: list[int], inner: list[int]) -> tuple[slice, slice]:
@@ -231,13 +247,9 @@ def process_board(
             "board_words": {},
         }
     else:
-        rect = crop_rect(cal, "board")
-        g = to_cal_scale(images["board"], rect)
-        local = {
-            "tile_centers": [[x - rect[0], y - rect[1]] for x, y in cal["tile_centers"]],
-            "tile_size": cal["tile_size"],
-        }
-        ranked = lt.rank_board(g, local, templates or lt.default_templates("letters"))
+        ranked = rank_board_views(
+            images["board"], cal, templates or lt.default_templates("letters")
+        )
     letters = "".join(r[0][0] for r in ranked)
     margins = [r[0][1] - (r[1][1] if len(r) > 1 else 0.0) for r in ranked]
     out.update(letters=letters, letters_conf=[round(float(m), 3) for m in margins])

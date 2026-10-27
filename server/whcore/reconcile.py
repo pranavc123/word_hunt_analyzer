@@ -104,13 +104,14 @@ def reconcile(
     """§3.3: verified iff Σ points == SCORE, count == WORDS, every visible word ∈ accepted."""
     acc = set(accepted)
     total = sum(word_points(len(w)) for w in accepted)
-    vis_words = [v["word"] for v in visible]
+    read = [v for v in visible if v["word"] is not None]  # an OCR-unreadable row is unknown
+    vis_words = [v["word"] for v in read]
     checks = {
         "score": end_score is not None and total == end_score,
         "count": end_words is not None and len(accepted) == end_words and len(acc) == len(accepted),
-        "visible": bool(visible)
-        and all(w is not None and w in acc for w in vis_words)
-        and all(v["points_ok"] is not False for v in visible),
+        "visible": len(read) >= max(1, len(visible) - 2)  # at most 2 unreadable rows
+        and all(w in acc for w in vis_words)
+        and all(v["points_ok"] is not False for v in read),
     }
     return {
         "verified": all(checks.values()),
@@ -121,4 +122,5 @@ def reconcile(
         "end_words": end_words,
         "visible_missing": [w for w in vis_words if w not in acc],
         "points_unread": sum(v["points_ok"] is None for v in visible),
+        "rows_unread": len(visible) - len(read),
     }

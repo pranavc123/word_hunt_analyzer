@@ -58,4 +58,4 @@ Current sprint: **S4** → `docs/sprints/S4-review-app.md`
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
-- S4.T8: play 2 more sessions (short is fine) and use the review app on the phone (Safari → https://<mac>.<tailnet>.ts.net → Add to Home Screen → Settings → token); note any friction. Then the agent runs the s4 gate.
+- S4.T8 in progress: 2 sessions played 2026-10-27 (0 letter fixes in 23 boards; 2/3 played verified). Feedback: letter fixes rely on memory → two-look board crops built; needs the phone reachable for install, then more sessions (gate: 5/6 verified over the latest 3, need ≥ 95%).

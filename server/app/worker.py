@@ -134,8 +134,12 @@ def run_board(board_id: str) -> str:
     if letters_for_store and "board" in images:
         from whcore.pipeline import board_glyph_input
 
-        img, local = board_glyph_input(images["board"], calibration())
-        if store.add_board(board_id, img, local, letters_for_store):
+        views, local = board_glyph_input(images["board"], calibration())
+        added = [
+            store.add_board(f"{board_id}#{k}", v, local, letters_for_store)
+            for k, v in enumerate(views)
+        ]
+        if any(added):
             store.save()
     if played and status in ("verified", "needs_review"):
         retry_unmatched_allwords()

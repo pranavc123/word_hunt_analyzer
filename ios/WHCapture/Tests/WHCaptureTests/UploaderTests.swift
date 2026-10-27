@@ -1,4 +1,5 @@
 import Foundation
+import ImageIO
 import XCTest
 @testable import WHCapture
 
@@ -179,5 +180,29 @@ final class CropTests: XCTestCase {
         let jpegs = store.jpegs(for: [CropRequest(name: "allwords_0_0.jpg", frame: 41, rect: "list_band")])
         XCTAssertEqual(Array(jpegs.keys), ["allwords_0_0.jpg"])
         XCTAssertNil(store.image(for: CropRequest(name: "x", frame: 41, rect: "list_band")))  // released
+    }
+
+    func testBoardCropStacksALaterLook() throws {
+        let cal = SamplerTests.calibration
+        let store = CropStore(calibration: cal)
+        let pb = SamplerTests.bgraBuffer(SamplerTests.frame(fill: [240, 220, 170], patches: []))
+        CVPixelBufferLockBaseAddress(pb, .readOnly)
+        defer { CVPixelBufferUnlockBaseAddress(pb, .readOnly) }
+        let v = try XCTUnwrap(FrameView(pb))
+        store.capture(frame: 50, rect: "board", view: v)  // settled look
+        for f in stride(from: 50, through: 200, by: 6) {
+            store.observe(frame: f, screen: .board, label: .board, still: false, view: v)
+        }
+        let jpeg = try XCTUnwrap(store.jpegs(for: [CropRequest(name: "board_0.jpg", frame: 50, rect: "board")])["board_0.jpg"])
+        let src = try XCTUnwrap(CGImageSourceCreateWithData(jpeg as CFData, nil))
+        let img = try XCTUnwrap(CGImageSourceCreateImageAtIndex(src, 0, nil))
+        XCTAssertEqual(img.height, 2 * cal.boardRect[3])
+        XCTAssertEqual(img.width, cal.boardRect[2])
+        // a quick skip (no later frame) stays a single look
+        let quick = CropStore(calibration: cal)
+        quick.observe(frame: 10, screen: .board, label: .board, still: false, view: v)
+        let one = try XCTUnwrap(quick.jpegs(for: [CropRequest(name: "b.jpg", frame: 12, rect: "board")])["b.jpg"])
+        let i1 = try XCTUnwrap(CGImageSourceCreateImageAtIndex(CGImageSourceCreateWithData(one as CFData, nil)!, 0, nil))
+        XCTAssertEqual(i1.height, cal.boardRect[3])
     }
 }
