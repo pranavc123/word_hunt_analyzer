@@ -209,4 +209,28 @@ final class SamplerSpeedTests: XCTestCase {
             XCTAssertLessThan(ms, 500)
         }
     }
+
+    /// The extension's whole per-frame path on a board frame: sample + machine + crop store + debug.
+    func testFullPerFrameCost() throws {
+        let fill = SamplerTests.frame(fill: [100, 140, 100], patches: [], width: 884, height: 1920)
+        let pb = SamplerTests.yuv420fBuffer(fill)
+        let s = Sampler(calibration: SamplerTests.calibration, digits: SamplerTests.digits)
+        s.classify = { _ in .board }
+        let m = Machine(sessionID: newRecordID(), startedAt: Date(), states: .phone)
+        let store = CropStore(calibration: SamplerTests.calibration)
+        let debug = DebugRecorder()
+        CVPixelBufferLockBaseAddress(pb, .readOnly)
+        defer { CVPixelBufferUnlockBaseAddress(pb, .readOnly) }
+        let v = try XCTUnwrap(FrameView(pb))
+        let t0 = Date()
+        for i in 0..<60 {
+            let row = s.sample(v, frame: i, tMs: i * 16)
+            m.feed(row)
+            store.observe(frame: i, screen: .board, label: .board, still: false, view: v)
+            debug.add(frame: i, tMs: i * 16, view: v)
+        }
+        let ms = Date().timeIntervalSince(t0) / 60 * 1000
+        print("full per-frame (board): \(String(format: "%.2f", ms)) ms")
+        XCTAssertLessThan(ms, 1000)
+    }
 }

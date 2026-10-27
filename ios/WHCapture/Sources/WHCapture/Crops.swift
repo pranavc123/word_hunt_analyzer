@@ -22,6 +22,7 @@ public final class CropStore {
     private(set) var stillRing: [Int: GrayImage] = [:]  // still all-words frames
     public let endRingSize = 6
     public let stillRingSize = 10
+    public let boardEvery = 6
 
     public init(calibration: Calibration) {
         self.calibration = calibration
@@ -40,7 +41,8 @@ public final class CropStore {
 
     /// Call once per frame after `Machine.feed`, with the screen the machine is on.
     public func observe(frame: Int, screen: Screen, label: Screen, still: Bool, view v: FrameView) {
-        if screen == .board && label == .board {
+        // the board is static: a recent frame serves quick skips (cheap: every 6th frame)
+        if screen == .board && label == .board && frame - (lastBoard?.frame ?? Int.min / 2) >= boardEvery {
             lastBoard = Entry(frame: frame, image: v.gray(rect("board", v)))
         }
         if screen == .end {
@@ -62,7 +64,9 @@ public final class CropStore {
     public func image(for r: CropRequest) -> GrayImage? {
         if let img = wanted[r.rect]?[r.frame] { return img }
         switch r.rect {
-        case "board": return lastBoard?.frame == r.frame ? lastBoard?.image : nil
+        case "board":  // nearest kept board frame at or before the request
+            guard let b = lastBoard, b.frame <= r.frame, r.frame - b.frame < 4 * boardEvery else { return nil }
+            return b.image
         case "roi_end_banner": return endRing[r.frame]?.0
         case "roi_end_list": return endRing[r.frame]?.1
         case "list_band": return stillRing[r.frame]

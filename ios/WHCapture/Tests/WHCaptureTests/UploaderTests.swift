@@ -170,10 +170,11 @@ final class CropTests: XCTestCase {
         let v = try XCTUnwrap(FrameView(pb))
         for f in 0..<10 { store.observe(frame: f, screen: .end, label: .end, still: false, view: v) }
         store.observe(frame: 10, screen: .board, label: .board, still: false, view: v)
+        store.observe(frame: 11, screen: .board, label: .board, still: false, view: v)  // throttled
         store.capture(frame: 11, rect: "list_band", view: v)
         XCTAssertNil(store.image(for: CropRequest(name: "e", frame: 2, rect: "roi_end_list")))  // fell out of the ring
         XCTAssertNotNil(store.image(for: CropRequest(name: "e", frame: 8, rect: "roi_end_list")))
-        let board = try XCTUnwrap(store.image(for: CropRequest(name: "b", frame: 10, rect: "board")))
+        let board = try XCTUnwrap(store.image(for: CropRequest(name: "b", frame: 11, rect: "board")))  // nearest earlier
         XCTAssertEqual(board.width, cal.boardRect[2])
         let jpegs = store.jpegs(for: [CropRequest(name: "allwords_0_0.jpg", frame: 11, rect: "list_band")])
         XCTAssertEqual(Array(jpegs.keys), ["allwords_0_0.jpg"])

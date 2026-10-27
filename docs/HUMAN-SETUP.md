@@ -52,8 +52,10 @@ as the reference for re-doing a step (new Mac, new phone, weekly re-install).
 4. Stop from the red status-bar indicator (or the same button).
 
 ## Weekly (free signing expires after 7 days; current profile: 2026-11-02)
-Ask the agent to rebuild and reinstall (it runs `xcodebuild … -allowProvisioningUpdates` and
-`xcrun devicectl device install app`), or press Run in Xcode. The developer stays trusted.
+Ask the agent to rebuild and reinstall (it runs `xcodebuild -configuration Release …
+-allowProvisioningUpdates` and `xcrun devicectl device install app`). If you use Xcode yourself,
+pick the Release configuration (Product → Scheme → Edit Scheme → Run → Build Configuration):
+Debug builds are ~20× slower and the capture drops most frames. The developer stays trusted.
 
 ## Recordings used in S0 (in `$WH_DATA/recordings/`, never committed)
 - `IMG_0717.PNG` / `IMG_0718.PNG`: board at 00:01 and its end screen.

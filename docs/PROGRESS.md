@@ -52,4 +52,4 @@ Current sprint: **S3** → `docs/sprints/S3-ingest-live.md`
 
 ## Blockers / waiting on human
 <!-- [HUMAN] items currently blocking, with what's needed -->
-- S3.T6: first live session. Services installed (launchd), app v0.1.0 with WH_DEBUG=1 installed 2026-10-26. User plays a normal session with the broadcast on, then stops; agent then runs the s3 gate.
+- S3.T6: live session #1 (2026-10-27, 4.3 min, 4 boards) ran a Debug build at 4.4 fps → 0/2 verified. Release build installed; needs live session #2.

@@ -100,6 +100,11 @@
 - 884×1920 gray JPEG q80 crops (~100 KB per played board): letters 11/12 boards (miss had margin 0.015 →
   needs_letter_fix), end-screen WORDS/SCORE 12/12, end list 15 rows.
 
+## Live sessions (S3)
+- #1 2026-10-27: 4.3 min, 4 boards (2 played), Debug build → 4.4 fps, 13,922/15,420 frames dropped,
+  mem 8.8 MB; 0/2 verified (7 and 9 of 63/57 words caught; a played board filed as skipped: its ~1 s
+  end screen was missed). Phone ROI values fit the board thresholds; letters + end numbers read.
+
 ## Go / no-go
 - 2026-10-26 GO. `tools/report.py --gate s0` = PASS: segmentation 27/27, reconciliation 11/12, all-words 6/6
   matched, extension 8.3 MB peak at ~60 fps over 31 min, max tracked flick 1423 px/frame.

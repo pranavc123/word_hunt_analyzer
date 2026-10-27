@@ -57,7 +57,7 @@ wordhunt_docs/   the user's exported plan doc (reference only; docs/PLAN.md wins
 - Web: `pnpm -C web install` · `pnpm -C web test --run` · `pnpm -C web build`
 - Server: `uv run uvicorn app.main:app --app-dir server --reload`
 - Gates: `uv run python tools/report.py --gate s<N>` · device probe summary: `--diag`
-- Device build + install (phone paired; free team): `xcodebuild -project ios/App/App.xcodeproj -scheme CompanionApp -destination 'id=<UDID>' -allowProvisioningUpdates -quiet build`, then `xcrun devicectl device install app --device <UDID> <BUILT_PRODUCTS_DIR>/CompanionApp.app` (`xcrun devicectl list devices` for the UDID)
+- Device build + install (phone paired; free team) — ALWAYS `-configuration Release` (Debug Swift is ~20× slower: the S3 live session ran at 4 fps): `xcodebuild -project ios/App/App.xcodeproj -scheme CompanionApp -configuration Release -destination 'id=<UDID>' -allowProvisioningUpdates -quiet build`, then `xcrun devicectl device install app --device <UDID> <BUILT_PRODUCTS_DIR>/CompanionApp.app` (`xcrun devicectl list devices` for the UDID)
 - Tailscale (App Store build, not on PATH): `/Applications/Tailscale.app/Contents/MacOS/Tailscale serve --bg 8000` / `serve status` / `status`
 - Start long-running things (server) in a Terminal panel tab so the user's `~/.zshrc` env (`WH_TOKEN`) is loaded
 
