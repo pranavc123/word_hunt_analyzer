@@ -197,6 +197,9 @@ final class SamplerTests: XCTestCase {
 final class SamplerSpeedTests: XCTestCase {
     /// Timing on a phone-sized 884×1920 420f buffer (prints ms/frame; asserts only a loose bound).
     func testSamplerSpeedOnPhoneSizedFrames() throws {
+        #if DEBUG
+        throw XCTSkip("timing is only meaningful in optimised builds: swift test -c release")
+        #endif
         let fill = SamplerTests.frame(fill: [100, 140, 100], patches: [], width: 884, height: 1920)
         let pb = SamplerTests.yuv420fBuffer(fill)
         let s = Sampler(calibration: SamplerTests.calibration, digits: SamplerTests.digits)
@@ -212,6 +215,9 @@ final class SamplerSpeedTests: XCTestCase {
 
     /// The extension's whole per-frame path on a board frame: sample + machine + crop store + debug.
     func testFullPerFrameCost() throws {
+        #if DEBUG
+        throw XCTSkip("timing is only meaningful in optimised builds: swift test -c release")
+        #endif
         let fill = SamplerTests.frame(fill: [100, 140, 100], patches: [], width: 884, height: 1920)
         let pb = SamplerTests.yuv420fBuffer(fill)
         let s = Sampler(calibration: SamplerTests.calibration, digits: SamplerTests.digits)
