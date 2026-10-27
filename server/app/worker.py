@@ -26,6 +26,7 @@ from .models import AllWordsCapture, AttemptRow, Board, BoardWord
 
 ROOT = Path(__file__).resolve().parents[2]
 
+db.data_dir().mkdir(parents=True, exist_ok=True)  # fresh checkouts / CI have no $WH_DATA yet
 huey = SqliteHuey(
     "wordhunt",
     filename=str(db.data_dir() / "huey.db"),
@@ -73,8 +74,11 @@ def run_board(board_id: str) -> str:
             if img is not None
         }
         record = b.record
+        confirmed = b.letters if b.letters_confirmed else None
     try:
-        res = process_board(record, images, calibration(), trie(), enable())
+        res = process_board(
+            record, images, calibration(), trie(), enable(), letters_override=confirmed
+        )
     except Exception as e:  # keep the board, flag it
         with db.session() as s:
             b = s.get(Board, board_id)
@@ -87,8 +91,6 @@ def run_board(board_id: str) -> str:
         raise
     with db.session() as s:
         b = s.get(Board, board_id)
-        if b.letters_confirmed:  # a human fixed the letters: keep them
-            res["letters"] = b.letters
         for k in (
             "letters",
             "letters_conf",
