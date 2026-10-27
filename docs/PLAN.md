@@ -9,7 +9,9 @@ tagged (S0); numbers live in `docs/measurements.md`, reasons in `docs/decisions.
 ## §1 Game facts (confirmed)
 - 4x4 board, 80 s timer, 8-way adjacency, each tile once per word, min 3 letters, no Qu tile.
 - Scoring: 3→100, 4→400, 5→800, 6→1400, then +400 per extra letter (9→2600).
-- Session = 40–50 boards. The 80 s timer runs from the moment the board appears; the user looks for
+- Session = anything from a short 10–15 min sitting (~5 played boards, user 2026-10-27) to 40–50
+  boards; analytics and gates must not assume long sessions (pool small ones).
+  The 80 s timer runs from the moment the board appears; the user looks for
   a few seconds (S0: most skips < 1 s, max 7.7 s) and either plays it out or LEAVES the game.
   Leaving voids the board: no end screen, nothing sent to the opponent.
 - (S0) The board slides in from the right for ~0.6 s when it opens; tiles keep their colour while

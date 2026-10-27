@@ -45,3 +45,4 @@
 - 2026-10-26 Uploader treats 404/405 as retry (server not yet updated), so records captured before S3 ships /v1/boards are kept, not parked.
 - 2026-10-27 Live session #1 ran at 4.4 fps because the app was a Debug build (Swift -Onone ≈ 20× slower). Device installs are Release builds from now on; CropStore keeps a board crop every 6th frame (nearest-earlier fallback). Release per-frame cost on a Mac: 0.84 ms (sampler + machine + crops + debug).
 - 2026-10-27 Phone-domain check from session #1 diag: board banner ≈ (209,202,210) std 85, timer ≈ 90 std 52, resting tile (251,217,164), WORDS digits read — the provisional board thresholds hold.
+- 2026-10-27 Sessions are often short (10–15 min, ~5 played boards). Session-level stats and later gates should pool recent sessions rather than require large single sessions.
